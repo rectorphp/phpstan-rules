@@ -2,8 +2,8 @@ includes:
     - ../../../../../../vendor/symplify/phpstan-rules/config/services/services.neon
 
 services:
-    - Rector\PHPStanExtensions\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer
+    - Rector\RectorPHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer
 
     -
-        class: Rector\PHPStanExtensions\Rule\NoClassReflectionStaticReflectionRule
+        class: Rector\RectorPHPStanRules\Rule\NoClassReflectionStaticReflectionRule
         tags: [phpstan.rules.rule]

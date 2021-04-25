@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\PHPStanExtensions\Tests\Rule\NoInstanceOfStaticReflectionRule\Fixture;
+namespace Rector\RectorPHPStanRules\Tests\Rule\NoInstanceOfStaticReflectionRule\Fixture;
 
 use Symfony\Component\Console\Helper\ProgressBar;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\PHPStanExtensions\Tests\Rule\NoClassReflectionStaticReflectionRule\Fixture;
+namespace Rector\RectorPHPStanRules\Tests\Rule\NoClassReflectionStaticReflectionRule\Fixture;
 
 use ReflectionClass;
 

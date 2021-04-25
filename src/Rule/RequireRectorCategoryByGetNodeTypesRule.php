@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\PHPStanExtensions\Rule;
+namespace Rector\RectorPHPStanRules\Rule;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\ClassConstFetch;
@@ -16,7 +16,7 @@ use Rector\Core\Contract\Rector\RectorInterface;
 use Rector\Core\Exception\ShouldNotHappenException;
 
 /**
- * @see \Rector\PHPStanExtensions\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule\RequireRectorCategoryByGetNodeTypesRuleTest
+ * @see \Rector\RectorPHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule\RequireRectorCategoryByGetNodeTypesRuleTest
  */
 final class RequireRectorCategoryByGetNodeTypesRule implements Rule
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Rector\PHPStanExtensions\Tests\Rule\NoClassReflectionStaticReflectionRule;
+namespace Rector\RectorPHPStanRules\Tests\Rule\NoClassReflectionStaticReflectionRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
-use Rector\PHPStanExtensions\Rule\NoClassReflectionStaticReflectionRule;
+use Rector\RectorPHPStanRules\Rule\NoClassReflectionStaticReflectionRule;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 final class NoClassReflectionStaticReflectionRuleTest extends AbstractServiceAwareRuleTestCase

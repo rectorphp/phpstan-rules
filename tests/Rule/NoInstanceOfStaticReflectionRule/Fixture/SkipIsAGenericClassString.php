@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Rector\PHPStanExtensions\Tests\Rule\NoInstanceOfStaticReflectionRule\Fixture;
+namespace Rector\RectorPHPStanRules\Tests\Rule\NoInstanceOfStaticReflectionRule\Fixture;
 
 use PhpParser\Node;
 use Rector\NodeTypeResolver\Node\AttributeKey;
-use Webmozart\Assert\Assert;
 
 final class SkipIsAGenericClassString
 {
