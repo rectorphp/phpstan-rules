@@ -22,7 +22,10 @@
     "autoload-dev": {
         "psr-4": {
             "Rector\\RectorPHPStanRules\\Tests\\": "tests"
-        }
+        },
+        "classmap": [
+            "stubs"
+        ]
     },
     "extra": {
         "phpstan": {
