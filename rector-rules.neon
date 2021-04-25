@@ -1,9 +1,5 @@
 services:
     -
-        class: Rector\PHPStanExtensions\Rule\RequireRectorCategoryByGetNodeTypesRule
-        tags: [phpstan.rules.rule]
-
-    -
         class: Rector\PHPStanExtensions\Rule\NoInstanceOfStaticReflectionRule
         tags: [phpstan.rules.rule]
 
@@ -23,14 +19,18 @@ services:
         tags: [phpstan.rules.rule]
         arguments:
             allowedParentTypes:
+                - Rector\Utils\DoctrineAnnotationParserSyncer\FileSyncer\AbstractClassSyncer
                 - PhpParser\NodeAbstract
                 - PHPStan\Type\Type
+                - Rector\BetterPhpDocParser\PhpDocNodeFactory\AbstractPhpDocNodeFactory
                 - PHPStan\PhpDocParser\Parser\PhpDocParser
                 - Rector\PostRector\Rector\AbstractPostRector
                 # value objects
                 - Rector\Defluent\ValueObject\AbstractRootExpr
             allowedDirectParentTypes:
                 - Rector\Core\Rector\AbstractRector
+                - Rector\Core\Rector\AbstractTemporaryRector
+                - Rector\PhpSpecToPHPUnit\Rector\AbstractPhpSpecToPHPUnitRector
 
     -
         class: Symplify\PHPStanRules\Rules\ServiceAndValueObjectHaveSameStartsRule
@@ -56,6 +56,9 @@ services:
                 Rector\NodeNameResolver\NodeNameResolver:
                     getName: isName
 
+    -
+        class: Rector\PHPStanExtensions\Rule\RequireRectorCategoryByGetNodeTypesRule
+        tags: [phpstan.rules.rule]
 
     # solve later
 #    -
