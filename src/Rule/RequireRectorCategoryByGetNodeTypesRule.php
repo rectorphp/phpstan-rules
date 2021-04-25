@@ -12,7 +12,7 @@ use PhpParser\NodeFinder;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Rules\Rule;
-use Rector\Core\Contract\Rector\RectorInterface;
+use Rector\RectorPHPStanRules\Exception\ShouldNotHappenException;
 
 /**
  * @see \Rector\RectorPHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule\RequireRectorCategoryByGetNodeTypesRuleTest
@@ -35,7 +35,7 @@ final class RequireRectorCategoryByGetNodeTypesRule implements Rule
     }
 
     /**
-     * @return class-string<Node>
+     * @return class-string<\PhpParser\Node>
      */
     public function getNodeType(): string
     {
@@ -81,7 +81,7 @@ final class RequireRectorCategoryByGetNodeTypesRule implements Rule
             return null;
         }
 
-        if (! $classReflection->isSubclassOf(RectorInterface::class)) {
+        if (! $classReflection->isSubclassOf('Rector\Core\Contract\Rector\RectorInterface')) {
             return null;
         }
 

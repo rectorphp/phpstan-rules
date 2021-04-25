@@ -8,7 +8,7 @@ use Hoa\Math\Sampler\Random;
 
 final class IsAWithType
 {
-    public function check($object)
+    public function check(object $object): bool
     {
         return is_a($object, Random::class);
     }

@@ -8,7 +8,7 @@ use ReflectionClass;
 
 final class SkipAllowedType
 {
-    public function check()
+    public function check(): object
     {
         return new ReflectionClass(\PhpParser\Node::class);
     }

@@ -16,7 +16,7 @@ final class SkipArrayClassString
      */
     private const BEFORE_TRAIT_TYPES = [TraitUse::class, Property::class, ClassMethod::class];
 
-    public function find($node)
+    public function find(object $node): bool
     {
         foreach (self::BEFORE_TRAIT_TYPES as $beforeTraitType) {
             if (is_a($node, $beforeTraitType, true)) {

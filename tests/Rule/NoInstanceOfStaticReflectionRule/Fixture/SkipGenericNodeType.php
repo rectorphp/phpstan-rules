@@ -8,12 +8,14 @@ final class SkipGenericNodeType
 {
     /**
      * @template T of \PhpParser\Node
-     * @param T $type
+     * @param class-string<T> $type
      */
-    public function find($node, $type)
+    public function find(object $node, string $type): bool
     {
         if (is_a($node, $type, true)) {
             return true;
         }
+
+        return true;
     }
 }

@@ -8,7 +8,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 
 final class SkipSymfony
 {
-    public function find($node)
+    public function find(object $node): bool
     {
         return $node instanceof ProgressBar;
     }

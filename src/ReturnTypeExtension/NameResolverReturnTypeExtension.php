@@ -10,12 +10,9 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\Type;
-use Rector\NodeNameResolver\NodeNameResolver;
 use Rector\RectorPHPStanRules\TypeResolver\GetNameMethodCallTypeResolver;
 
 /**
- * @see \Rector\NodeNameResolver\NodeNameResolver::getName()
- *
  * These returns always strings for nodes with required names, e.g. for @see ClassMethod
  */
 final class NameResolverReturnTypeExtension implements DynamicMethodReturnTypeExtension
@@ -32,7 +29,7 @@ final class NameResolverReturnTypeExtension implements DynamicMethodReturnTypeEx
 
     public function getClass(): string
     {
-        return NodeNameResolver::class;
+        return 'Rector\NodeNameResolver\NodeNameResolver';
     }
 
     public function isMethodSupported(MethodReflection $methodReflection): bool
