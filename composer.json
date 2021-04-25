@@ -9,7 +9,9 @@
         "phpstan/phpstan": "^0.12.84"
     },
     "require-dev": {
-        "symplify/easy-coding-standard": "^9.2"
+        "symplify/easy-coding-standard": "^9.2",
+        "symplify/phpstan-extensions": "^9.2",
+        "phpstan/extension-installer": "^1.1"
     },
     "autoload": {
         "psr-4": {
@@ -30,6 +32,7 @@
     },
     "scripts": {
         "check-cs": "vendor/bin/ecs check --ansi",
-        "fix-cs": "vendor/bin/ecs check --fix --ansi"
+        "fix-cs": "vendor/bin/ecs check --fix --ansi",
+        "phpstan": "vendor/bin/phpstan analyse --ansi --error-format symplify"
     }
 }
