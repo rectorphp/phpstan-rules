@@ -11,7 +11,8 @@
     "require-dev": {
         "symplify/easy-coding-standard": "^9.2",
         "symplify/phpstan-extensions": "^9.2",
-        "phpstan/extension-installer": "^1.1"
+        "phpstan/extension-installer": "^1.1",
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {

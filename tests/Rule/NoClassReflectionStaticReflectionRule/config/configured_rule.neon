@@ -1,5 +1,5 @@
 includes:
-    - ../../../../../../vendor/symplify/phpstan-rules/config/services/services.neon
+    - ../../../../vendor/symplify/phpstan-rules/config/services/services.neon
 
 services:
     - Rector\RectorPHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer
