@@ -13,6 +13,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Rules\Rule;
 use Rector\Core\Contract\Rector\RectorInterface;
+use Rector\RectorPHPStanRules\Exception\ShouldNotHappenException;
 
 /**
  * @see \Rector\RectorPHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule\RequireRectorCategoryByGetNodeTypesRuleTest
