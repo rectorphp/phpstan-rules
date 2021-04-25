@@ -30,7 +30,11 @@ final class RequireRectorCategoryByGetNodeTypesRuleTest extends AbstractServiceA
             'String_'
         );
 
+<<<<<<< HEAD
         yield [__DIR__ . '/Fixture/ClassMethod/ChangeSomethingRector.php', [[$errorMessage, 17]]];
+=======
+        yield [__DIR__ . '/Fixture/ClassMethod/ChangeSomethingRector.php', [[$errorMessage, 14]]];
+>>>>>>> 2b831c8 (bump to next phpstan-extensions with type)
         yield [__DIR__ . '/Fixture/FunctionLike/SkipSubtypeRector.php', []];
         yield [__DIR__ . '/Fixture/ClassMethod/SkipInterface.php', []];
         yield [__DIR__ . '/Fixture/SkipAbstract.php', []];

@@ -12,6 +12,10 @@ use PhpParser\NodeFinder;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Rules\Rule;
+<<<<<<< HEAD
+=======
+use Rector\Core\Contract\Rector\RectorInterface;
+>>>>>>> 2b831c8 (bump to next phpstan-extensions with type)
 use Rector\RectorPHPStanRules\Exception\ShouldNotHappenException;
 
 /**
