@@ -1,7 +1,3 @@
 includes:
     - rules.neon
     - extensions.neon
-
-    # symplif rules
-    - ../vendor/symplify/phpstan-rules/config/services/services.neon
-    - ../vendor/symplify/phpstan-rules/packages/cognitive-complexity/config/cognitive-complexity-services.neon
