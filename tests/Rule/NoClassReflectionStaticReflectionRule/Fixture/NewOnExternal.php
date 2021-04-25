@@ -8,7 +8,7 @@ use ReflectionClass;
 
 final class NewOnExternal
 {
-    public function run()
+    public function run(): object
     {
         return new ReflectionClass('SomeType');
     }

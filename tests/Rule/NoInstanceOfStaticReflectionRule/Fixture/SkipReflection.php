@@ -8,7 +8,7 @@ use ReflectionClass;
 
 final class SkipReflection
 {
-    public function find($node)
+    public function find(object $node): bool
     {
         if ($node instanceof ReflectionClass) {
             return true;

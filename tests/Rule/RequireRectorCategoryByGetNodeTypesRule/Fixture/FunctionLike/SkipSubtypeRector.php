@@ -12,6 +12,9 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 final class SkipSubtypeRector extends AbstractRector
 {
+    /**
+     * @return array<class-string<\PhpParser\Node>>
+     */
     public function getNodeTypes(): array
     {
         return [ClassMethod::class, Function_::class];
@@ -19,9 +22,11 @@ final class SkipSubtypeRector extends AbstractRector
 
     public function refactor(Node $node): ?Node
     {
+        return null;
     }
 
     public function getRuleDefinition(): RuleDefinition
     {
+        return new RuleDefinition('...', []);
     }
 }

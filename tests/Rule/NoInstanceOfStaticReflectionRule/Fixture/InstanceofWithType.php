@@ -8,10 +8,12 @@ use Hoa\Math\Sampler\Random;
 
 final class InstanceofWithType
 {
-    public function check($object)
+    public function check(object $object): bool
     {
         if ($object instanceof Random) {
             return true;
         }
+
+        return false;
     }
 }

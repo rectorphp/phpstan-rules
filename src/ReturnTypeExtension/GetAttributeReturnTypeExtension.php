@@ -24,7 +24,6 @@ use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
 use PHPStan\Type\UnionType;
-use Rector\NodeTypeResolver\Node\AttributeKey;
 use Symplify\Astral\NodeValue\NodeValueResolver;
 use Symplify\SmartFileSystem\SmartFileInfo;
 
@@ -34,21 +33,21 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
      * @var array<string, string|string[]>>
      */
     private const ARGUMENT_KEY_TO_RETURN_TYPE = [
-        AttributeKey::class . '::FILE_INFO' => SmartFileInfo::class,
-        AttributeKey::class . '::RESOLVED_NAME' => Name::class,
-        AttributeKey::class . '::CLASS_NODE' => ClassLike::class,
-        AttributeKey::class . '::METHOD_NODE' => ClassMethod::class,
-        AttributeKey::class . '::CURRENT_EXPRESSION' => Stmt::class,
-        AttributeKey::class . '::PREVIOUS_STATEMENT' => Stmt::class,
-        AttributeKey::class . '::SCOPE' => Scope::class,
+        'Rector\NodeTypeResolver\Node\AttributeKey::FILE_INFO' => SmartFileInfo::class,
+        'Rector\NodeTypeResolver\Node\AttributeKey::RESOLVED_NAME' => Name::class,
+        'Rector\NodeTypeResolver\Node\AttributeKey::CLASS_NODE' => ClassLike::class,
+        'Rector\NodeTypeResolver\Node\AttributeKey::METHOD_NODE' => ClassMethod::class,
+        'Rector\NodeTypeResolver\Node\AttributeKey::CURRENT_EXPRESSION' => Stmt::class,
+        'Rector\NodeTypeResolver\Node\AttributeKey::PREVIOUS_STATEMENT' => Stmt::class,
+        'Rector\NodeTypeResolver\Node\AttributeKey::SCOPE' => Scope::class,
         # Node
-        AttributeKey::class . '::ORIGINAL_NODE' => Node::class,
-        AttributeKey::class . '::PARENT_NODE' => Node::class,
-        AttributeKey::class . '::NEXT_NODE' => Node::class,
-        AttributeKey::class . '::PREVIOUS_NODE' => Node::class,
-        AttributeKey::class . '::USE_NODES' => [Use_::class],
+        'Rector\NodeTypeResolver\Node\AttributeKey::ORIGINAL_NODE' => Node::class,
+        'Rector\NodeTypeResolver\Node\AttributeKey::PARENT_NODE' => Node::class,
+        'Rector\NodeTypeResolver\Node\AttributeKey::NEXT_NODE' => Node::class,
+        'Rector\NodeTypeResolver\Node\AttributeKey::PREVIOUS_NODE' => Node::class,
+        'Rector\NodeTypeResolver\Node\AttributeKey::USE_NODES' => [Use_::class],
         # scalars
-        AttributeKey::class . '::CLASS_NAME' => 'string',
+        'Rector\NodeTypeResolver\Node\AttributeKey::CLASS_NAME' => 'string',
     ];
 
     /**

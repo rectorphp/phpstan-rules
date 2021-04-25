@@ -8,10 +8,12 @@ use Symplify\SmartFileSystem\SmartFileInfo;
 
 final class SkipFileInfo
 {
-    public function check($object)
+    public function check(object $object): bool
     {
         if ($object instanceof SmartFileInfo) {
             return true;
         }
+
+        return false;
     }
 }

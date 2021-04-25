@@ -19,11 +19,16 @@ services:
         tags: [phpstan.rules.rule]
         arguments:
             allowedParentTypes:
-                - Rector\Utils\DoctrineAnnotationParserSyncer\FileSyncer\AbstractClassSyncer
+                # php-parser
                 - PhpParser\NodeAbstract
-                - PHPStan\Type\Type
-                - Rector\BetterPhpDocParser\PhpDocNodeFactory\AbstractPhpDocNodeFactory
+
+                # phpdoc parser
                 - PHPStan\PhpDocParser\Parser\PhpDocParser
+
+                # phpstan
+                - PHPStan\Type\Type
+                - Symplify\PHPStanRules\Rules\AbstractSymplifyRule
+
                 - Rector\PostRector\Rector\AbstractPostRector
                 # value objects
                 - Rector\Defluent\ValueObject\AbstractRootExpr

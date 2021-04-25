@@ -8,7 +8,7 @@ use DateTimeInterface;
 
 final class SkipDateTime
 {
-    public function find($node)
+    public function find(object $node): bool
     {
         return is_a($node, DateTimeInterface::class, true);
     }

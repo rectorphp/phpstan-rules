@@ -7,7 +7,6 @@ namespace Rector\RectorPHPStanRules\Rule;
 use PhpParser\Node;
 use PhpParser\Node\Expr\New_;
 use PHPStan\Analyser\Scope;
-use PHPStan\Rules\Rule;
 use Rector\RectorPHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
@@ -17,7 +16,7 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 /**
  * @see \Rector\RectorPHPStanRules\Tests\Rule\NoClassReflectionStaticReflectionRule\NoClassReflectionStaticReflectionRuleTest
  */
-final class NoClassReflectionStaticReflectionRule extends AbstractSymplifyRule implements Rule
+final class NoClassReflectionStaticReflectionRule extends AbstractSymplifyRule
 {
     /**
      * @var string

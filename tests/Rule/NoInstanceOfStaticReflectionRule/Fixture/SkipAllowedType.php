@@ -6,7 +6,7 @@ namespace Rector\RectorPHPStanRules\Tests\Rule\NoInstanceOfStaticReflectionRule\
 
 final class SkipAllowedType
 {
-    public function check($object)
+    public function check(object $object): bool
     {
         return is_a($object, \PhpParser\Node::class);
     }

@@ -1,6 +1,22 @@
+includes:
+    - config/config.neon
+
 parameters:
     level: max
 
     paths:
         - src
         - tests
+
+    ignoreErrors:
+        - '#Method Rector\\RectorPHPStanRules\\Tests\\Rule\\(.*?) return type with generic interface PHPStan\\Rules\\Rule does not specify its types\: TNodeType#'
+        - '#Class Rector\\RectorPHPStanRules\\Rule\\(.*?) implements generic interface PHPStan\\Rules\\Rule but does not specify its types\: TNodeType#'
+
+        - '#Method Rector\\RectorPHPStanRules\\Tests\\Rule\\(.*?) return type has no value type specified in iterable type Iterator#'
+
+        -
+            message: '#Parameter \#1 \$argument of class ReflectionClass constructor expects class\-string<SomeType\>\|SomeType, string given#'
+            path: tests/Rule/NoClassReflectionStaticReflectionRule/Fixture/NewOnExternal.php
+
+    excludes_analyse:
+        - '*tests/*/Fixture/*'

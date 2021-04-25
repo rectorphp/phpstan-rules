@@ -9,7 +9,6 @@ use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\Instanceof_;
 use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
-use PHPStan\Rules\Rule;
 use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\Type;
 use Rector\RectorPHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
@@ -23,7 +22,7 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
  *
  * @see \Rector\RectorPHPStanRules\Tests\Rule\NoInstanceOfStaticReflectionRule\NoInstanceOfStaticReflectionRuleTest
  */
-final class NoInstanceOfStaticReflectionRule extends AbstractSymplifyRule implements Rule
+final class NoInstanceOfStaticReflectionRule extends AbstractSymplifyRule
 {
     /**
      * @var string

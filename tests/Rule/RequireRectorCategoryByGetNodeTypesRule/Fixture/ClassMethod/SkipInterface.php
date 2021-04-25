@@ -6,5 +6,8 @@ namespace Rector\RectorPHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTyp
 
 interface SkipInterface
 {
+    /**
+     * @return string[]
+     */
     public function getNodeTypes(): array;
 }
