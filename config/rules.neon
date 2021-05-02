@@ -1,5 +1,9 @@
 services:
     -
+        class: Rector\RectorPHPStanRules\Rule\FileProcessorRectorConstructorContractRule
+        tags: [phpstan.rules.rule]
+
+    -
         class: Rector\RectorPHPStanRules\Rule\NoInstanceOfStaticReflectionRule
         tags: [phpstan.rules.rule]
 
