@@ -1,0 +1,7 @@
+includes:
+    - ../../../../vendor/symplify/phpstan-rules/config/services/services.neon
+
+services:
+    -
+        class: Rector\RectorPHPStanRules\Rule\FileProcessorRectorConstructorContractRule
+        tags: [phpstan.rules.rule]
