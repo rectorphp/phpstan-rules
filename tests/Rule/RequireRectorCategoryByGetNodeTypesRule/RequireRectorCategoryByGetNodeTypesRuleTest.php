@@ -10,6 +10,9 @@ use Rector\RectorPHPStanRules\Rule\RequireRectorCategoryByGetNodeTypesRule;
 use Rector\RectorPHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule\Fixture\ClassMethod\ChangeSomethingRector;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
+/**
+ * @extends AbstractServiceAwareRuleTestCase<RequireRectorCategoryByGetNodeTypesRule>
+ */
 final class RequireRectorCategoryByGetNodeTypesRuleTest extends AbstractServiceAwareRuleTestCase
 {
     /**

@@ -9,7 +9,6 @@ parameters:
         - tests
 
     ignoreErrors:
-        - '#Method Rector\\RectorPHPStanRules\\Tests\\Rule\\(.*?) return type with generic interface PHPStan\\Rules\\Rule does not specify its types\: TNodeType#'
         - '#Class Rector\\RectorPHPStanRules\\Rule\\(.*?) implements generic interface PHPStan\\Rules\\Rule but does not specify its types\: TNodeType#'
 
         - '#Method Rector\\RectorPHPStanRules\\Tests\\Rule\\(.*?) return type has no value type specified in iterable type Iterator#'

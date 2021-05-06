@@ -9,6 +9,9 @@ use PHPStan\Rules\Rule;
 use Rector\RectorPHPStanRules\Rule\NoClassReflectionStaticReflectionRule;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
+/**
+ * @extends AbstractServiceAwareRuleTestCase<NoClassReflectionStaticReflectionRule>
+ */
 final class NoClassReflectionStaticReflectionRuleTest extends AbstractServiceAwareRuleTestCase
 {
     /**
