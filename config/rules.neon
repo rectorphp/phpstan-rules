@@ -1,4 +1,15 @@
 services:
+    - Rector\RectorPHPStanRules\TypeAnalyzer\InlineableTypeAnalyzer
+    - Rector\RectorPHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer
+
+    -
+        class: Rector\RectorPHPStanRules\Rule\ForwardTypedPropertyTypeRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: Rector\RectorPHPStanRules\Rule\ForwardUnionTypeRule
+        tags: [phpstan.rules.rule]
+
     -
         class: Rector\RectorPHPStanRules\Rule\FileProcessorRectorConstructorContractRule
         tags: [phpstan.rules.rule]

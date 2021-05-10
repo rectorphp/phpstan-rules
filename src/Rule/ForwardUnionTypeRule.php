@@ -12,6 +12,7 @@ use PHPStan\Reflection\FunctionReflection;
 use PHPStan\Reflection\FunctionVariantWithPhpDocs;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\UnionType;
+use Rector\RectorPHPStanRules\TypeAnalyzer\InlineableTypeAnalyzer;
 use Symplify\EasyTesting\PHPUnit\StaticPHPUnitEnvironment;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -26,6 +27,16 @@ final class ForwardUnionTypeRule extends AbstractSymplifyRule
      * @var string
      */
     public const ERROR_MESSAGE = 'This union type might be inlined to PHP. Do you have confidence it is correct? Put it here';
+
+    /**
+     * @var InlineableTypeAnalyzer
+     */
+    private $inlineableTypeAnalyzer;
+
+    public function __construct(InlineableTypeAnalyzer $inlineableTypeAnalyzer)
+    {
+        $this->inlineableTypeAnalyzer = $inlineableTypeAnalyzer;
+    }
 
     /**
      * @return array<class-string<Node>>
@@ -87,17 +98,6 @@ CODE_SAMPLE
         ]);
     }
 
-    private function isInlinableUnionType(UnionType $unionType): bool
-    {
-        foreach ($unionType->getTypes() as $unionedType) {
-            if ($unionedType->isIterable()->yes()) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     private function hasUnionableParamType(FunctionVariantWithPhpDocs $functionVariantWithPhpDocs): bool
     {
         foreach ($functionVariantWithPhpDocs->getParameters() as $parameterReflection) {
@@ -111,7 +111,7 @@ CODE_SAMPLE
                 continue;
             }
 
-            if (! $this->isInlinableUnionType($paramPhpDocType)) {
+            if (! $this->inlineableTypeAnalyzer->isInlinableUnionType($paramPhpDocType)) {
                 continue;
             }
 
@@ -132,6 +132,6 @@ CODE_SAMPLE
             return false;
         }
 
-        return $this->isInlinableUnionType($returnPhpDocType);
+        return $this->inlineableTypeAnalyzer->isInlinableUnionType($returnPhpDocType);
     }
 }

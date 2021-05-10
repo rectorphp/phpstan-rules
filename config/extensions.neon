@@ -1,5 +1,4 @@
 services:
-    - Rector\RectorPHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer
     - Rector\RectorPHPStanRules\TypeResolver\GetNameMethodCallTypeResolver
 
     # $nodeFinder->findInstanceOf()
