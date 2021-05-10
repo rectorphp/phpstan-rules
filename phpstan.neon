@@ -8,6 +8,8 @@ parameters:
         - src
         - tests
 
+    reportUnmatchedIgnoredErrors: false
+
     ignoreErrors:
         - '#Class Rector\\RectorPHPStanRules\\Rule\\(.*?) implements generic interface PHPStan\\Rules\\Rule but does not specify its types\: TNodeType#'
 
