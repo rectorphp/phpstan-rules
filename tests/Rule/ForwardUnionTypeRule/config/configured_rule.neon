@@ -1,0 +1,8 @@
+includes:
+    - ../../../../vendor/symplify/phpstan-rules/config/services/services.neon
+
+services:
+
+    -
+        class: Rector\RectorPHPStanRules\Rule\ForwardUnionTypeRule
+        tags: [phpstan.rules.rule]
