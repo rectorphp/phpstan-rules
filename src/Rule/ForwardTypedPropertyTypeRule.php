@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Rule;
+namespace Rector\PHPStanRules\Rule;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\PropertyFetch;
@@ -16,7 +16,7 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see \Rector\RectorPHPStanRules\Tests\Rule\ForwardTypedPropertyTypeRule\ForwardTypedPropertyTypeRuleTest
+ * @see \Rector\PHPStanRules\Tests\Rule\ForwardTypedPropertyTypeRule\ForwardTypedPropertyTypeRuleTest
  */
 final class ForwardTypedPropertyTypeRule extends AbstractSymplifyRule
 {

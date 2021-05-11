@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Rule;
+namespace Rector\PHPStanRules\Rule;
 
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
@@ -12,14 +12,14 @@ use PHPStan\Reflection\FunctionReflection;
 use PHPStan\Reflection\FunctionVariantWithPhpDocs;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\UnionType;
-use Rector\RectorPHPStanRules\TypeAnalyzer\InlineableTypeAnalyzer;
+use Rector\PHPStanRules\TypeAnalyzer\InlineableTypeAnalyzer;
 use Symplify\EasyTesting\PHPUnit\StaticPHPUnitEnvironment;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see \Rector\RectorPHPStanRules\Tests\Rule\ForwardUnionTypeRule\ForwardUnionTypeRuleTest
+ * @see \Rector\PHPStanRules\Tests\Rule\ForwardUnionTypeRule\ForwardUnionTypeRuleTest
  */
 final class ForwardUnionTypeRule extends AbstractSymplifyRule
 {

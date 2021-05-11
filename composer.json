@@ -1,5 +1,5 @@
 {
-    "name": "rector/rector-phpstan-rules",
+    "name": "rector/phpstan-rules",
     "license": "MIT",
     "type": "phpstan-extension",
     "description": "PHPStan rules for Rector projects - with focus on static reflection, constant re-use and Rector design patterns",
@@ -17,12 +17,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Rector\\RectorPHPStanRules\\": "src"
+            "Rector\\PHPStanRules\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Rector\\RectorPHPStanRules\\Tests\\": "tests"
+            "Rector\\PHPStanRules\\Tests\\": "tests"
         },
         "classmap": [
             "stubs"

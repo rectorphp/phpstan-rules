@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\ReturnTypeExtension;
+namespace Rector\PHPStanRules\ReturnTypeExtension;
 
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\MethodCall;

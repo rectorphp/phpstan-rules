@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Tests\Rule\FileProcessorRectorConstructorContractRule;
+namespace Rector\PHPStanRules\Tests\Rule\FileProcessorRectorConstructorContractRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
-use Rector\RectorPHPStanRules\Rule\FileProcessorRectorConstructorContractRule;
+use Rector\PHPStanRules\Rule\FileProcessorRectorConstructorContractRule;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**

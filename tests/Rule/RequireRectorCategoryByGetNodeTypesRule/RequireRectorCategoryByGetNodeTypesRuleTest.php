@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule;
+namespace Rector\PHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
-use Rector\RectorPHPStanRules\Rule\RequireRectorCategoryByGetNodeTypesRule;
-use Rector\RectorPHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule\Fixture\ClassMethod\ChangeSomethingRector;
+use Rector\PHPStanRules\Rule\RequireRectorCategoryByGetNodeTypesRule;
+use Rector\PHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule\Fixture\ClassMethod\ChangeSomethingRector;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**

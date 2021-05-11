@@ -1,23 +1,23 @@
 services:
-    - Rector\RectorPHPStanRules\TypeResolver\GetNameMethodCallTypeResolver
+    - Rector\PHPStanRules\TypeResolver\GetNameMethodCallTypeResolver
 
     # $nodeFinder->findInstanceOf()
     # $nodeFinder->findFirstInstanceOf()
     -
-        class: Rector\RectorPHPStanRules\ReturnTypeExtension\FindInstanceOfReturnTypeExtension
+        class: Rector\PHPStanRules\ReturnTypeExtension\FindInstanceOfReturnTypeExtension
         tags: [phpstan.broker.dynamicMethodReturnTypeExtension]
 
     # $node->getAttribute($1) => Type|null by $1
     -
-        class: Rector\RectorPHPStanRules\ReturnTypeExtension\GetAttributeReturnTypeExtension
+        class: Rector\PHPStanRules\ReturnTypeExtension\GetAttributeReturnTypeExtension
         tags: [phpstan.broker.dynamicMethodReturnTypeExtension]
 
     # $nameResolver->getName() => in some cases always string
     -
-        class: Rector\RectorPHPStanRules\ReturnTypeExtension\NameResolverReturnTypeExtension
+        class: Rector\PHPStanRules\ReturnTypeExtension\NameResolverReturnTypeExtension
         tags: [phpstan.broker.dynamicMethodReturnTypeExtension]
 
     # $rector->getName() => in some cases always string
     -
-        class: Rector\RectorPHPStanRules\ReturnTypeExtension\NameResolverReturnTypeAbstractRectorExtension
+        class: Rector\PHPStanRules\ReturnTypeExtension\NameResolverReturnTypeAbstractRectorExtension
         tags: [phpstan.broker.dynamicMethodReturnTypeExtension]

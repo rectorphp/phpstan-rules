@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Tests\Rule\FileProcessorRectorConstructorContractRule\Fixture;
+namespace Rector\PHPStanRules\Tests\Rule\FileProcessorRectorConstructorContractRule\Fixture;
 
 use Rector\Core\Contract\Processor\FileProcessorInterface;
-use Rector\RectorPHPStanRules\Tests\Rule\FileProcessorRectorConstructorContractRule\Source\Contract\SomeRectorInterface;
+use Rector\PHPStanRules\Tests\Rule\FileProcessorRectorConstructorContractRule\Source\Contract\SomeRectorInterface;
 
 final class CorrectFileProcessor implements FileProcessorInterface
 {

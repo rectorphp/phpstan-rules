@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\TypeResolver;
+namespace Rector\PHPStanRules\TypeResolver;
 
 use PhpParser\Node;
 use PhpParser\Node\Const_ as NodeConst;

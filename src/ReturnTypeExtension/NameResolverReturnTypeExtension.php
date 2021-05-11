@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\ReturnTypeExtension;
+namespace Rector\PHPStanRules\ReturnTypeExtension;
 
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Stmt\ClassMethod;
@@ -10,7 +10,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\Type;
-use Rector\RectorPHPStanRules\TypeResolver\GetNameMethodCallTypeResolver;
+use Rector\PHPStanRules\TypeResolver\GetNameMethodCallTypeResolver;
 
 /**
  * These returns always strings for nodes with required names, e.g. for @see ClassMethod

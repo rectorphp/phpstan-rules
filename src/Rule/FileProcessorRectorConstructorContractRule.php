@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Rule;
+namespace Rector\PHPStanRules\Rule;
 
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
@@ -18,7 +18,7 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see \Rector\RectorPHPStanRules\Tests\Rule\FileProcessorRectorConstructorContractRule\FileProcessorRectorConstructorContractRuleTest
+ * @see \Rector\PHPStanRules\Tests\Rule\FileProcessorRectorConstructorContractRule\FileProcessorRectorConstructorContractRuleTest
  */
 final class FileProcessorRectorConstructorContractRule extends AbstractSymplifyRule
 {

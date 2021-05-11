@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Tests\Rule\NoInstanceOfStaticReflectionRule\Fixture;
+namespace Rector\PHPStanRules\Tests\Rule\NoInstanceOfStaticReflectionRule\Fixture;
 
 use PhpParser\Node;
 use PhpParser\Node\Stmt\If_;

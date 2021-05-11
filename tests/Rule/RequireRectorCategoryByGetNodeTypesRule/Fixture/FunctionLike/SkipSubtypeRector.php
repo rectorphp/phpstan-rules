@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule\Fixture\FunctionLike;
+namespace Rector\PHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule\Fixture\FunctionLike;
 
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;

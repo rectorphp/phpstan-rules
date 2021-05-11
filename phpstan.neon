@@ -11,9 +11,9 @@ parameters:
     reportUnmatchedIgnoredErrors: false
 
     ignoreErrors:
-        - '#Class Rector\\RectorPHPStanRules\\Rule\\(.*?) implements generic interface PHPStan\\Rules\\Rule but does not specify its types\: TNodeType#'
+        - '#Class Rector\\PHPStanRules\\Rule\\(.*?) implements generic interface PHPStan\\Rules\\Rule but does not specify its types\: TNodeType#'
 
-        - '#Method Rector\\RectorPHPStanRules\\Tests\\Rule\\(.*?) return type has no value type specified in iterable type Iterator#'
+        - '#Method Rector\\PHPStanRules\\Tests\\Rule\\(.*?) return type has no value type specified in iterable type Iterator#'
 
         -
             message: '#Parameter \#1 \$argument of class ReflectionClass constructor expects class\-string<SomeType\>\|SomeType, string given#'

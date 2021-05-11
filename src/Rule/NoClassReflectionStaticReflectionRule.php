@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Rule;
+namespace Rector\PHPStanRules\Rule;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\New_;
 use PHPStan\Analyser\Scope;
-use Rector\RectorPHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
+use Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see \Rector\RectorPHPStanRules\Tests\Rule\NoClassReflectionStaticReflectionRule\NoClassReflectionStaticReflectionRuleTest
+ * @see \Rector\PHPStanRules\Tests\Rule\NoClassReflectionStaticReflectionRule\NoClassReflectionStaticReflectionRuleTest
  */
 final class NoClassReflectionStaticReflectionRule extends AbstractSymplifyRule
 {

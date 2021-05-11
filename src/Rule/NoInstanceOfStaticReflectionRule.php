@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Rule;
+namespace Rector\PHPStanRules\Rule;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
@@ -11,7 +11,7 @@ use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
 use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\Type;
-use Rector\RectorPHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
+use Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -20,7 +20,7 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 /**
  * @see https://github.com/rectorphp/rector/issues/5906
  *
- * @see \Rector\RectorPHPStanRules\Tests\Rule\NoInstanceOfStaticReflectionRule\NoInstanceOfStaticReflectionRuleTest
+ * @see \Rector\PHPStanRules\Tests\Rule\NoInstanceOfStaticReflectionRule\NoInstanceOfStaticReflectionRuleTest
  */
 final class NoInstanceOfStaticReflectionRule extends AbstractSymplifyRule
 {

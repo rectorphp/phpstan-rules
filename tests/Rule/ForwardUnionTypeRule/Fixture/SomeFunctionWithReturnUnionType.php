@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Tests\Rule\ForwardUnionTypeRule\Fixture;
+namespace Rector\PHPStanRules\Tests\Rule\ForwardUnionTypeRule\Fixture;
 
 final class SomeFunctionWithReturnUnionType
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\ReturnTypeExtension;
+namespace Rector\PHPStanRules\ReturnTypeExtension;
 
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Stmt\ClassMethod;
@@ -12,7 +12,7 @@ use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\Type;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\Rector\AbstractTemporaryRector;
-use Rector\RectorPHPStanRules\TypeResolver\GetNameMethodCallTypeResolver;
+use Rector\PHPStanRules\TypeResolver\GetNameMethodCallTypeResolver;
 
 /**
  * @see AbstractTemporaryRector::getName()

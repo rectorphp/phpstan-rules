@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Tests\Rule\FileProcessorRectorConstructorContractRule\Fixture;
+namespace Rector\PHPStanRules\Tests\Rule\FileProcessorRectorConstructorContractRule\Fixture;
 
 use Rector\Core\Contract\Processor\FileProcessorInterface;
 

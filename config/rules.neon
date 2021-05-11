@@ -1,25 +1,25 @@
 services:
-    - Rector\RectorPHPStanRules\TypeAnalyzer\InlineableTypeAnalyzer
-    - Rector\RectorPHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer
+    - Rector\PHPStanRules\TypeAnalyzer\InlineableTypeAnalyzer
+    - Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer
 
     -
-        class: Rector\RectorPHPStanRules\Rule\ForwardTypedPropertyTypeRule
+        class: Rector\PHPStanRules\Rule\ForwardTypedPropertyTypeRule
         tags: [phpstan.rules.rule]
 
     -
-        class: Rector\RectorPHPStanRules\Rule\ForwardUnionTypeRule
+        class: Rector\PHPStanRules\Rule\ForwardUnionTypeRule
         tags: [phpstan.rules.rule]
 
     -
-        class: Rector\RectorPHPStanRules\Rule\FileProcessorRectorConstructorContractRule
+        class: Rector\PHPStanRules\Rule\FileProcessorRectorConstructorContractRule
         tags: [phpstan.rules.rule]
 
     -
-        class: Rector\RectorPHPStanRules\Rule\NoInstanceOfStaticReflectionRule
+        class: Rector\PHPStanRules\Rule\NoInstanceOfStaticReflectionRule
         tags: [phpstan.rules.rule]
 
     -
-        class: Rector\RectorPHPStanRules\Rule\NoClassReflectionStaticReflectionRule
+        class: Rector\PHPStanRules\Rule\NoClassReflectionStaticReflectionRule
         tags: [phpstan.rules.rule]
 
     -
@@ -77,7 +77,7 @@ services:
                     getName: isName
 
     -
-        class: Rector\RectorPHPStanRules\Rule\RequireRectorCategoryByGetNodeTypesRule
+        class: Rector\PHPStanRules\Rule\RequireRectorCategoryByGetNodeTypesRule
         tags: [phpstan.rules.rule]
 
     # solve later

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Tests\Rule\NoClassReflectionStaticReflectionRule\Fixture;
+namespace Rector\PHPStanRules\Tests\Rule\NoClassReflectionStaticReflectionRule\Fixture;
 
 use Exception;
 use PHPStan\ShouldNotHappenException;

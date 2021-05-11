@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Tests\Rule\ForwardUnionTypeRule;
+namespace Rector\PHPStanRules\Tests\Rule\ForwardUnionTypeRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
-use Rector\RectorPHPStanRules\Rule\ForwardUnionTypeRule;
+use Rector\PHPStanRules\Rule\ForwardUnionTypeRule;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**

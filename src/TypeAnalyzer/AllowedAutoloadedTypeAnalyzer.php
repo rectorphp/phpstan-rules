@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\TypeAnalyzer;
+namespace Rector\PHPStanRules\TypeAnalyzer;
 
 use DateTimeInterface;
 use Nette\Utils\Strings;

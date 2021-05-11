@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Rector\RectorPHPStanRules\Tests\Rule\ForwardTypedPropertyTypeRule;
+namespace Rector\PHPStanRules\Tests\Rule\ForwardTypedPropertyTypeRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
-use Rector\RectorPHPStanRules\Rule\ForwardTypedPropertyTypeRule;
+use Rector\PHPStanRules\Rule\ForwardTypedPropertyTypeRule;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
