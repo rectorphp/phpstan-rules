@@ -115,6 +115,11 @@ CODE_SAMPLE
             return false;
         }
 
+        // skip interfaces
+        if (! $classReflection->isClass()) {
+            return false;
+        }
+
         return $classReflection->implementsInterface('Rector\Core\Contract\Processor\FileProcessorInterface');
     }
 
