@@ -13,9 +13,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         __DIR__ . '/tests',
     ]);
 
-    $parameters->set(Option::SETS, [
-        SetList::COMMON,
-        SetList::CLEAN_CODE,
-        SetList::PSR_12,
-    ]);
+    $containerConfigurator->import(SetList::COMMON);
+    $containerConfigurator->import(SetList::CLEAN_CODE);
+    $containerConfigurator->import(SetList::PSR_12);
 };
