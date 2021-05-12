@@ -253,6 +253,11 @@ services:
         tags: [phpstan.rules.rule]
         arguments:
             forbiddenFunctions:
+                # use Strings::match() instead
+                - preg_match
+                - preg_match_all
+                - preg_replace
+                # forbid debug
                 - 'd'
                 - 'dd'
                 - 'dump'
