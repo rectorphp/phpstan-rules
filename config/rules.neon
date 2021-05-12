@@ -225,6 +225,7 @@ services:
         tags: [phpstan.rules.rule]
         arguments:
             parentClasses:
+                - Rector\Core\Contract\Rector\RectorInterface
                 - Rector\Core\Rector\AbstractRector
                 - Rector\PostRector\Contract\Rector\PostRectorInterface
                 - Rector\Composer\Contract\Rector\ComposerRectorInterface
