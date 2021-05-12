@@ -29,6 +29,7 @@ final class ForwardTypedPropertyTypeRuleTest extends AbstractServiceAwareRuleTes
         yield [__DIR__ . '/Fixture/DocTypedProperty.php', [[$errorMessage, 16]]];
 
         yield [__DIR__ . '/Fixture/SkipTypedProperty.php', []];
+        yield [__DIR__ . '/Fixture/SkipArrayTypedProperty.php', []];
     }
 
     protected function getRule(): Rule
