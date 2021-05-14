@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rector\PHPStanRules\Rule;
 
 use PhpParser\Node;
+use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\Instanceof_;
 use PhpParser\Node\Name;
@@ -14,6 +15,7 @@ use PHPStan\Type\Type;
 use Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
+use Symplify\PHPStanRules\ValueObject\PHPStanAttributeKey;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -70,6 +72,10 @@ final class NoInstanceOfStaticReflectionRule extends AbstractSymplifyRule
             return [];
         }
 
+        if ($this->hasParentFuncCallNamed($node, 'assert')) {
+            return [];
+        }
+
         return [self::ERROR_MESSAGE];
     }
 
@@ -110,5 +116,20 @@ CODE_SAMPLE
 
         $typeArgValue = $node->args[1]->value;
         return $scope->getType($typeArgValue);
+    }
+
+    private function hasParentFuncCallNamed(\PhpParser\Node $node, string $functionName): bool
+    {
+        $parent = $node->getAttribute(PHPStanAttributeKey::PARENT);
+        if (! $parent instanceof Arg) {
+            return false;
+        }
+
+        $parentParent = $parent->getAttribute(PHPStanAttributeKey::PARENT);
+        if (! $parentParent instanceof FuncCall) {
+            return false;
+        }
+
+        return $this->simpleNameResolver->isName($parentParent->name, $functionName);
     }
 }

@@ -31,6 +31,7 @@ final class NoInstanceOfStaticReflectionRuleTest extends AbstractServiceAwareRul
         $errorMessage = NoInstanceOfStaticReflectionRule::ERROR_MESSAGE;
         yield [__DIR__ . '/Fixture/IsAWithType.php', [[$errorMessage, 13]]];
 
+        yield [__DIR__ . '/Fixture/SkipAssert.php', []];
         yield [__DIR__ . '/Fixture/SkipAllowedType.php', []];
         yield [__DIR__ . '/Fixture/SkipGenericNodeType.php', []];
         yield [__DIR__ . '/Fixture/SkipIsAGenericClassString.php', []];
