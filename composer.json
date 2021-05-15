@@ -10,8 +10,8 @@
         "nette/utils": "^3.2"
     },
     "require-dev": {
-        "symplify/easy-coding-standard": "^9.2.22",
-        "symplify/phpstan-extensions": "^9.2.22",
+        "symplify/easy-coding-standard": "^9.3",
+        "symplify/phpstan-extensions": "^9.3",
         "phpstan/extension-installer": "^1.1",
         "phpunit/phpunit": "^9.5"
     },
