@@ -157,6 +157,10 @@ CODE_SAMPLE
                 continue;
             }
 
+            if ($parametersAcceptorWithPhpDocs->getParameters() === []) {
+                continue;
+            }
+
             $configurationParameterReflection = $parametersAcceptorWithPhpDocs->getParameters()[0];
             $phpDocType = $configurationParameterReflection->getPhpDocType();
             if (! $phpDocType instanceof ArrayType) {
