@@ -131,7 +131,7 @@ CODE_SAMPLE
                 continue;
             }
 
-            if ($this->simpleNameResolver->isName($staticCall->name, 'allIsAOf')) {
+            if ($this->simpleNameResolver->isNames($staticCall->name, ['allIsAOf', 'allIsInstanceOf'])) {
                 return true;
             }
         }
