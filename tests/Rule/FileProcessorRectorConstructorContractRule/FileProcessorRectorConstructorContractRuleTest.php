@@ -27,8 +27,7 @@ final class FileProcessorRectorConstructorContractRuleTest extends AbstractServi
     {
         yield [__DIR__ . '/Fixture/CorrectFileProcessor.php', []];
 
-        $errorMessage = FileProcessorRectorConstructorContractRule::ERROR_MESSAGE;
-        yield [__DIR__ . '/Fixture/WrongFileProcessor.php', [[$errorMessage, 10]]];
+        yield [__DIR__ . '/Fixture/WrongFileProcessor.php', [[FileProcessorRectorConstructorContractRule::ERROR_MESSAGE, 10]]];
     }
 
     protected function getRule(): Rule

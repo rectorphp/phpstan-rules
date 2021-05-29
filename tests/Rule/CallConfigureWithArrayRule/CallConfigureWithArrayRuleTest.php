@@ -26,6 +26,8 @@ final class CallConfigureWithArrayRuleTest extends AbstractServiceAwareRuleTestC
     public function provideData(): Iterator
     {
         yield [__DIR__ . '/Fixture/SkipCorrectConfig.php', []];
+        yield [__DIR__ . '/Fixture/SkipCorrectConfigWithKey.php', []];
+
         yield [__DIR__ . '/Fixture/WrongConfig.php', [[CallConfigureWithArrayRule::ERROR_MESSAGE, 12]]];
         yield [__DIR__ . '/Fixture/WrongConfigTooMany.php', [[CallConfigureWithArrayRule::ERROR_MESSAGE, 12]]];
     }

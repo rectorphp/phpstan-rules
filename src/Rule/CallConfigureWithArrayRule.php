@@ -126,6 +126,10 @@ CODE_SAMPLE
             return false;
         }
 
+        if ($firstNestedItem->key !== null) {
+            return true;
+        }
+
         return ! $firstNestedItem->value instanceof Array_;
     }
 }
