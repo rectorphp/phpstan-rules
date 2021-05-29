@@ -31,22 +31,10 @@ final class NoInstanceOfStaticReflectionRule extends AbstractSymplifyRule
      */
     public const ERROR_MESSAGE = 'Instead of "instanceof/is_a()" use ReflectionProvider service or "(new ObjectType(<desired_type>))->isSuperTypeOf(<element_type>)" for static reflection to work';
 
-    /**
-     * @var AllowedAutoloadedTypeAnalyzer
-     */
-    private $allowedAutoloadedTypeAnalyzer;
-
-    /**
-     * @var SimpleNameResolver
-     */
-    private $simpleNameResolver;
-
     public function __construct(
-        SimpleNameResolver $simpleNameResolver,
-        AllowedAutoloadedTypeAnalyzer $allowedAutoloadedTypeAnalyzer
+        private SimpleNameResolver $simpleNameResolver,
+        private AllowedAutoloadedTypeAnalyzer $allowedAutoloadedTypeAnalyzer
     ) {
-        $this->allowedAutoloadedTypeAnalyzer = $allowedAutoloadedTypeAnalyzer;
-        $this->simpleNameResolver = $simpleNameResolver;
     }
 
     /**

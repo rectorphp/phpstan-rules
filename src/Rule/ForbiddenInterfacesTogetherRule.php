@@ -25,7 +25,7 @@ final class ForbiddenInterfacesTogetherRule extends AbstractSymplifyRule impleme
     /**
      * @var string[][]
      */
-    private $forbiddenInterfaceGroups = [];
+    private array $forbiddenInterfaceGroups = [];
 
     /**
      * @param string[][] $forbiddenInterfaceGroups

@@ -32,20 +32,10 @@ final class RequireAssertConfigureValueObjectRectorRule extends AbstractSymplify
      */
     public const ERROR_MESSAGE = 'Method configure() with passed value object must contain assert to verify passed type';
 
-    /**
-     * @var NodeFinder
-     */
-    private $nodeFinder;
-
-    /**
-     * @var SimpleNameResolver
-     */
-    private $simpleNameResolver;
-
-    public function __construct(SimpleNameResolver $simpleNameResolver, NodeFinder $nodeFinder)
-    {
-        $this->nodeFinder = $nodeFinder;
-        $this->simpleNameResolver = $simpleNameResolver;
+    public function __construct(
+        private SimpleNameResolver $simpleNameResolver,
+        private NodeFinder $nodeFinder
+    ) {
     }
 
     /**

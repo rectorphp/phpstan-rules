@@ -24,14 +24,9 @@ final class RequireRectorCategoryByGetNodeTypesRule implements Rule
      */
     public const ERROR_MESSAGE = 'Class "%s" has invalid namespace category "%s". Pick one of: "%s"';
 
-    /**
-     * @var NodeFinder
-     */
-    private $nodeFinder;
-
-    public function __construct(NodeFinder $nodeFinder)
-    {
-        $this->nodeFinder = $nodeFinder;
+    public function __construct(
+        private NodeFinder $nodeFinder
+    ) {
     }
 
     /**

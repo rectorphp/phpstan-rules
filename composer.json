@@ -13,7 +13,8 @@
         "symplify/easy-coding-standard": "^9.3",
         "symplify/phpstan-extensions": "^9.3",
         "phpstan/extension-installer": "^1.1",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "rector/rector-src": "^0.11.7"
     },
     "autoload": {
         "psr-4": {
@@ -23,10 +24,7 @@
     "autoload-dev": {
         "psr-4": {
             "Rector\\PHPStanRules\\Tests\\": "tests"
-        },
-        "classmap": [
-            "stubs"
-        ]
+        }
     },
     "extra": {
         "phpstan": {

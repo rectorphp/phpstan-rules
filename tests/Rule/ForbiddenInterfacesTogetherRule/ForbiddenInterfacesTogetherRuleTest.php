@@ -31,7 +31,7 @@ final class ForbiddenInterfacesTogetherRuleTest extends AbstractServiceAwareRule
         );
         $errorMessage = sprintf(ForbiddenInterfacesTogetherRule::ERROR_MESSAGE, $groupAsStrings);
 
-        yield [__DIR__ . '/Fixture/Mixture.php', [[$errorMessage, 10]]];
+        yield [__DIR__ . '/Fixture/Mixture.php', [[$errorMessage, 12]]];
 
         yield [__DIR__ . '/Fixture/SkipSeparated.php', []];
     }
