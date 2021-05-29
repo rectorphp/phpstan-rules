@@ -3,6 +3,10 @@ services:
     - Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer
 
     -
+        class: Rector\PHPStanRules\Rule\CallConfigureWithArrayRule
+        tags: [phpstan.rules.rule]
+
+    -
         class: Rector\PHPStanRules\Rule\RequireAssertConfigureValueObjectRectorRule
         tags: [phpstan.rules.rule]
 
