@@ -23,22 +23,10 @@ final class NoClassReflectionStaticReflectionRule extends AbstractSymplifyRule
      */
     public const ERROR_MESSAGE = 'Instead of "new ClassReflection()" use ReflectionProvider service or "(new PHPStan\Reflection\ClassReflection(<desired_type>))" for static reflection to work';
 
-    /**
-     * @var AllowedAutoloadedTypeAnalyzer
-     */
-    private $allowedAutoloadedTypeAnalyzer;
-
-    /**
-     * @var SimpleNameResolver
-     */
-    private $simpleNameResolver;
-
     public function __construct(
-        SimpleNameResolver $simpleNameResolver,
-        AllowedAutoloadedTypeAnalyzer $allowedAutoloadedTypeAnalyzer
+        private SimpleNameResolver $simpleNameResolver,
+        private AllowedAutoloadedTypeAnalyzer $allowedAutoloadedTypeAnalyzer
     ) {
-        $this->allowedAutoloadedTypeAnalyzer = $allowedAutoloadedTypeAnalyzer;
-        $this->simpleNameResolver = $simpleNameResolver;
     }
 
     /**

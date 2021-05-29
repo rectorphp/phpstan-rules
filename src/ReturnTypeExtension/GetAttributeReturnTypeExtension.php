@@ -50,14 +50,9 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
         'Rector\NodeTypeResolver\Node\AttributeKey::CLASS_NAME' => 'string',
     ];
 
-    /**
-     * @var NodeValueResolver
-     */
-    private $nodeValueResolver;
-
-    public function __construct(NodeValueResolver $nodeValueResolver)
-    {
-        $this->nodeValueResolver = $nodeValueResolver;
+    public function __construct(
+        private NodeValueResolver $nodeValueResolver
+    ) {
     }
 
     public function getClass(): string

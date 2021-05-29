@@ -26,20 +26,10 @@ final class CallConfigureWithArrayRule extends AbstractSymplifyRule
      */
     public const ERROR_MESSAGE = 'Service call("configure") must be followed by exact array';
 
-    /**
-     * @var SimpleNameResolver
-     */
-    private $simpleNameResolver;
-
-    /**
-     * @var NodeValueResolver
-     */
-    private $nodeValueResolver;
-
-    public function __construct(SimpleNameResolver $simpleNameResolver, NodeValueResolver $nodeValueResolver)
-    {
-        $this->simpleNameResolver = $simpleNameResolver;
-        $this->nodeValueResolver = $nodeValueResolver;
+    public function __construct(
+        private SimpleNameResolver $simpleNameResolver,
+        private NodeValueResolver $nodeValueResolver
+    ) {
     }
 
     /**

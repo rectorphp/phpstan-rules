@@ -28,14 +28,9 @@ final class ForwardUnionTypeRule extends AbstractSymplifyRule
      */
     public const ERROR_MESSAGE = 'This union type might be inlined to PHP. Do you have confidence it is correct? Put it here';
 
-    /**
-     * @var InlineableTypeAnalyzer
-     */
-    private $inlineableTypeAnalyzer;
-
-    public function __construct(InlineableTypeAnalyzer $inlineableTypeAnalyzer)
-    {
-        $this->inlineableTypeAnalyzer = $inlineableTypeAnalyzer;
+    public function __construct(
+        private InlineableTypeAnalyzer $inlineableTypeAnalyzer
+    ) {
     }
 
     /**
