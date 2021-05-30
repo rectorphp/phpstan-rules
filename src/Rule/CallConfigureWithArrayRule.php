@@ -24,7 +24,7 @@ final class CallConfigureWithArrayRule extends AbstractSymplifyRule
     /**
      * @var string
      */
-    public const ERROR_MESSAGE = 'Service call("configure") must be followed by exact array';
+    public const ERROR_MESSAGE = '$service->call("configure", [[ ... ]]) must be followed by exact array';
 
     public function __construct(
         private SimpleNameResolver $simpleNameResolver,
@@ -110,6 +110,10 @@ CODE_SAMPLE
 
         $firstItem = $expr->items[0];
         if (! $firstItem instanceof ArrayItem) {
+            return false;
+        }
+
+        if ($firstItem->key !== null) {
             return false;
         }
 

@@ -30,6 +30,7 @@ final class CallConfigureWithArrayRuleTest extends AbstractServiceAwareRuleTestC
 
         yield [__DIR__ . '/Fixture/WrongConfig.php', [[CallConfigureWithArrayRule::ERROR_MESSAGE, 12]]];
         yield [__DIR__ . '/Fixture/WrongConfigTooMany.php', [[CallConfigureWithArrayRule::ERROR_MESSAGE, 12]]];
+        yield [__DIR__ . '/Fixture/WrongConfigTooFew.php', [[CallConfigureWithArrayRule::ERROR_MESSAGE, 12]]];
     }
 
     protected function getRule(): Rule
