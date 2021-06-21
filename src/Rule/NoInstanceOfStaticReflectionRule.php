@@ -14,8 +14,8 @@ use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\Type;
 use Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
 use Symplify\Astral\Naming\SimpleNameResolver;
+use Symplify\Astral\ValueObject\AttributeKey;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
-use Symplify\PHPStanRules\ValueObject\PHPStanAttributeKey;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -108,12 +108,12 @@ CODE_SAMPLE
 
     private function hasParentFuncCallNamed(\PhpParser\Node $node, string $functionName): bool
     {
-        $parent = $node->getAttribute(PHPStanAttributeKey::PARENT);
+        $parent = $node->getAttribute(AttributeKey::PARENT);
         if (! $parent instanceof Arg) {
             return false;
         }
 
-        $parentParent = $parent->getAttribute(PHPStanAttributeKey::PARENT);
+        $parentParent = $parent->getAttribute(AttributeKey::PARENT);
         if (! $parentParent instanceof FuncCall) {
             return false;
         }
