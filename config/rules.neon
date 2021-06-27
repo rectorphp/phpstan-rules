@@ -82,16 +82,6 @@ services:
                 - 'Rector'
 
     -
-        class: Symplify\PHPStanRules\Rules\PreferredMethodCallOverIdenticalCompareRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            identicalToPreferredMethodCalls:
-                Rector\Core\Rector\AbstractRector:
-                    getName: isName
-                Rector\NodeNameResolver\NodeNameResolver:
-                    getName: isName
-
-    -
         class: Rector\PHPStanRules\Rule\RequireRectorCategoryByGetNodeTypesRule
         tags: [phpstan.rules.rule]
 
@@ -143,16 +133,6 @@ services:
 #                    - 'getType'
 
     -
-        class: Symplify\PHPStanRules\Rules\OnlyOneClassMethodRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            onlyOneMethodsByType:
-                Rector\Testing\PHPUnit\AbstractRectorTestCase:
-                    - getRectorClass
-                    - provideConfigFileInfo
-                    - getRectorsWithConfiguration
-
-    -
         class: Symplify\PHPStanRules\Rules\ForbiddenNodeRule
         tags: [phpstan.rules.rule]
         arguments:
@@ -160,14 +140,6 @@ services:
                 - PhpParser\Node\Expr\ErrorSuppress
                 - PhpParser\Node\Stmt\Switch_
                 - PhpParser\Node\Expr\Empty_
-
-    -
-        class: Symplify\PHPStanRules\Rules\RequireClassTypeInClassMethodByTypeRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            requiredTypeInMethodByClass:
-                Rector\Core\Contract\Rector\PhpRectorInterface:
-                    getNodeTypes: 'PhpParser\Node'
 
     -
         class: Symplify\PHPStanRules\CognitiveComplexity\Rules\FunctionLikeCognitiveComplexityRule
