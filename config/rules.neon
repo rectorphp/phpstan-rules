@@ -234,7 +234,6 @@ services:
                 PhpParser\Builder\Param: Rector\Core\PhpParser\Builder\ParamBuilder
                 PhpParser\Builder\Property: Rector\Core\PhpParser\Builder\PropertyBuilder
                 PhpParser\Builder\TraitUse: Rector\Core\PhpParser\Builder\TraitUseBuilder
-                ReflectionFunction: PHPStan\Reflection\FunctionReflection
 
     -
         class: Symplify\PHPStanRules\Rules\ForbiddenFuncCallRule

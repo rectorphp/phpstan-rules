@@ -6,6 +6,7 @@ namespace Rector\PHPStanRules\Tests\Rule\FileProcessorRectorConstructorContractR
 
 use Rector\Core\Contract\Processor\FileProcessorInterface;
 use Rector\Core\ValueObject\Application\File;
+use Rector\Core\ValueObject\Configuration;
 use Rector\PHPStanRules\Tests\Rule\FileProcessorRectorConstructorContractRule\Source\Contract\SomeRectorInterface;
 
 final class CorrectFileProcessor implements FileProcessorInterface
@@ -18,11 +19,11 @@ final class CorrectFileProcessor implements FileProcessorInterface
     ) {
     }
 
-    public function supports(File $file): bool
+    public function supports(File $file, Configuration $configuration): bool
     {
     }
 
-    public function process(array $files): void
+    public function process(File $file, Configuration $configuration): void
     {
     }
 
