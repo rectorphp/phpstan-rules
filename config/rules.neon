@@ -45,29 +45,6 @@ services:
                 - Stringy\Stringy
 
     -
-        class: Symplify\PHPStanRules\Rules\NoInheritanceRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            allowedParentTypes:
-                # php-parser
-                - PhpParser\NodeAbstract
-
-                # phpdoc parser
-                - PHPStan\PhpDocParser\Parser\PhpDocParser
-
-                # phpstan
-                - PHPStan\Type\Type
-                - Symplify\PHPStanRules\Rules\AbstractSymplifyRule
-
-                - Rector\PostRector\Rector\AbstractPostRector
-                # value objects
-                - Rector\Defluent\ValueObject\AbstractRootExpr
-            allowedDirectParentTypes:
-                - Rector\Core\Rector\AbstractRector
-                - Rector\Core\Rector\AbstractTemporaryRector
-                - Rector\PhpSpecToPHPUnit\Rector\AbstractPhpSpecToPHPUnitRector
-
-    -
         class: Symplify\PHPStanRules\Rules\ServiceAndValueObjectHaveSameStartsRule
         tags: [phpstan.rules.rule]
         arguments:
