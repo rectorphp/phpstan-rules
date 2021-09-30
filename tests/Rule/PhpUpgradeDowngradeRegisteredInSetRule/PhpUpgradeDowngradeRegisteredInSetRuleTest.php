@@ -7,6 +7,8 @@ namespace Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule;
 use Iterator;
 use PHPStan\Rules\Rule;
 use Rector\PHPStanRules\Rule\PhpUpgradeDowngradeRegisteredInSetRule;
+use Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule\Fixture\DowngradePhp80\SomePhpFeature2Rector;
+use Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule\Fixture\Php80\SomePhpFeatureRector;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
@@ -32,17 +34,17 @@ final class PhpUpgradeDowngradeRegisteredInSetRuleTest extends AbstractServiceAw
 
         $errorMessage = sprintf(
             PhpUpgradeDowngradeRegisteredInSetRule::ERROR_MESSAGE,
-            'Rector\Php80\Rector\Class_\SomePhpFeatureRector',
-            'php80'
+            SomePhpFeatureRector::class,
+            'php80.php'
         );
-        yield [__DIR__ . '/Fixture/SomePhpFeatureRector.php', [[$errorMessage, 7]]];
+        yield [__DIR__ . '/Fixture/Php80/SomePhpFeatureRector.php', [[$errorMessage, 10]]];
 
         $errorMessage = sprintf(
             PhpUpgradeDowngradeRegisteredInSetRule::ERROR_MESSAGE,
-            'Rector\DowngradePhp80\Rector\Class_\SomePhpFeature2Rector',
-            'downgrade-php80'
+            SomePhpFeature2Rector::class,
+            'downgrade-php80.php'
         );
-        yield [__DIR__ . '/Fixture/SomePhpFeature2Rector.php', [[$errorMessage, 7]]];
+        yield [__DIR__ . '/Fixture/DowngradePhp80/SomePhpFeature2Rector.php', [[$errorMessage, 10]]];
     }
 
     protected function getRule(): Rule

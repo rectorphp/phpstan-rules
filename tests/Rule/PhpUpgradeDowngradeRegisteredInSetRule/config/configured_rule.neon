@@ -4,6 +4,3 @@ services:
     -
         class: Rector\PHPStanRules\Rule\PhpUpgradeDowngradeRegisteredInSetRule
         tags: [phpstan.rules.rule]
-        arguments:
-            setDirectory: ../Source/Set
-

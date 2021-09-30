@@ -6,11 +6,16 @@ namespace Rector\PHPStanRules\Rule;
 
 use Nette\Utils\Strings;
 use PhpParser\Node;
-use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
+use PHPStan\Node\InClassNode;
+use Rector\Core\Contract\Rector\RectorInterface;
+use Rector\Set\ValueObject\DowngradeSetList;
+use Rector\Set\ValueObject\SetList;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
+use Symplify\SmartFileSystem\FileSystemGuard;
+use Symplify\SmartFileSystem\SmartFileInfo;
 use Symplify\SmartFileSystem\SmartFileSystem;
 
 /**
@@ -25,13 +30,14 @@ final class PhpUpgradeDowngradeRegisteredInSetRule extends AbstractSymplifyRule
 
     /**
      * @var string
-     * @see https://regex101.com/r/C3nz6e/1/
+     * @see https://regex101.com/r/VGmFKR/1
      */
-    private const PREFIX_REGEX = '#(Downgrade)?Php\d+#';
+    private const DOWNGRADE_PREFIX_REGEX = '#(?<is_downgrade>Downgrade)?Php(?<version>\d+)#';
+
+    private FileSystemGuard $fileSystemGuard;
 
     public function __construct(
         private SmartFileSystem $smartFileSystem,
-        private string $setDirectory,
     ) {
     }
 
@@ -40,42 +46,40 @@ final class PhpUpgradeDowngradeRegisteredInSetRule extends AbstractSymplifyRule
      */
     public function getNodeTypes(): array
     {
-        return [Class_::class];
+        return [InClassNode::class];
     }
 
     /**
-     * @param Class_ $node
+     * @param InClassNode $node
      * @return string[]
      */
     public function process(Node $node, Scope $scope): array
     {
-        $className = (string) $node->namespacedName;
-        if (! str_ends_with($className, 'Rector')) {
+        $classReflection = $scope->getClassReflection();
+        if ($classReflection === null) {
             return [];
         }
 
-        [, $prefix] = explode('\\', $className);
-        if (! Strings::match($prefix, self::PREFIX_REGEX)) {
+        if (! $classReflection->implementsInterface(RectorInterface::class)) {
             return [];
         }
 
-        $phpVersion = Strings::substring($prefix, -2);
+        /** @var class-string<RectorInterface> $className */
+        $className = $classReflection->getName();
 
-        $configFileName = str_starts_with($prefix, 'Downgrade')
-            ? 'downgrade-php' . $phpVersion
-            : 'php' . $phpVersion;
+        $configFilePath = $this->resolveRelatedConfigFilePath($className);
+        if ($configFilePath === null) {
+            return [];
+        }
 
-        $configFilePath = $this->setDirectory . '/' . $configFileName . '.php';
         $configContent = $this->smartFileSystem->readFile($configFilePath);
 
-        $shortClassName = (string) $node->name;
-        $toSearch = sprintf('$services->set(%s::class)', $shortClassName);
-
-        if (str_contains($configContent, $toSearch)) {
+        // is rule registered?
+        if (str_contains($configContent, $className)) {
             return [];
         }
 
-        $errorMessage = sprintf(self::ERROR_MESSAGE, $className, $configFileName);
+        $errorMessage = $this->createErrorMessage($configFilePath, $className);
         return [$errorMessage];
     }
 
@@ -93,5 +97,34 @@ $services->set(RealToFloatTypeCastRector::class);
 CODE_SAMPLE
             ),
         ]);
+    }
+
+    /**
+     * @param class-string<RectorInterface> $className
+     */
+    private function resolveRelatedConfigFilePath(string $className): string|null
+    {
+        $match = Strings::match($className, self::DOWNGRADE_PREFIX_REGEX);
+        if ($match === null) {
+            return null;
+        }
+
+        $constantName = 'PHP_' . $match['version'];
+        if ($match['is_downgrade']) {
+            return constant(DowngradeSetList::class . '::' . $constantName);
+        }
+
+        return constant(SetList::class . '::' . $constantName);
+    }
+
+    /**
+     * @param class-string<RectorInterface> $rectorClass
+     */
+    private function createErrorMessage(string $configFilePath, string $rectorClass): string
+    {
+        $configFileInfo = new SmartFileInfo($configFilePath);
+        $configFilename = $configFileInfo->getFilename();
+
+        return sprintf(self::ERROR_MESSAGE, $rectorClass, $configFilename);
     }
 }
