@@ -6,5 +6,4 @@ namespace Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule\
 
 final class SkipSomePhpFeatureRector
 {
-
 }

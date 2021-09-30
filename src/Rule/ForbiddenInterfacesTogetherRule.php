@@ -7,6 +7,7 @@ namespace Rector\PHPStanRules\Rule;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Node\InClassNode;
+use PHPStan\Reflection\ClassReflection;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\Contract\ConfigurableRuleInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
@@ -53,10 +54,7 @@ final class ForbiddenInterfacesTogetherRule extends AbstractSymplifyRule impleme
             return [];
         }
 
-        $interfaceNames = [];
-        foreach ($classReflection->getInterfaces() as $interfaceReflection) {
-            $interfaceNames[] = $interfaceReflection->getName();
-        }
+        $interfaceNames = $this->resolveInterfaceNames($classReflection);
 
         foreach ($this->forbiddenInterfaceGroups as $forbiddenInterfaceGroup) {
             $matchingInterfaces = array_intersect($forbiddenInterfaceGroup, $interfaceNames);
@@ -98,5 +96,18 @@ CODE_SAMPLE
                 ]
             ),
         ]);
+    }
+
+    /**
+     * @return string[]
+     */
+    private function resolveInterfaceNames(ClassReflection $classReflection): array
+    {
+        $interfaceNames = [];
+        foreach ($classReflection->getInterfaces() as $interfaceReflection) {
+            $interfaceNames[] = $interfaceReflection->getName();
+        }
+
+        return $interfaceNames;
     }
 }
