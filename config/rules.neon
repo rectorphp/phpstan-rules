@@ -1,6 +1,7 @@
 services:
     - Rector\PHPStanRules\TypeAnalyzer\InlineableTypeAnalyzer
     - Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer
+    - Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigRectorValueObjectResolver
 
     -
         class: Rector\PHPStanRules\Rule\CallConfigureWithArrayRule
@@ -45,11 +46,8 @@ services:
                 - Stringy\Stringy
 
     -
-        class: Symplify\PHPStanRules\Rules\ServiceAndValueObjectHaveSameStartsRule
+        class: Rector\PHPStanRules\Rule\RectorServiceAndValueObjectHaveSameStartsRule
         tags: [phpstan.rules.rule]
-        arguments:
-            classSuffixes:
-                - 'Rector'
 
     -
         class: Symplify\PHPStanRules\Rules\ExclusiveNamespaceRule
