@@ -21,7 +21,7 @@ final class PhpUpgradeDowngradeRegisteredInSetRule extends AbstractSymplifyRule
     /**
      * @var string
      */
-    public const ERROR_MESSAGE = 'Register %s to %s config set';
+    public const ERROR_MESSAGE = 'Register "%s" service to "%s" config set';
 
     /**
      * @var string
@@ -30,7 +30,8 @@ final class PhpUpgradeDowngradeRegisteredInSetRule extends AbstractSymplifyRule
     private const PREFIX_REGEX = '#(Downgrade)?Php\d+#';
 
     public function __construct(
-        private SmartFileSystem $smartFileSystem
+        private SmartFileSystem $smartFileSystem,
+        private string $setDirectory,
     ) {
     }
 
@@ -48,7 +49,6 @@ final class PhpUpgradeDowngradeRegisteredInSetRule extends AbstractSymplifyRule
      */
     public function process(Node $node, Scope $scope): array
     {
-        /** @var string $className */
         $className = (string) $node->namespacedName;
         if (! str_ends_with($className, 'Rector')) {
             return [];
@@ -61,13 +61,12 @@ final class PhpUpgradeDowngradeRegisteredInSetRule extends AbstractSymplifyRule
 
         $phpVersion = Strings::substring($prefix, -2);
 
-        $configFile = str_starts_with($prefix, 'Downgrade')
+        $configFileName = str_starts_with($prefix, 'Downgrade')
             ? 'downgrade-php' . $phpVersion
             : 'php' . $phpVersion;
 
-        $configContent = $this->smartFileSystem->readFile(
-            __DIR__ . '/../../../../config/set/' . $configFile . '.php'
-        );
+        $configFilePath = $this->setDirectory . '/' . $configFileName . '.php';
+        $configContent = $this->smartFileSystem->readFile($configFilePath);
 
         $shortClassName = (string) $node->name;
         $toSearch = sprintf('$services->set(%s::class)', $shortClassName);
@@ -76,7 +75,7 @@ final class PhpUpgradeDowngradeRegisteredInSetRule extends AbstractSymplifyRule
             return [];
         }
 
-        $errorMessage = sprintf(self::ERROR_MESSAGE, $className, $configFile);
+        $errorMessage = sprintf(self::ERROR_MESSAGE, $className, $configFileName);
         return [$errorMessage];
     }
 
