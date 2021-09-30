@@ -1,0 +1,7 @@
+services:
+    - Rector\PHPStanRules\TypeAnalyzer\InlineableTypeAnalyzer
+    - Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer
+    - Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigRectorValueObjectResolver
+    - Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigMethodCallAnalyzer
+
+

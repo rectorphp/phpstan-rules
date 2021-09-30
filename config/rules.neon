@@ -1,7 +1,7 @@
-services:
-    - Rector\PHPStanRules\TypeAnalyzer\InlineableTypeAnalyzer
-    - Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer
+includes:
+    - services.neon
 
+services:
     -
         class: Rector\PHPStanRules\Rule\CallConfigureWithArrayRule
         tags: [phpstan.rules.rule]
@@ -45,11 +45,8 @@ services:
                 - Stringy\Stringy
 
     -
-        class: Symplify\PHPStanRules\Rules\ServiceAndValueObjectHaveSameStartsRule
+        class: Rector\PHPStanRules\Rule\RectorServiceAndValueObjectHaveSameStartsRule
         tags: [phpstan.rules.rule]
-        arguments:
-            classSuffixes:
-                - 'Rector'
 
     -
         class: Symplify\PHPStanRules\Rules\ExclusiveNamespaceRule
@@ -61,14 +58,6 @@ services:
     -
         class: Rector\PHPStanRules\Rule\RequireRectorCategoryByGetNodeTypesRule
         tags: [phpstan.rules.rule]
-
-    # solve later
-#    -
-#        class: Symplify\PHPStanRules\Rules\ForbiddenNullableParameterRule
-#        tags: [phpstan.rules.rule]
-#        arguments:
-#            forbidddenTypes:
-#                - PhpParser\Node
 
     -
         class: Symplify\PHPStanRules\Rules\ForbiddenComplexFuncCallRule
@@ -117,6 +106,7 @@ services:
                 - PhpParser\Node\Expr\ErrorSuppress
                 - PhpParser\Node\Stmt\Switch_
                 - PhpParser\Node\Expr\Empty_
+                - PhpParser\Node\Stmt\Trait_
 
     -
         class: Symplify\PHPStanRules\CognitiveComplexity\Rules\FunctionLikeCognitiveComplexityRule
