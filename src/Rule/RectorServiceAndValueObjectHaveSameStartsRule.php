@@ -10,10 +10,13 @@ use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ClassReflection;
+use PHPStan\Reflection\ReflectionProvider;
+use PHPStan\Type\ObjectType;
+use Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigMethodCallAnalyzer;
 use Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigRectorValueObjectResolver;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
-use Symplify\PHPStanRules\Symfony\NodeAnalyzer\SymfonyConfigMethodCallAnalyzer;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
@@ -30,6 +33,7 @@ final class RectorServiceAndValueObjectHaveSameStartsRule extends AbstractSympli
         private SimpleNameResolver $simpleNameResolver,
         private SymfonyConfigRectorValueObjectResolver $symfonyConfigRectorValueObjectResolver,
         private SymfonyConfigMethodCallAnalyzer $symfonyConfigMethodCallAnalyzer,
+        private ReflectionProvider $reflectionProvider,
     ) {
     }
 
@@ -132,17 +136,25 @@ CODE_SAMPLE
 
     private function resolveValueObjectShortClass(MethodCall $methodCall): ?string
     {
-        $valueObjectClass = $this->symfonyConfigRectorValueObjectResolver->resolveFromSetMethodCall($methodCall);
-        if ($valueObjectClass === null) {
+        $valueObjectType = $this->symfonyConfigRectorValueObjectResolver->resolveFromSetMethodCall($methodCall);
+        if (! $valueObjectType instanceof ObjectType) {
             return null;
         }
 
         // is it implements interface, it can have many forms
-        $interfaces = class_implements($valueObjectClass);
-        if ($interfaces !== []) {
+        if (! $this->reflectionProvider->hasClass($valueObjectType->getClassName())) {
             return null;
         }
 
-        return $this->simpleNameResolver->resolveShortName($valueObjectClass);
+        $classReflection = $this->reflectionProvider->getClass($valueObjectType->getClassName());
+        if (! $classReflection instanceof ClassReflection) {
+            return null;
+        }
+
+        if ($classReflection->getInterfaces() !== []) {
+            return null;
+        }
+
+        return $this->simpleNameResolver->resolveShortName($valueObjectType->getClassName());
     }
 }

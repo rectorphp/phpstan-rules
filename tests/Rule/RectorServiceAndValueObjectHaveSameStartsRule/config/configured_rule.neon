@@ -1,4 +1,5 @@
 includes:
+    - ../../../../config/services.neon
     - ../../../../vendor/symplify/phpstan-rules/config/services/services.neon
 
 services:

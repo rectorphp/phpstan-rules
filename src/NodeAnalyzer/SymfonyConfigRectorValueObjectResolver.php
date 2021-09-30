@@ -10,6 +10,7 @@ use PhpParser\Node\Expr\New_;
 use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node\Stmt\Expression;
 use PhpParser\NodeFinder;
+use PHPStan\Type\ObjectType;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\ValueObject\AttributeKey;
 use Symplify\SymfonyPhpConfig\ValueObjectInliner;
@@ -27,7 +28,7 @@ final class SymfonyConfigRectorValueObjectResolver
     ) {
     }
 
-    public function resolveFromSetMethodCall(MethodCall $methodCall): ?string
+    public function resolveFromSetMethodCall(MethodCall $methodCall): ObjectType|null
     {
         $parent = $methodCall->getAttribute(AttributeKey::PARENT);
         while (! $parent instanceof Expression) {
@@ -51,6 +52,11 @@ final class SymfonyConfigRectorValueObjectResolver
             return null;
         }
 
-        return $this->simpleNameResolver->getName($new->class);
+        $className = $this->simpleNameResolver->getName($new->class);
+        if ($className === null) {
+            return null;
+        }
+
+        return new ObjectType($className);
     }
 }

@@ -8,7 +8,7 @@ parameters:
         - src
         - tests
 
-#    reportUnmatchedIgnoredErrors: false
+    reportUnmatchedIgnoredErrors: false
 
     excludes_analyse:
         - '*tests/*/Fixture/*'
