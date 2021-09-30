@@ -10,7 +10,7 @@ use Rector\PHPStanRules\Rule\CallConfigureWithArrayRule;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends \Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase<CallConfigureWithArrayRule>
+ * @extends AbstractServiceAwareRuleTestCase<CallConfigureWithArrayRule>
  */
 final class CallConfigureWithArrayRuleTest extends AbstractServiceAwareRuleTestCase
 {

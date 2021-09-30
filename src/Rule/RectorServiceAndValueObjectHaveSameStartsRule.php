@@ -17,6 +17,7 @@ use Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigMethodCallAnalyzer;
 use Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigRectorValueObjectResolver;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
+use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
@@ -83,7 +84,7 @@ final class RectorServiceAndValueObjectHaveSameStartsRule extends AbstractSympli
         return new RuleDefinition(
             'Make specific service suffix to use similar value object names for configuring in Symfony configs',
             [
-                new \Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample(
+                new CodeSample(
                     <<<'CODE_SAMPLE'
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 

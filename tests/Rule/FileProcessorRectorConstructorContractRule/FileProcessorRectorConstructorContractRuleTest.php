@@ -10,7 +10,7 @@ use Rector\PHPStanRules\Rule\FileProcessorRectorConstructorContractRule;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends \Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase<FileProcessorRectorConstructorContractRule>
+ * @extends AbstractServiceAwareRuleTestCase<FileProcessorRectorConstructorContractRule>
  */
 final class FileProcessorRectorConstructorContractRuleTest extends AbstractServiceAwareRuleTestCase
 {

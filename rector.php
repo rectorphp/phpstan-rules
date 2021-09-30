@@ -25,4 +25,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         // test dummy files
         '*/Fixture/*',
     ]);
+
+    $parameters->set(Option::AUTO_IMPORT_NAMES, true);
 };
