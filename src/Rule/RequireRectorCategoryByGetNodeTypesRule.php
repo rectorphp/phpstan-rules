@@ -30,7 +30,7 @@ final class RequireRectorCategoryByGetNodeTypesRule implements Rule
     }
 
     /**
-     * @return class-string<\PhpParser\Node>
+     * @return class-string<Node>
      */
     public function getNodeType(): string
     {

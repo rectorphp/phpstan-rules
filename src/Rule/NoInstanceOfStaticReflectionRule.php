@@ -85,10 +85,7 @@ CODE_SAMPLE
         ]);
     }
 
-    /**
-     * @param FuncCall|Instanceof_ $node
-     */
-    private function resolveExprStaticType(Node $node, Scope $scope): ?Type
+    private function resolveExprStaticType(FuncCall|Instanceof_ $node, Scope $scope): ?Type
     {
         if ($node instanceof Instanceof_) {
             if ($node->class instanceof Name) {
@@ -106,7 +103,7 @@ CODE_SAMPLE
         return $scope->getType($typeArgValue);
     }
 
-    private function hasParentFuncCallNamed(\PhpParser\Node $node, string $functionName): bool
+    private function hasParentFuncCallNamed(Node $node, string $functionName): bool
     {
         $parent = $node->getAttribute(AttributeKey::PARENT);
         if (! $parent instanceof Arg) {

@@ -10,7 +10,7 @@ use Rector\PHPStanRules\Rule\ForbiddenInterfacesTogetherRule;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends \Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase<ForbiddenInterfacesTogetherRule>
+ * @extends AbstractServiceAwareRuleTestCase<ForbiddenInterfacesTogetherRule>
  */
 final class ForbiddenInterfacesTogetherRuleTest extends AbstractServiceAwareRuleTestCase
 {

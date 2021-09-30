@@ -10,7 +10,7 @@ use Rector\PHPStanRules\Rule\ForwardTypedPropertyTypeRule;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends \Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase<ForwardTypedPropertyTypeRule>
+ * @extends AbstractServiceAwareRuleTestCase<ForwardTypedPropertyTypeRule>
  */
 final class ForwardTypedPropertyTypeRuleTest extends AbstractServiceAwareRuleTestCase
 {
