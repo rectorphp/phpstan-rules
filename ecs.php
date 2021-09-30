@@ -13,6 +13,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         __DIR__ . '/tests',
     ]);
 
+    $parameters->set(Option::PARALLEL, true);
+
     $containerConfigurator->import(SetList::COMMON);
     $containerConfigurator->import(SetList::CLEAN_CODE);
     $containerConfigurator->import(SetList::PSR_12);

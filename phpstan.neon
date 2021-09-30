@@ -8,7 +8,10 @@ parameters:
         - src
         - tests
 
-    reportUnmatchedIgnoredErrors: false
+#    reportUnmatchedIgnoredErrors: false
+
+    excludes_analyse:
+        - '*tests/*/Fixture/*'
 
     ignoreErrors:
         - '#Class Rector\\PHPStanRules\\Rule\\(.*?) implements generic interface PHPStan\\Rules\\Rule but does not specify its types\: TNodeType#'
@@ -19,13 +22,10 @@ parameters:
             message: '#Parameter \#1 \$argument of class ReflectionClass constructor expects class\-string<SomeType\>\|SomeType, string given#'
             path: tests/Rule/NoClassReflectionStaticReflectionRule/Fixture/NewOnExternal.php
 
-        # we're not on PHP 8 yet
-        - '#This property type might be inlined to PHP\. Do you have confidence it is correct\? Put it here#'
-
         # skip for PHPStan rules
         -
             message: '#Class must implement "Rector\\Core\\Contract\\Rector\\ConfigurableRectorInterface" interface#'
             path: src/Rule/*
 
-    excludes_analyse:
-        - '*tests/*/Fixture/*'
+        # php-parser 4.13
+        - '#Access to an undefined property PhpParser\\Node\\Arg\|PhpParser\\Node\\VariadicPlaceholder\:\:\$value#'
