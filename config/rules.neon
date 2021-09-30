@@ -3,6 +3,14 @@ includes:
 
 services:
     -
+        class: Rector\PHPStanRules\Rule\PhpUpgradeDowngradeRegisteredInSetRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: Rector\PHPStanRules\Rule\PhpUpgradeImplementsMinPhpVersionInterfaceRule
+        tags: [phpstan.rules.rule]
+
+    -
         class: Rector\PHPStanRules\Rule\CallConfigureWithArrayRule
         tags: [phpstan.rules.rule]
 
