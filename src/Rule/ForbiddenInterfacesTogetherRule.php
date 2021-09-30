@@ -7,6 +7,7 @@ namespace Rector\PHPStanRules\Rule;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Node\InClassNode;
+use PHPStan\Reflection\ClassReflection;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\Contract\ConfigurableRuleInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
@@ -23,16 +24,11 @@ final class ForbiddenInterfacesTogetherRule extends AbstractSymplifyRule impleme
     public const ERROR_MESSAGE = 'Interfaces "%s" cannot be use together. Extract them to 2 separated classes';
 
     /**
-     * @var string[][]
+     * @param array<string[]> $forbiddenInterfaceGroups
      */
-    private array $forbiddenInterfaceGroups = [];
-
-    /**
-     * @param string[][] $forbiddenInterfaceGroups
-     */
-    public function __construct(array $forbiddenInterfaceGroups = [])
-    {
-        $this->forbiddenInterfaceGroups = $forbiddenInterfaceGroups;
+    public function __construct(
+        private array $forbiddenInterfaceGroups = []
+    ) {
     }
 
     /**
@@ -58,16 +54,16 @@ final class ForbiddenInterfacesTogetherRule extends AbstractSymplifyRule impleme
             return [];
         }
 
-        $interfaceNames = [];
-        foreach ($classReflection->getInterfaces() as $interfaceReflection) {
-            $interfaceNames[] = $interfaceReflection->getName();
-        }
+        $interfaceNames = $this->resolveInterfaceNames($classReflection);
 
         foreach ($this->forbiddenInterfaceGroups as $forbiddenInterfaceGroup) {
             $matchingInterfaces = array_intersect($forbiddenInterfaceGroup, $interfaceNames);
-            if ($matchingInterfaces === $forbiddenInterfaceGroup) {
-                return [sprintf(self::ERROR_MESSAGE, implode('", "', $forbiddenInterfaceGroup))];
+            if ($matchingInterfaces !== $forbiddenInterfaceGroup) {
+                continue;
             }
+
+            $errorMessage = sprintf(self::ERROR_MESSAGE, implode('", "', $forbiddenInterfaceGroup));
+            return [$errorMessage];
         }
 
         return [];
@@ -100,5 +96,18 @@ CODE_SAMPLE
                 ]
             ),
         ]);
+    }
+
+    /**
+     * @return string[]
+     */
+    private function resolveInterfaceNames(ClassReflection $classReflection): array
+    {
+        $interfaceNames = [];
+        foreach ($classReflection->getInterfaces() as $interfaceReflection) {
+            $interfaceNames[] = $interfaceReflection->getName();
+        }
+
+        return $interfaceNames;
     }
 }

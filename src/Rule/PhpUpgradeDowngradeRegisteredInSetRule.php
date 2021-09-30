@@ -8,6 +8,7 @@ use Nette\Utils\Strings;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Node\InClassNode;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Contract\Rector\RectorInterface;
 use Rector\Set\ValueObject\DowngradeSetList;
 use Rector\Set\ValueObject\SetList;
@@ -132,6 +133,11 @@ CODE_SAMPLE
         }
 
         if (! $classReflection->implementsInterface(RectorInterface::class)) {
+            return null;
+        }
+
+        // configurable Rector can be registered optionally
+        if ($classReflection->implementsInterface(ConfigurableRectorInterface::class)) {
             return null;
         }
 
