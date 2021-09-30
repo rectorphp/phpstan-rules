@@ -55,17 +55,10 @@ final class PhpUpgradeDowngradeRegisteredInSetRule extends AbstractSymplifyRule
      */
     public function process(Node $node, Scope $scope): array
     {
-        $classReflection = $scope->getClassReflection();
-        if ($classReflection === null) {
+        $className = $this->matchRectorClassName($scope);
+        if ($className === null) {
             return [];
         }
-
-        if (! $classReflection->implementsInterface(RectorInterface::class)) {
-            return [];
-        }
-
-        /** @var class-string<RectorInterface> $className */
-        $className = $classReflection->getName();
 
         $configFilePath = $this->resolveRelatedConfigFilePath($className);
         if ($configFilePath === null) {
@@ -126,5 +119,22 @@ CODE_SAMPLE
         $configFilename = $configFileInfo->getFilename();
 
         return sprintf(self::ERROR_MESSAGE, $rectorClass, $configFilename);
+    }
+
+    /**
+     * @return class-string<RectorInterface>|null
+     */
+    private function matchRectorClassName(Scope $scope): string|null
+    {
+        $classReflection = $scope->getClassReflection();
+        if ($classReflection === null) {
+            return null;
+        }
+
+        if (! $classReflection->implementsInterface(RectorInterface::class)) {
+            return null;
+        }
+
+        return $classReflection->getName();
     }
 }

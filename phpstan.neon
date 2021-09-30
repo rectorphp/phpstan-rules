@@ -29,3 +29,6 @@ parameters:
 
         # php-parser 4.13
         - '#Access to an undefined property PhpParser\\Node\\Arg\|PhpParser\\Node\\VariadicPlaceholder\:\:\$value#'
+
+        # class-string false positive
+        - '#Method Rector\\PHPStanRules\\Rule\\PhpUpgradeDowngradeRegisteredInSetRule\:\:matchRectorClassName\(\) should return class\-string<Rector\\Core\\Contract\\Rector\\RectorInterface\>\|null but returns class\-string#'
