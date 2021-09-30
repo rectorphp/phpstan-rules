@@ -102,9 +102,6 @@ services:
                 PHPStan\Type\ObjectType:
                     - 'getClassReflection'
                     - 'getAncestors'
-                # use NodeTypeResolver instead
-#                PHPStan\Analyser\Scope:
-#                    - 'getType'
 
     -
         class: Symplify\PHPStanRules\Rules\ForbiddenNodeRule
@@ -129,8 +126,8 @@ services:
             maxClassCognitiveComplexity: 50
             limitsByTypes:
                 Rector\Core\Rector\AbstractRector: 30
-                PHPStan\Rule\Rule: 30
-                Symfony\Component\Console\Command\Command: 40
+                PHPStan\Rule\Rule: 20
+                Symfony\Component\Console\Command\Command: 30
 
     # require constant in argument position
     -

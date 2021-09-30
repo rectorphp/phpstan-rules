@@ -23,16 +23,11 @@ final class ForbiddenInterfacesTogetherRule extends AbstractSymplifyRule impleme
     public const ERROR_MESSAGE = 'Interfaces "%s" cannot be use together. Extract them to 2 separated classes';
 
     /**
-     * @var string[][]
+     * @param array<string[]> $forbiddenInterfaceGroups
      */
-    private array $forbiddenInterfaceGroups = [];
-
-    /**
-     * @param string[][] $forbiddenInterfaceGroups
-     */
-    public function __construct(array $forbiddenInterfaceGroups = [])
-    {
-        $this->forbiddenInterfaceGroups = $forbiddenInterfaceGroups;
+    public function __construct(
+        private array $forbiddenInterfaceGroups = []
+    ) {
     }
 
     /**
@@ -65,9 +60,12 @@ final class ForbiddenInterfacesTogetherRule extends AbstractSymplifyRule impleme
 
         foreach ($this->forbiddenInterfaceGroups as $forbiddenInterfaceGroup) {
             $matchingInterfaces = array_intersect($forbiddenInterfaceGroup, $interfaceNames);
-            if ($matchingInterfaces === $forbiddenInterfaceGroup) {
-                return [sprintf(self::ERROR_MESSAGE, implode('", "', $forbiddenInterfaceGroup))];
+            if ($matchingInterfaces !== $forbiddenInterfaceGroup) {
+                continue;
             }
+
+            $errorMessage = sprintf(self::ERROR_MESSAGE, implode('", "', $forbiddenInterfaceGroup));
+            return [$errorMessage];
         }
 
         return [];
