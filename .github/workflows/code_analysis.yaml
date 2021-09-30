@@ -27,7 +27,7 @@ jobs:
 
                     -
                         name: 'Rector'
-                        run: vendor/bin/rector
+                        run: vendor/bin/rector --ansi
 
         name: ${{ matrix.actions.name }}
         runs-on: ubuntu-latest

@@ -11,6 +11,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
     $services->set(ClassPropertyAssignToConstructorPromotionRector::class);
 
+    $containerConfigurator->import(SetList::PHP_73);
     $containerConfigurator->import(SetList::PHP_74);
     $containerConfigurator->import(SetList::PHP_80);
 
@@ -18,5 +19,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::PATHS, [
         __DIR__ . '/src',
         __DIR__ . '/tests',
+    ]);
+
+    $parameters->set(Option::SKIP, [
+        // test dummy files
+        '*/Fixture/*',
     ]);
 };
