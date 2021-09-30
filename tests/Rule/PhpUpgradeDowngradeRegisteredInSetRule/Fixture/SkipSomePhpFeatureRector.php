@@ -2,14 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Rector\Arguments\Rector\ClassMethod;
+namespace Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule\Fixture;
 
-use Rector\Core\Contract\Rector\RectorInterface;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
-
-final class SkipSomePhpFeatureRector implements RectorInterface
+final class SkipSomePhpFeatureRector
 {
-    public function getRuleDefinition(): RuleDefinition
-    {
-    }
+
 }

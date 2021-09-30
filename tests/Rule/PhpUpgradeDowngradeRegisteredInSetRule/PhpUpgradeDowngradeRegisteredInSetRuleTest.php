@@ -31,6 +31,7 @@ final class PhpUpgradeDowngradeRegisteredInSetRuleTest extends AbstractServiceAw
     public function provideData(): Iterator
     {
         yield [__DIR__ . '/Fixture/SkipSomePhpFeatureRector.php', []];
+        yield [__DIR__ . '/Fixture/Php80/SkipConfigurableRector.php', []];
 
         $errorMessage = sprintf(
             PhpUpgradeDowngradeRegisteredInSetRule::ERROR_MESSAGE,
