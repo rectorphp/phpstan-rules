@@ -6,7 +6,7 @@ namespace Rector\PHPStanRules\NodeAnalyzer;
 
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator;
+use PHPStan\Type\ObjectType;
 use PHPStan\Type\TypeWithClassName;
 use Symplify\Astral\Naming\SimpleNameResolver;
 
@@ -24,7 +24,10 @@ final class SymfonyConfigMethodCallAnalyzer
             return false;
         }
 
-        if (! is_a($callerType->getClassName(), ServicesConfigurator::class, true)) {
+        $callerTypeObjectType = new ObjectType($callerType->getClassName());
+        $serviceConfiguratorObjectType = new ObjectType('Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator');
+
+        if (! $serviceConfiguratorObjectType->isSuperTypeOf($callerTypeObjectType)->yes()) {
             return false;
         }
 
