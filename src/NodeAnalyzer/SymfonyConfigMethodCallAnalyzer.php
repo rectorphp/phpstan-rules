@@ -6,23 +6,31 @@ namespace Rector\PHPStanRules\NodeAnalyzer;
 
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator;
-use Symplify\PHPStanRules\NodeAnalyzer\TypeAndNameAnalyzer;
+use PHPStan\Type\ObjectType;
+use PHPStan\Type\TypeWithClassName;
+use Symplify\Astral\Naming\SimpleNameResolver;
 
 final class SymfonyConfigMethodCallAnalyzer
 {
     public function __construct(
-        private TypeAndNameAnalyzer $typeAndNameAnalyzer
+        private SimpleNameResolver $simpleNameResolver
     ) {
     }
 
     public function isServicesSet(MethodCall $methodCall, Scope $scope): bool
     {
-        return $this->typeAndNameAnalyzer->isMethodCallTypeAndName(
-            $methodCall,
-            $scope,
-            ServicesConfigurator::class,
-            'set'
-        );
+        $callerType = $scope->getType($methodCall->var);
+        if (! $callerType instanceof TypeWithClassName) {
+            return false;
+        }
+
+        $callerTypeObjectType = new ObjectType($callerType->getClassName());
+        $serviceConfiguratorObjectType = new ObjectType('Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator');
+
+        if (! $serviceConfiguratorObjectType->isSuperTypeOf($callerTypeObjectType)->yes()) {
+            return false;
+        }
+
+        return $this->simpleNameResolver->isName($methodCall->name, 'set');
     }
 }
