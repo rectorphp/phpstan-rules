@@ -1,6 +1,3 @@
-includes:
-    - ../vendor/symplify/phpstan-rules/packages/symfony/config/services.neon
-
 services:
     - Rector\PHPStanRules\TypeAnalyzer\InlineableTypeAnalyzer
     - Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer

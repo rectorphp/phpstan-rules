@@ -1,6 +1,7 @@
-services:
-    - Symplify\SmartFileSystem\SmartFileSystem
+includes:
+    - ../../../../vendor/symplify/phpstan-rules/packages/symfony/config/services.neon
 
+services:
     -
         class: Rector\PHPStanRules\Rule\PhpUpgradeDowngradeRegisteredInSetRule
         tags: [phpstan.rules.rule]
