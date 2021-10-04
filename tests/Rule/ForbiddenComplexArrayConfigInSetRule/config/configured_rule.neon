@@ -1,8 +1,8 @@
 includes:
     - ../../../../vendor/symplify/phpstan-rules/config/services/services.neon
+    - ../../../../config/services.neon
 
 services:
-    - Symplify\PHPStanRules\Symfony\NodeAnalyzer\SymfonyPhpConfigClosureAnalyzer
     -
         class: Rector\PHPStanRules\Rule\ForbiddenComplexArrayConfigInSetRule
         tags: [phpstan.rules.rule]
