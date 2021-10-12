@@ -158,15 +158,6 @@ services:
                 - PHPStan\Rules\Rule
                 - Rector\Core\Rector\AbstractRector
 
-    # this rule prevents bug in phar like these: https://github.com/rectorphp/rector/pull/3692/files
-    -
-        class: Symplify\PHPStanRules\Rules\RequireStringArgumentInMethodCallRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            stringArgPositionByMethodByType:
-                Rector\Core\Rector\AbstractRector:
-                    isObjectType: [1]
-
     # this rule prevents bug in phar like these: https://github.com/rectorphp/rector/issues/5596
     -
         class: Symplify\PHPStanRules\Rules\RequireStringArgumentInConstructorRule
