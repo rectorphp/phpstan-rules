@@ -1,6 +1,4 @@
 includes:
-    - ../../../../vendor/symplify/phpstan-rules/packages/symfony/config/services.neon
-    - ../../../../vendor/symplify/phpstan-rules/packages/cognitive-complexity/config/cognitive-complexity-services.neon
-    - ../../../../vendor/symplify/phpstan-rules/config/services/services.neon
+    - ../../../config/shared_services.neon
 
     - ../../../../config/rules.neon
