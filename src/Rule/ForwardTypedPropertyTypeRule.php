@@ -65,6 +65,11 @@ final class ForwardTypedPropertyTypeRule extends AbstractSymplifyRule
 
         $propertyReflection = $classReflection->getNativeProperty($propertyName);
 
+        // skip if not the same class
+        if ($propertyReflection->getDeclaringClass() !== $classReflection) {
+            return [];
+        }
+
         if (! $propertyReflection->getNativeType() instanceof MixedType) {
             return [];
         }

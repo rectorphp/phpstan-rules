@@ -30,6 +30,7 @@ final class ForwardTypedPropertyTypeRuleTest extends AbstractServiceAwareRuleTes
 
         yield [__DIR__ . '/Fixture/SkipTypedProperty.php', []];
         yield [__DIR__ . '/Fixture/SkipArrayTypedProperty.php', []];
+        yield [__DIR__ . '/Fixture/SkipNotLocalProperty.php', []];
     }
 
     protected function getRule(): Rule
