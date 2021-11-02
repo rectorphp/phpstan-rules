@@ -9,6 +9,7 @@ parameters:
 
     excludePaths:
         - '*tests/*/Fixture/*'
+        - tests/Rule/ForwardTypedPropertyTypeRule/Source/ParentWithProperty.php
 
     ignoreErrors:
         - '#Class Rector\\PHPStanRules\\Rule\\(.*?) implements generic interface PHPStan\\Rules\\Rule but does not specify its types\: TNodeType#'

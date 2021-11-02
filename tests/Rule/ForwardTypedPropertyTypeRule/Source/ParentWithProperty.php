@@ -6,5 +6,8 @@ namespace Rector\PHPStanRules\Tests\Rule\ForwardTypedPropertyTypeRule\Source;
 
 class ParentWithProperty
 {
-    protected ?string $line = null;
+    /**
+     * @var string|null
+     */
+    protected $line = null;
 }
