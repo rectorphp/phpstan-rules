@@ -24,6 +24,7 @@ use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
 use PHPStan\Type\UnionType;
+use Rector\PHPStanRules\Exception\ShouldNotHappenException;
 use Symplify\Astral\NodeValue\NodeValueResolver;
 use Symplify\SmartFileSystem\SmartFileInfo;
 
@@ -101,7 +102,12 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
     private function resolveArgumentValue(Expr $expr, Scope $scope): ?string
     {
         if ($expr instanceof ClassConstFetch) {
-            return $this->nodeValueResolver->resolve($expr, $scope->getFile());
+            $resolvedValue = $this->nodeValueResolver->resolveWithScope($expr, $scope);
+            if (! is_string($resolvedValue)) {
+                throw new ShouldNotHappenException();
+            }
+
+            return $resolvedValue;
         }
 
         return null;

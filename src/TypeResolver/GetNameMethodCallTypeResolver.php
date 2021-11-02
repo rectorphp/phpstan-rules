@@ -25,7 +25,7 @@ use PHPStan\Type\Type;
 final class GetNameMethodCallTypeResolver
 {
     /**
-     * @var class-string<Node>
+     * @var array<class-string<Node>>
      */
     private const ALWAYS_NAMED_TYPES = [
         ClassMethod::class,

@@ -10,6 +10,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Node\InClassNode;
 use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Contract\Rector\RectorInterface;
+use Rector\PHPStanRules\Exception\ShouldNotHappenException;
 use Rector\Set\ValueObject\DowngradeSetList;
 use Rector\Set\ValueObject\SetList;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
@@ -34,8 +35,6 @@ final class PhpUpgradeDowngradeRegisteredInSetRule extends AbstractSymplifyRule
      * @see https://regex101.com/r/VGmFKR/1
      */
     private const DOWNGRADE_PREFIX_REGEX = '#(?<is_downgrade>Downgrade)?Php(?<version>\d+)#';
-
-    private FileSystemGuard $fileSystemGuard;
 
     public function __construct(
         private SmartFileSystem $smartFileSystem,
@@ -105,10 +104,20 @@ CODE_SAMPLE
 
         $constantName = 'PHP_' . $match['version'];
         if ($match['is_downgrade']) {
-            return constant(DowngradeSetList::class . '::' . $constantName);
+            $resolvedValue = constant(DowngradeSetList::class . '::' . $constantName);
+            if (! is_string($resolvedValue)) {
+                throw new ShouldNotHappenException();
+            }
+
+            return $resolvedValue;
         }
 
-        return constant(SetList::class . '::' . $constantName);
+        $resolvedValue = constant(SetList::class . '::' . $constantName);
+        if (! is_string($resolvedValue)) {
+            throw new ShouldNotHappenException();
+        }
+
+        return $resolvedValue;
     }
 
     /**
