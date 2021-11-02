@@ -7,7 +7,7 @@ parameters:
 
     reportUnmatchedIgnoredErrors: false
 
-    excludes_analyse:
+    excludePaths:
         - '*tests/*/Fixture/*'
 
     ignoreErrors:

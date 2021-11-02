@@ -5,3 +5,4 @@ services:
     -
         class: Rector\PHPStanRules\Rule\PhpUpgradeImplementsMinPhpVersionInterfaceRule
         tags: [phpstan.rules.rule]
+

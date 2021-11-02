@@ -1,9 +1,9 @@
 includes:
     - ../../../config/shared_services.neon
-
     - ../../../../config/services.neon
 
 services:
     -
-         class: Rector\PHPStanRules\Rule\RectorServiceAndValueObjectHaveSameStartsRule
-         tags: [phpstan.rules.rule]
+        class: Rector\PHPStanRules\Rule\RectorServiceAndValueObjectHaveSameStartsRule
+        tags: [phpstan.rules.rule]
+

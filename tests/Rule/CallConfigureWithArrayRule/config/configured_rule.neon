@@ -1,6 +1,4 @@
 includes:
     - ../../../config/shared_services.neon
-
     - ../../../../config/rules.neon
-
 
