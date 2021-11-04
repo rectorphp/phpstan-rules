@@ -46,8 +46,6 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
         'Rector\NodeTypeResolver\Node\AttributeKey::NEXT_NODE' => Node::class,
         'Rector\NodeTypeResolver\Node\AttributeKey::PREVIOUS_NODE' => Node::class,
         'Rector\NodeTypeResolver\Node\AttributeKey::USE_NODES' => [Use_::class],
-        # scalars
-        'Rector\NodeTypeResolver\Node\AttributeKey::CLASS_NAME' => 'string',
     ];
 
     public function __construct(
