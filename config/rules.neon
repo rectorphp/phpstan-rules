@@ -121,7 +121,7 @@ services:
         class: Symplify\PHPStanRules\CognitiveComplexity\Rules\FunctionLikeCognitiveComplexityRule
         tags: [phpstan.rules.rule]
         arguments:
-            maxMethodCognitiveComplexity: 9
+            maxMethodCognitiveComplexity: 10
 
     -
         class: Symplify\PHPStanRules\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule
