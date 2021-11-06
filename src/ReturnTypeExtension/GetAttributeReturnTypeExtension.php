@@ -35,7 +35,6 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
     private const ARGUMENT_KEY_TO_RETURN_TYPE = [
         'Rector\NodeTypeResolver\Node\AttributeKey::FILE_INFO' => SmartFileInfo::class,
         'Rector\NodeTypeResolver\Node\AttributeKey::RESOLVED_NAME' => Name::class,
-        'Rector\NodeTypeResolver\Node\AttributeKey::CLASS_NODE' => ClassLike::class,
         'Rector\NodeTypeResolver\Node\AttributeKey::METHOD_NODE' => ClassMethod::class,
         'Rector\NodeTypeResolver\Node\AttributeKey::CURRENT_EXPRESSION' => Stmt::class,
         'Rector\NodeTypeResolver\Node\AttributeKey::PREVIOUS_STATEMENT' => Stmt::class,
