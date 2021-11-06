@@ -10,7 +10,6 @@ use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt;
-use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Use_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
@@ -24,7 +23,6 @@ use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
 use PHPStan\Type\UnionType;
 use Symplify\Astral\NodeValue\NodeValueResolver;
-use Symplify\SmartFileSystem\SmartFileInfo;
 
 final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
@@ -76,9 +74,6 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
         }
 
         $knownReturnType = self::ARGUMENT_KEY_TO_RETURN_TYPE[$argumentValue];
-        if ($knownReturnType === 'string') {
-            return new UnionType([new StringType(), new NullType()]);
-        }
 
         if (is_array($knownReturnType) && count($knownReturnType) === 1) {
             $arrayType = new ArrayType(new IntegerType(), new ObjectType($knownReturnType[0]));
