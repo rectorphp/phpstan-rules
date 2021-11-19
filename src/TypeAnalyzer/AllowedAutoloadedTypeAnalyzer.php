@@ -6,6 +6,8 @@ namespace Rector\PHPStanRules\TypeAnalyzer;
 
 use DateTimeInterface;
 use Nette\Utils\Strings;
+use PhpParser\Node;
+use PHPStan\PhpDocParser\Ast\Node as PhpDocNode;
 use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\Generic\GenericClassStringType;
 use PHPStan\Type\ObjectType;
@@ -26,8 +28,8 @@ final class AllowedAutoloadedTypeAnalyzer
     private const ALLOWED_CLASSES = [
         DateTimeInterface::class,
         'Symplify\SmartFileSystem\SmartFileInfo',
-        \PhpParser\Node::class,
-        \PHPStan\PhpDocParser\Ast\Node::class,
+        Node::class,
+        PhpDocNode::class,
     ];
 
     public function isAllowedType(Type $type): bool
