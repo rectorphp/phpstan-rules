@@ -17,7 +17,8 @@
         "phpunit/phpunit": "^9.5",
         "rector/rector-src": "dev-main",
         "symfony/console": "^5.3",
-        "symfony/dependency-injection": "^5.3"
+        "symfony/dependency-injection": "^5.3",
+        "symplify/monorepo-builder": "^10.0"
     },
     "autoload": {
         "psr-4": {
@@ -39,7 +40,8 @@
     "scripts": {
         "check-cs": "vendor/bin/ecs check --ansi",
         "fix-cs": "vendor/bin/ecs check --fix --ansi",
-        "phpstan": "vendor/bin/phpstan analyse --ansi --error-format symplify"
+        "phpstan": "vendor/bin/phpstan analyse --ansi --error-format symplify",
+        "release": "vendor/bin/monorepo-builder release patch --ansi"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
