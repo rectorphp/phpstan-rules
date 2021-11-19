@@ -23,7 +23,12 @@ final class AllowedAutoloadedTypeAnalyzer
     /**
      * @var array<class-string>
      */
-    private const ALLOWED_CLASSES = [DateTimeInterface::class, 'Symplify\SmartFileSystem\SmartFileInfo'];
+    private const ALLOWED_CLASSES = [
+        DateTimeInterface::class,
+        'Symplify\SmartFileSystem\SmartFileInfo',
+        \PhpParser\Node::class,
+        \PHPStan\PhpDocParser\Ast\Node::class,
+    ];
 
     public function isAllowedType(Type $type): bool
     {
@@ -60,7 +65,7 @@ final class AllowedAutoloadedTypeAnalyzer
         }
 
         foreach (self::ALLOWED_CLASSES as $allowedClass) {
-            if ($value === $allowedClass) {
+            if (is_a($value, $allowedClass, true)) {
                 return true;
             }
         }
