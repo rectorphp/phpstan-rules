@@ -10,7 +10,9 @@ use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\Instanceof_;
 use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ClassReflection;
 use PHPStan\Type\Constant\ConstantStringType;
+use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
 use Symplify\Astral\Naming\SimpleNameResolver;
@@ -89,6 +91,13 @@ CODE_SAMPLE
     {
         if ($node instanceof Instanceof_) {
             if ($node->class instanceof Name) {
+                $className = $node->class->toString();
+                if ($className === 'self') {
+                    $classReflection = $scope->getClassReflection();
+                    if ($classReflection instanceof ClassReflection) {
+                        return new ObjectType($classReflection->getName(), null, $classReflection);
+                    }
+                }
                 return new ConstantStringType($node->class->toString());
             }
 
