@@ -6,6 +6,8 @@ namespace Rector\PHPStanRules\TypeAnalyzer;
 
 use DateTimeInterface;
 use Nette\Utils\Strings;
+use PhpParser\Node;
+use PHPStan\PhpDocParser\Ast\Node as PhpDocNode;
 use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\Generic\GenericClassStringType;
 use PHPStan\Type\ObjectType;
@@ -23,7 +25,12 @@ final class AllowedAutoloadedTypeAnalyzer
     /**
      * @var array<class-string>
      */
-    private const ALLOWED_CLASSES = [DateTimeInterface::class, 'Symplify\SmartFileSystem\SmartFileInfo'];
+    private const ALLOWED_CLASSES = [
+        DateTimeInterface::class,
+        'Symplify\SmartFileSystem\SmartFileInfo',
+        Node::class,
+        PhpDocNode::class,
+    ];
 
     public function isAllowedType(Type $type): bool
     {
@@ -60,7 +67,7 @@ final class AllowedAutoloadedTypeAnalyzer
         }
 
         foreach (self::ALLOWED_CLASSES as $allowedClass) {
-            if ($value === $allowedClass) {
+            if (is_a($value, $allowedClass, true)) {
                 return true;
             }
         }
