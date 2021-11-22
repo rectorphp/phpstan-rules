@@ -8,7 +8,11 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\PropertyFetch;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
+use PHPStan\Type\CallableType;
+use PHPStan\Type\ClosureType;
 use PHPStan\Type\MixedType;
+use PHPStan\Type\ResourceType;
+use PHPStan\Type\Type;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\EasyTesting\PHPUnit\StaticPHPUnitEnvironment;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
@@ -74,7 +78,7 @@ final class ForwardTypedPropertyTypeRule extends AbstractSymplifyRule
             return [];
         }
 
-        if ($propertyReflection->getPhpDocType() instanceof MixedType) {
+        if (! $this->isLegalPropertyType($propertyReflection->getPhpDocType())) {
             return [];
         }
 
@@ -97,5 +101,22 @@ public string $name;
 CODE_SAMPLE
             ),
         ]);
+    }
+
+    private function isLegalPropertyType(Type $type): bool
+    {
+        if ($type instanceof ClosureType) {
+            return false;
+        }
+
+        if ($type instanceof CallableType) {
+            return false;
+        }
+
+        if ($type instanceof ResourceType) {
+            return false;
+        }
+
+        return ! $type instanceof MixedType;
     }
 }

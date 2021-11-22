@@ -15,4 +15,9 @@ final class SkipClosureAndResource
      * @var callable(mixed[]) : void
      */
     private $onData;
+
+    public function run()
+    {
+        $combined = $this->stdErr . $this->onData;
+    }
 }
