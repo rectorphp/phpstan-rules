@@ -8,6 +8,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\New_;
 use PHPStan\Analyser\Scope;
 use Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
+use ReflectionClass;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -48,7 +49,7 @@ final class NoClassReflectionStaticReflectionRule extends AbstractSymplifyRule
         }
 
         $className = $this->simpleNameResolver->getName($node->class);
-        if ($className !== 'ReflectionClass') {
+        if ($className !== ReflectionClass::class) {
             return [];
         }
 

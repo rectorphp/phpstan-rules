@@ -50,7 +50,7 @@ final class RequireAssertConfigureValueObjectRectorRule extends AbstractSymplify
     public function process(Node $node, Scope $scope): array
     {
         $classReflection = $scope->getClassReflection();
-        if ($classReflection === null) {
+        if (! $classReflection instanceof ClassReflection) {
             return [];
         }
 

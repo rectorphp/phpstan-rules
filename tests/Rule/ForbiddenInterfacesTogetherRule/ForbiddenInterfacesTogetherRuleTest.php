@@ -6,6 +6,8 @@ namespace Rector\PHPStanRules\Tests\Rule\ForbiddenInterfacesTogetherRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use Rector\Core\Contract\Processor\FileProcessorInterface;
+use Rector\Core\Contract\Rector\RectorInterface;
 use Rector\PHPStanRules\Rule\ForbiddenInterfacesTogetherRule;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
@@ -27,7 +29,7 @@ final class ForbiddenInterfacesTogetherRuleTest extends AbstractServiceAwareRule
     {
         $groupAsStrings = implode(
             '", "',
-            ['Rector\Core\Contract\Processor\FileProcessorInterface', 'Rector\Core\Contract\Rector\RectorInterface']
+            [FileProcessorInterface::class, RectorInterface::class]
         );
         $errorMessage = sprintf(ForbiddenInterfacesTogetherRule::ERROR_MESSAGE, $groupAsStrings);
 

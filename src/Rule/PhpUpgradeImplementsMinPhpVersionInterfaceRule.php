@@ -9,6 +9,7 @@ use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
 use Rector\Core\Util\StringUtils;
+use Rector\VersionBonding\Contract\MinPhpVersionInterface;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
@@ -59,7 +60,7 @@ final class PhpUpgradeImplementsMinPhpVersionInterfaceRule extends AbstractSympl
                 continue;
             }
 
-            if ($implement->toString() !== 'Rector\VersionBonding\Contract\MinPhpVersionInterface') {
+            if ($implement->toString() !== MinPhpVersionInterface::class) {
                 continue;
             }
 

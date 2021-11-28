@@ -12,6 +12,7 @@ use PhpParser\NodeFinder;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Rules\Rule;
+use Rector\Core\Contract\Rector\RectorInterface;
 use Rector\PHPStanRules\Exception\ShouldNotHappenException;
 
 /**
@@ -75,7 +76,7 @@ final class RequireRectorCategoryByGetNodeTypesRule implements Rule
             return null;
         }
 
-        if (! $classReflection->isSubclassOf('Rector\Core\Contract\Rector\RectorInterface')) {
+        if (! $classReflection->isSubclassOf(RectorInterface::class)) {
             return null;
         }
 
