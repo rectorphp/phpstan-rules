@@ -207,29 +207,30 @@ services:
         tags: [phpstan.rules.rule]
         arguments:
             forbiddenFunctions:
-                - dump_node
-                # use Strings::match() instead
-                - preg_match
-                - preg_match_all
-                - preg_replace
+                'dump_node': ''
+
+                'preg_match': 'use "Nette\Utils\Strings::match()" instead'
+                'preg_match_all': 'use "Nette\Utils\Strings::matchAll()" instead'
+                'preg_replace': 'use "Nette\Utils\Strings::replace()" instead'
+
                 # forbid debug
-                - 'd'
-                - 'dd'
-                - 'dump'
-                - 'var_dump'
-                - 'curl_*'
-                - 'extract'
-                - 'compact'
-                - 'spl_autoload_register'
-                - 'spl_autoload_unregister'
-                - array_walk
-                # there are handled in ReflectionProvider->has*()
-                - 'class_exists'
-                - 'interface_exists'
-                - 'method_exists'
-                - 'property_exists'
-                - 'function_exists'
-                - class_parents
-                - class_implements
-                - get_parent_class
-                - get_declared_classes
+                'd': ''
+                'dd': ''
+                'dump': ''
+                'var_dump': ''
+                'curl_*': ''
+                'extract': ''
+                'compact': ''
+                'spl_autoload_register': ''
+                'spl_autoload_unregister': ''
+                'array_walk': ''
+
+                'class_exists': 'use ReflectionProvider->has*() instead'
+                'interface_exists': 'use ReflectionProvider->has*() instead'
+                'method_exists': 'use ReflectionProvider->has*() instead'
+                'property_exists': 'use ReflectionProvider->has*() instead'
+                'function_exists': 'use ReflectionProvider->has*() instead'
+                'class_parents': 'use ReflectionProvider->has*() instead'
+                'class_implements': 'use ReflectionProvider->has*() instead'
+                'get_parent_class': 'use ReflectionProvider->has*() instead'
+                'get_declared_classes': 'use ReflectionProvider->has*() instead'
