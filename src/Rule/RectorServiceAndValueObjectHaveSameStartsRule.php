@@ -10,7 +10,6 @@ use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
-use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Type\ObjectType;
 use Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigMethodCallAnalyzer;
@@ -148,10 +147,6 @@ CODE_SAMPLE
         }
 
         $classReflection = $this->reflectionProvider->getClass($valueObjectType->getClassName());
-        if (! $classReflection instanceof ClassReflection) {
-            return null;
-        }
-
         if ($classReflection->getInterfaces() !== []) {
             return null;
         }

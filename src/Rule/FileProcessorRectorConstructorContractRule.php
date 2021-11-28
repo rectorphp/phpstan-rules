@@ -12,6 +12,8 @@ use PHPStan\Reflection\FunctionVariantWithPhpDocs;
 use PHPStan\Reflection\ParameterReflection;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\ObjectType;
+use Rector\Core\Contract\Processor\FileProcessorInterface;
+use Rector\Core\Contract\Rector\RectorInterface;
 use Symplify\PackageBuilder\ValueObject\MethodName;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -111,7 +113,7 @@ CODE_SAMPLE
     private function isFileProcessorClass(Scope $scope): bool
     {
         $classReflection = $scope->getClassReflection();
-        if ($classReflection === null) {
+        if (! $classReflection instanceof ClassReflection) {
             return false;
         }
 
@@ -120,7 +122,7 @@ CODE_SAMPLE
             return false;
         }
 
-        return $classReflection->implementsInterface('Rector\Core\Contract\Processor\FileProcessorInterface');
+        return $classReflection->implementsInterface(FileProcessorInterface::class);
     }
 
     private function isRectorArrayParameter(ParameterReflection $parameterReflection): bool
@@ -135,7 +137,7 @@ CODE_SAMPLE
         }
 
         $objectType = $parameterType->getItemType();
-        $rectorObjectType = new ObjectType('Rector\Core\Contract\Rector\RectorInterface');
+        $rectorObjectType = new ObjectType(RectorInterface::class);
 
         return $rectorObjectType->isSuperTypeOf($objectType)->yes();
     }

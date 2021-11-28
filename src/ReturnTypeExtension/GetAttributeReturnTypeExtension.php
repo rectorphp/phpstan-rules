@@ -74,16 +74,12 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
 
         $knownReturnType = self::ARGUMENT_KEY_TO_RETURN_TYPE[$argumentValue];
 
-        if (is_array($knownReturnType) && count($knownReturnType) === 1) {
+        if (is_array($knownReturnType)) {
             $arrayType = new ArrayType(new IntegerType(), new ObjectType($knownReturnType[0]));
             return new UnionType([$arrayType, new NullType()]);
         }
 
-        if (is_string($knownReturnType)) {
-            return new UnionType([new ObjectType($knownReturnType), new NullType()]);
-        }
-
-        return $returnType;
+        return new UnionType([new ObjectType($knownReturnType), new NullType()]);
     }
 
     private function resolveArgumentValue(Expr $expr, Scope $scope): ?string

@@ -32,3 +32,8 @@ parameters:
         - '#Method Rector\\PHPStanRules\\Rule\\PhpUpgradeDowngradeRegisteredInSetRule\:\:matchRectorClassName\(\) should return class\-string<Rector\\Core\\Contract\\Rector\\RectorInterface\>\|null but returns class\-string#'
 
         - '#Calling PHPStan\\Reflection\\ParameterReflectionWithPhpDocs\:\:(getNativeType|getPhpDocType)\(\) is not covered by backward compatibility promise\. The method might change in a minor PHPStan version#'
+
+        # rector co-variant
+        - '#Parameter \#1 \$node \(PhpParser\\Node\\(.*?) of method Rector\\(.*?)\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method Rector\\Core\\Contract\\Rector\\PhpRectorInterface\:\:refactor\(\)#'
+
+        - '#Parameter \#1 \$node \((.*?)\) of method Rector\\PHPStanRules\\Rule\\(.*?)\:\:process\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method Symplify\\PHPStanRules\\Contract\\ManyNodeRuleInterface\:\:process\(\)#'

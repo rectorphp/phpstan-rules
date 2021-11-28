@@ -38,9 +38,6 @@ final class RequireAssertConfigureValueObjectRectorRule extends AbstractSymplify
     ) {
     }
 
-    /**
-     * @return array<class-string<Node>>
-     */
     public function getNodeTypes(): array
     {
         return [ClassMethod::class];
@@ -53,7 +50,7 @@ final class RequireAssertConfigureValueObjectRectorRule extends AbstractSymplify
     public function process(Node $node, Scope $scope): array
     {
         $classReflection = $scope->getClassReflection();
-        if ($classReflection === null) {
+        if (! $classReflection instanceof ClassReflection) {
             return [];
         }
 

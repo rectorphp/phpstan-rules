@@ -18,7 +18,9 @@
         "rector/rector-src": "dev-main",
         "symfony/console": "^5.3",
         "symfony/dependency-injection": "^5.3",
-        "symplify/monorepo-builder": "^10.0"
+        "symplify/monorepo-builder": "^10.0",
+        "phpstan/phpstan-webmozart-assert": "^1.0",
+        "phpstan/phpstan-strict-rules": "^1.1"
     },
     "autoload": {
         "psr-4": {

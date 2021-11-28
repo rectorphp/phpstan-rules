@@ -54,7 +54,7 @@ final class NoInstanceOfStaticReflectionRule extends AbstractSymplifyRule
     public function process(Node $node, Scope $scope): array
     {
         $exprStaticType = $this->resolveExprStaticType($node, $scope);
-        if ($exprStaticType === null) {
+        if (! $exprStaticType instanceof Type) {
             return [];
         }
 
