@@ -16,6 +16,8 @@ use Rector\PHPStanRules\Exception\ShouldNotHappenException;
 
 /**
  * @see \Rector\PHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule\RequireRectorCategoryByGetNodeTypesRuleTest
+ *
+ * @implements Rule<ClassMethod>
  */
 final class RequireRectorCategoryByGetNodeTypesRule implements Rule
 {
@@ -29,9 +31,6 @@ final class RequireRectorCategoryByGetNodeTypesRule implements Rule
     ) {
     }
 
-    /**
-     * @return class-string<Node>
-     */
     public function getNodeType(): string
     {
         return ClassMethod::class;

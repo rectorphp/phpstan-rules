@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Rector\PHPStanRules\TypeAnalyzer;
 
 use DateTimeInterface;
-use Nette\Utils\Strings;
 use PhpParser\Node;
 use PHPStan\PhpDocParser\Ast\Node as PhpDocNode;
 use PHPStan\Type\Constant\ConstantStringType;
@@ -13,6 +12,7 @@ use PHPStan\Type\Generic\GenericClassStringType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use PHPStan\Type\UnionType;
+use Rector\Core\Util\StringUtils;
 
 final class AllowedAutoloadedTypeAnalyzer
 {
@@ -62,7 +62,7 @@ final class AllowedAutoloadedTypeAnalyzer
     private function isAllowedClassString(string $value): bool
     {
         // autoloaded allowed type
-        if (Strings::match($value, self::AUTOLOADED_CLASS_PREFIX_REGEX)) {
+        if (StringUtils::isMatch($value, self::AUTOLOADED_CLASS_PREFIX_REGEX)) {
             return true;
         }
 

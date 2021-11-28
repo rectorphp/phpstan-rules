@@ -38,9 +38,6 @@ final class RequireAssertConfigureValueObjectRectorRule extends AbstractSymplify
     ) {
     }
 
-    /**
-     * @return array<class-string<Node>>
-     */
     public function getNodeTypes(): array
     {
         return [ClassMethod::class];

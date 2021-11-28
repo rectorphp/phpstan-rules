@@ -35,6 +35,11 @@ final class SymfonyConfigRectorValueObjectResolver
             $parent = $parent->getAttribute(AttributeKey::PARENT);
         }
 
+        if (! $parent instanceof Node) {
+            return null;
+        }
+
+        /** @var StaticCall|null $inlineStaticCall */
         $inlineStaticCall = $this->nodeFinder->findFirst($parent, function (Node $node): bool {
             if (! $node instanceof StaticCall) {
                 return false;
