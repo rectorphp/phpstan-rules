@@ -223,7 +223,7 @@ services:
                 'compact': ''
                 'spl_autoload_register': ''
                 'spl_autoload_unregister': ''
-                array_walk: ''
+                'array_walk': ''
 
                 'class_exists': 'use ReflectionProvider->has*() instead'
                 'interface_exists': 'use ReflectionProvider->has*() instead'
