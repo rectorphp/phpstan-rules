@@ -46,6 +46,10 @@ services:
         tags: [phpstan.rules.rule]
 
     -
+        class: Rector\PHPStanRules\Rule\NoLeadingBackslashInNameRule
+        tags: [phpstan.rules.rule]
+
+    -
         class: Rector\PHPStanRules\Rule\NoClassReflectionStaticReflectionRule
         tags: [phpstan.rules.rule]
 
