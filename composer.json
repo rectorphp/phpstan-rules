@@ -16,8 +16,8 @@
         "phpstan/extension-installer": "^1.1",
         "phpunit/phpunit": "^9.5",
         "rector/rector-src": "dev-main",
-        "symfony/console": "^5.3",
-        "symfony/dependency-injection": "^5.3",
+        "symfony/console": "^5.4",
+        "symfony/dependency-injection": "^5.4",
         "symplify/monorepo-builder": "^10.0",
         "phpstan/phpstan-webmozart-assert": "^1.0",
         "phpstan/phpstan-strict-rules": "^1.1"
@@ -44,7 +44,5 @@
         "fix-cs": "vendor/bin/ecs check --fix --ansi",
         "phpstan": "vendor/bin/phpstan analyse --ansi --error-format symplify",
         "release": "vendor/bin/monorepo-builder release patch --ansi"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
