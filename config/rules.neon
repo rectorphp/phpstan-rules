@@ -98,20 +98,6 @@ services:
                 Rector\Core\Contract\Rector\ConfigurableRectorInterface: Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample
 
     -
-        class: Symplify\PHPStanRules\Rules\ForbiddenMethodCallOnTypeRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            forbiddenMethodNamesByTypes:
-                PhpParser\Node:
-                    - 'getDocComment'
-                    - 'getComments'
-                    - 'setDocComment'
-                # relies on internal broker service that breaks sometimes; use RefletionProvider service instead
-                PHPStan\Type\ObjectType:
-                    - 'getClassReflection'
-                    - 'getAncestors'
-
-    -
         class: Symplify\PHPStanRules\Rules\ForbiddenNodeRule
         tags: [phpstan.rules.rule]
         arguments:
