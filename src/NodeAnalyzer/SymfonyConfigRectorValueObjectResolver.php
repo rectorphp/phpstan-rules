@@ -4,24 +4,15 @@ declare(strict_types=1);
 
 namespace Rector\PHPStanRules\NodeAnalyzer;
 
-use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\New_;
-use PhpParser\Node\Expr\StaticCall;
-use PhpParser\Node\Stmt\Expression;
 use PhpParser\NodeFinder;
 use PHPStan\Type\ObjectType;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\ValueObject\AttributeKey;
-use Symplify\SymfonyPhpConfig\ValueObjectInliner;
 
 final class SymfonyConfigRectorValueObjectResolver
 {
-    /**
-     * @var class-string
-     */
-    private const INLINE_CLASS_NAME = ValueObjectInliner::class;
-
     public function __construct(
         private NodeFinder $nodeFinder,
         private SimpleNameResolver $simpleNameResolver
@@ -31,28 +22,19 @@ final class SymfonyConfigRectorValueObjectResolver
     public function resolveFromSetMethodCall(MethodCall $methodCall): ObjectType|null
     {
         $parent = $methodCall->getAttribute(AttributeKey::PARENT);
-        while (! $parent instanceof Expression) {
+        while ($parent instanceof MethodCall) {
+            if ($this->simpleNameResolver->isName($parent->name, 'configure')) {
+                break;
+            }
+
             $parent = $parent->getAttribute(AttributeKey::PARENT);
         }
 
-        if (! $parent instanceof Node) {
+        if (! $parent instanceof MethodCall) {
             return null;
         }
 
-        /** @var StaticCall|null $inlineStaticCall */
-        $inlineStaticCall = $this->nodeFinder->findFirst($parent, function (Node $node): bool {
-            if (! $node instanceof StaticCall) {
-                return false;
-            }
-
-            return $this->simpleNameResolver->isName($node->class, self::INLINE_CLASS_NAME);
-        });
-
-        if (! $inlineStaticCall instanceof StaticCall) {
-            return null;
-        }
-
-        $new = $this->nodeFinder->findFirstInstanceOf($inlineStaticCall, New_::class);
+        $new = $this->nodeFinder->findFirstInstanceOf($parent->args, New_::class);
         if (! $new instanceof New_) {
             return null;
         }

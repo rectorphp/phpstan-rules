@@ -91,9 +91,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set(SomeRector::class)
-        ->call('configure', [[
+        -configure([
             new Another()
-        ]]);
+        ]);
 };
 CODE_SAMPLE
                     ,
@@ -104,9 +104,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set(SomeRector::class)
-        ->call('configure', [[
+        ->configure([
             new Some()
-        ]]);
+        ]);
 };
 CODE_SAMPLE
                 ),
