@@ -23,7 +23,7 @@ final class CorrectFileProcessor implements FileProcessorInterface
     {
     }
 
-    public function process(File $file, Configuration $configuration): void
+    public function process(File $file, Configuration $configuration): array
     {
     }
 

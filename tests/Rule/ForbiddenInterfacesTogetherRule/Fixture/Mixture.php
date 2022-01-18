@@ -20,7 +20,7 @@ final class Mixture implements RectorInterface, FileProcessorInterface
     {
     }
 
-    public function process(File $file, Configuration $configuration): void
+    public function process(File $file, Configuration $configuration): array
     {
     }
 
