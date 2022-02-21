@@ -23,13 +23,6 @@ services:
         tags: [phpstan.rules.rule]
 
     -
-        class: Rector\PHPStanRules\Rule\ForbiddenInterfacesTogetherRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            forbiddenInterfaceGroups:
-                - ['Rector\Core\Contract\Processor\FileProcessorInterface', 'Rector\Core\Contract\Rector\RectorInterface']
-
-    -
         class: Rector\PHPStanRules\Rule\ForwardTypedPropertyTypeRule
         tags: [phpstan.rules.rule]
 
