@@ -84,20 +84,6 @@ services:
             maximumStmtCount: 3
 
     -
-        class: Symplify\PHPStanRules\Rules\IfNewTypeThenImplementInterfaceRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            interfacesByNewTypes:
-                Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample: Rector\Core\Contract\Rector\ConfigurableRectorInterface
-
-    -
-        class: Symplify\PHPStanRules\Rules\IfImplementsInterfaceThenNewTypeRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            newTypesByInterface:
-                Rector\Core\Contract\Rector\ConfigurableRectorInterface: Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample
-
-    -
         class: Symplify\PHPStanRules\Rules\ForbiddenNodeRule
         tags: [phpstan.rules.rule]
         arguments:
