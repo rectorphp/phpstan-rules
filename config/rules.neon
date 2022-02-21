@@ -3,10 +3,6 @@ includes:
 
 services:
     -
-        class: Rector\PHPStanRules\Rule\ForbiddenComplexArrayConfigInSetRule
-        tags: [phpstan.rules.rule]
-
-    -
         class: Rector\PHPStanRules\Rule\PhpUpgradeDowngradeRegisteredInSetRule
         tags: [phpstan.rules.rule]
 
