@@ -1,9 +1,0 @@
-includes:
-    - ../../../config/shared_services.neon
-    - ../../../../config/services.neon
-
-services:
-    -
-        class: Rector\PHPStanRules\Rule\ForbiddenComplexArrayConfigInSetRule
-        tags: [phpstan.rules.rule]
-

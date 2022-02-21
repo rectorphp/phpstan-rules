@@ -3,10 +3,6 @@ includes:
 
 services:
     -
-        class: Rector\PHPStanRules\Rule\ForbiddenComplexArrayConfigInSetRule
-        tags: [phpstan.rules.rule]
-
-    -
         class: Rector\PHPStanRules\Rule\PhpUpgradeDowngradeRegisteredInSetRule
         tags: [phpstan.rules.rule]
 
@@ -21,13 +17,6 @@ services:
     -
         class: Rector\PHPStanRules\Rule\RequireAssertConfigureValueObjectRectorRule
         tags: [phpstan.rules.rule]
-
-    -
-        class: Rector\PHPStanRules\Rule\ForbiddenInterfacesTogetherRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            forbiddenInterfaceGroups:
-                - ['Rector\Core\Contract\Processor\FileProcessorInterface', 'Rector\Core\Contract\Rector\RectorInterface']
 
     -
         class: Rector\PHPStanRules\Rule\ForwardTypedPropertyTypeRule
@@ -82,20 +71,6 @@ services:
             forbiddenComplexFunctions:
                 - array_filter
             maximumStmtCount: 3
-
-    -
-        class: Symplify\PHPStanRules\Rules\IfNewTypeThenImplementInterfaceRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            interfacesByNewTypes:
-                Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample: Rector\Core\Contract\Rector\ConfigurableRectorInterface
-
-    -
-        class: Symplify\PHPStanRules\Rules\IfImplementsInterfaceThenNewTypeRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            newTypesByInterface:
-                Rector\Core\Contract\Rector\ConfigurableRectorInterface: Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample
 
     -
         class: Symplify\PHPStanRules\Rules\ForbiddenNodeRule
