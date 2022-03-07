@@ -12,18 +12,9 @@ parameters:
         - tests/Rule/ForwardTypedPropertyTypeRule/Source/ParentWithProperty.php
 
     ignoreErrors:
-        - '#Class Rector\\PHPStanRules\\Rule\\(.*?) implements generic interface PHPStan\\Rules\\Rule but does not specify its types\: TNodeType#'
-
-        - '#Method Rector\\PHPStanRules\\Tests\\Rule\\(.*?) return type has no value type specified in iterable type Iterator#'
-
         -
             message: '#Parameter \#1 \$argument of class ReflectionClass constructor expects class\-string<SomeType\>\|SomeType, string given#'
             path: tests/Rule/NoClassReflectionStaticReflectionRule/Fixture/NewOnExternal.php
-
-        # skip for PHPStan rules
-        -
-            message: '#Class must implement "Rector\\Core\\Contract\\Rector\\ConfigurableRectorInterface" interface#'
-            path: src/Rule/*
 
         # php-parser 4.13
         - '#Access to an undefined property PhpParser\\Node\\Arg\|PhpParser\\Node\\VariadicPlaceholder\:\:\$value#'
@@ -32,9 +23,6 @@ parameters:
         - '#Method Rector\\PHPStanRules\\Rule\\PhpUpgradeDowngradeRegisteredInSetRule\:\:matchRectorClassName\(\) should return class\-string<Rector\\Core\\Contract\\Rector\\RectorInterface\>\|null but returns class\-string#'
 
         - '#Calling PHPStan\\Reflection\\ParameterReflectionWithPhpDocs\:\:(getNativeType|getPhpDocType)\(\) is not covered by backward compatibility promise\. The method might change in a minor PHPStan version#'
-
-        # rector co-variant
-        - '#Parameter \#1 \$node \(PhpParser\\Node\\(.*?) of method Rector\\(.*?)\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method Rector\\Core\\Contract\\Rector\\PhpRectorInterface\:\:refactor\(\)#'
 
         - '#Parameter \#1 \$node \((.*?)\) of method Rector\\PHPStanRules\\Rule\\(.*?)\:\:process\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method Symplify\\PHPStanRules\\Contract\\ManyNodeRuleInterface\:\:process\(\)#'
 
