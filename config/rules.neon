@@ -1,47 +1,21 @@
 includes:
     - services.neon
 
+rules:
+    - Rector\PHPStanRules\Rule\RequireRectorCategoryByGetNodeTypesRule
+    - Rector\PHPStanRules\Rule\PhpUpgradeDowngradeRegisteredInSetRule
+    - Rector\PHPStanRules\Rule\PhpUpgradeImplementsMinPhpVersionInterfaceRule
+    - Rector\PHPStanRules\Rule\CallConfigureWithArrayRule
+    - Rector\PHPStanRules\Rule\RequireAssertConfigureValueObjectRectorRule
+    - Rector\PHPStanRules\Rule\ForwardTypedPropertyTypeRule
+    - Rector\PHPStanRules\Rule\ForwardUnionTypeRule
+    - Rector\PHPStanRules\Rule\FileProcessorRectorConstructorContractRule
+    - Rector\PHPStanRules\Rule\NoInstanceOfStaticReflectionRule
+    - Rector\PHPStanRules\Rule\NoLeadingBackslashInNameRule
+    - Rector\PHPStanRules\Rule\NoClassReflectionStaticReflectionRule
+    - Rector\PHPStanRules\Rule\RectorServiceAndValueObjectHaveSameStartsRule
+
 services:
-    -
-        class: Rector\PHPStanRules\Rule\PhpUpgradeDowngradeRegisteredInSetRule
-        tags: [phpstan.rules.rule]
-
-    -
-        class: Rector\PHPStanRules\Rule\PhpUpgradeImplementsMinPhpVersionInterfaceRule
-        tags: [phpstan.rules.rule]
-
-    -
-        class: Rector\PHPStanRules\Rule\CallConfigureWithArrayRule
-        tags: [phpstan.rules.rule]
-
-    -
-        class: Rector\PHPStanRules\Rule\RequireAssertConfigureValueObjectRectorRule
-        tags: [phpstan.rules.rule]
-
-    -
-        class: Rector\PHPStanRules\Rule\ForwardTypedPropertyTypeRule
-        tags: [phpstan.rules.rule]
-
-    -
-        class: Rector\PHPStanRules\Rule\ForwardUnionTypeRule
-        tags: [phpstan.rules.rule]
-
-    -
-        class: Rector\PHPStanRules\Rule\FileProcessorRectorConstructorContractRule
-        tags: [phpstan.rules.rule]
-
-    -
-        class: Rector\PHPStanRules\Rule\NoInstanceOfStaticReflectionRule
-        tags: [phpstan.rules.rule]
-
-    -
-        class: Rector\PHPStanRules\Rule\NoLeadingBackslashInNameRule
-        tags: [phpstan.rules.rule]
-
-    -
-        class: Rector\PHPStanRules\Rule\NoClassReflectionStaticReflectionRule
-        tags: [phpstan.rules.rule]
-
     -
         class: Symplify\PHPStanRules\ObjectCalisthenics\Rules\NoChainMethodCallRule
         tags: [phpstan.rules.rule]
@@ -50,19 +24,11 @@ services:
                 - Stringy\Stringy
 
     -
-        class: Rector\PHPStanRules\Rule\RectorServiceAndValueObjectHaveSameStartsRule
-        tags: [phpstan.rules.rule]
-
-    -
         class: Symplify\PHPStanRules\Rules\ExclusiveNamespaceRule
         tags: [phpstan.rules.rule]
         arguments:
             namespaceParts:
                 - 'Rector'
-
-    -
-        class: Rector\PHPStanRules\Rule\RequireRectorCategoryByGetNodeTypesRule
-        tags: [phpstan.rules.rule]
 
     -
         class: Symplify\PHPStanRules\Rules\ForbiddenComplexFuncCallRule
@@ -156,7 +122,6 @@ services:
                 'PHPUnit\TextUI\Configuration\Variable': 'PhpParser\Node\Expr\Variable'
                 'SebastianBergmann\Type\MixedType': 'PHPStan\Type\MixedType'
                 'Hoa\Protocol\Node\Node': 'PhpParser\Node'
-                'Nette\Utils\FileSystem': 'Symplify\SmartFileSystem\SmartFileSystem'
                 'Symfony\Component\Filesystem\Filesystem': 'Symplify\SmartFileSystem\SmartFileSystem'
                 # builder typo nodes
                 PhpParser\Builder\Use_: Rector\Core\PhpParser\Builder\UseBuilder
@@ -188,7 +153,6 @@ services:
                 'compact': ''
                 'spl_autoload_register': ''
                 'spl_autoload_unregister': ''
-                'array_walk': ''
 
                 'class_exists': 'use ReflectionProvider->has*() instead'
                 'interface_exists': 'use ReflectionProvider->has*() instead'
