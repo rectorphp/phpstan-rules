@@ -149,9 +149,12 @@ services:
                 'curl_*': ''
                 'extract': ''
                 'compact': ''
+
+                # autoload magic
                 'spl_autoload_register': ''
                 'spl_autoload_unregister': ''
 
+                # static reflection
                 'class_exists': 'use ReflectionProvider->has*() instead'
                 'interface_exists': 'use ReflectionProvider->has*() instead'
                 'method_exists': 'use ReflectionProvider->has*() instead'
