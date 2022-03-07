@@ -8,7 +8,6 @@ rules:
     - Rector\PHPStanRules\Rule\RequireAssertConfigureValueObjectRectorRule
     - Rector\PHPStanRules\Rule\ForwardTypedPropertyTypeRule
     - Rector\PHPStanRules\Rule\ForwardUnionTypeRule
-    - Rector\PHPStanRules\Rule\FileProcessorRectorConstructorContractRule
     - Rector\PHPStanRules\Rule\NoInstanceOfStaticReflectionRule
     - Rector\PHPStanRules\Rule\NoLeadingBackslashInNameRule
     - Rector\PHPStanRules\Rule\NoClassReflectionStaticReflectionRule
