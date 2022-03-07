@@ -5,7 +5,6 @@ rules:
     - Rector\PHPStanRules\Rule\RequireRectorCategoryByGetNodeTypesRule
     - Rector\PHPStanRules\Rule\PhpUpgradeDowngradeRegisteredInSetRule
     - Rector\PHPStanRules\Rule\PhpUpgradeImplementsMinPhpVersionInterfaceRule
-    - Rector\PHPStanRules\Rule\CallConfigureWithArrayRule
     - Rector\PHPStanRules\Rule\RequireAssertConfigureValueObjectRectorRule
     - Rector\PHPStanRules\Rule\ForwardTypedPropertyTypeRule
     - Rector\PHPStanRules\Rule\ForwardUnionTypeRule
