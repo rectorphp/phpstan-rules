@@ -37,3 +37,6 @@ parameters:
         - '#Parameter \#1 \$node \(PhpParser\\Node\\(.*?) of method Rector\\(.*?)\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method Rector\\Core\\Contract\\Rector\\PhpRectorInterface\:\:refactor\(\)#'
 
         - '#Parameter \#1 \$node \((.*?)\) of method Rector\\PHPStanRules\\Rule\\(.*?)\:\:process\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method Symplify\\PHPStanRules\\Contract\\ManyNodeRuleInterface\:\:process\(\)#'
+
+        # not relevant
+        - '#Parameter \#2 \$expectedErrors of method PHPStan\\Testing\\RuleTestCase<Rector\\PHPStanRules\\Rule\\(.*?), array given#'

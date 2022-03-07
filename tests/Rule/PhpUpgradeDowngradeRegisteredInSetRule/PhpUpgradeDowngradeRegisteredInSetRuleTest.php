@@ -18,11 +18,11 @@ final class PhpUpgradeDowngradeRegisteredInSetRuleTest extends AbstractServiceAw
 {
     /**
      * @dataProvider provideData()
-     * @param array<string|int> $expectedErrorMessagesWithLines
+     * @param mixed[] $expectedErrorsWithLines
      */
-    public function testRule(string $filePath, array $expectedErrorMessagesWithLines): void
+    public function testRule(string $filePath, array $expectedErrorsWithLines): void
     {
-        $this->analyse([$filePath], $expectedErrorMessagesWithLines);
+        $this->analyse([$filePath], $expectedErrorsWithLines);
     }
 
     /**
