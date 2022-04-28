@@ -26,7 +26,7 @@ use Symplify\Astral\NodeValue\NodeValueResolver;
 final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
     /**
-     * @var array<string, string|string[]>>
+     * @var array<string, string>
      */
     private const ARGUMENT_KEY_TO_RETURN_TYPE = [
         'Rector\NodeTypeResolver\Node\AttributeKey::RESOLVED_NAME' => Name::class,
@@ -70,12 +70,6 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
         }
 
         $knownReturnType = self::ARGUMENT_KEY_TO_RETURN_TYPE[$argumentValue];
-
-        if (is_array($knownReturnType)) {
-            $arrayType = new ArrayType(new IntegerType(), new ObjectType($knownReturnType[0]));
-            return new UnionType([$arrayType, new NullType()]);
-        }
-
         return new UnionType([new ObjectType($knownReturnType), new NullType()]);
     }
 
