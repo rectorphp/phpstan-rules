@@ -10,16 +10,18 @@ use PhpParser\Node\Name;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Name\Relative;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use PHPStan\Type\Constant\ConstantStringType;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Rector\PHPStanRules\Tests\Rule\NoLeadingBackslashInNameRule\NoLeadingBackslashInNameRuleTest
+ *
+ * @implements Rule<New_>
  */
-final class NoLeadingBackslashInNameRule extends AbstractSymplifyRule
+final class NoLeadingBackslashInNameRule implements Rule
 {
     /**
      * @var string
@@ -31,19 +33,16 @@ final class NoLeadingBackslashInNameRule extends AbstractSymplifyRule
     ) {
     }
 
-    /**
-     * @return array<class-string<Node>>
-     */
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [New_::class];
+        return New_::class;
     }
 
     /**
      * @param New_ $node
      * @return string[]
      */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
         if ($node->args === []) {
             return [];

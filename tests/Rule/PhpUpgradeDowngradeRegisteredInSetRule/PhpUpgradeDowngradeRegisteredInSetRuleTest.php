@@ -9,12 +9,11 @@ use PHPStan\Rules\Rule;
 use Rector\PHPStanRules\Rule\PhpUpgradeDowngradeRegisteredInSetRule;
 use Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule\Fixture\DowngradePhp80\SomePhpFeature2Rector;
 use Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule\Fixture\Php80\SomePhpFeatureRector;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<PhpUpgradeDowngradeRegisteredInSetRule>
+ * @extends \PHPStan\Testing\RuleTestCase<PhpUpgradeDowngradeRegisteredInSetRule>
  */
-final class PhpUpgradeDowngradeRegisteredInSetRuleTest extends AbstractServiceAwareRuleTestCase
+final class PhpUpgradeDowngradeRegisteredInSetRuleTest extends \PHPStan\Testing\RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -48,11 +47,13 @@ final class PhpUpgradeDowngradeRegisteredInSetRuleTest extends AbstractServiceAw
         yield [__DIR__ . '/Fixture/DowngradePhp80/SomePhpFeature2Rector.php', [[$errorMessage, 10]]];
     }
 
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [__DIR__ . '/config/configured_rule.neon'];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            PhpUpgradeDowngradeRegisteredInSetRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        return self::getContainer()->getByType(PhpUpgradeDowngradeRegisteredInSetRule::class);
     }
 }

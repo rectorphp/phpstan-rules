@@ -76,15 +76,15 @@ final class RequireRectorCategoryByGetNodeTypesRule implements Rule
             return null;
         }
 
-        if (! $classReflection->isSubclassOf(RectorInterface::class)) {
-            return null;
-        }
-
         if ($classReflection->isInterface()) {
             return null;
         }
 
         if ($classReflection->isAbstract()) {
+            return null;
+        }
+
+        if (! $classReflection->isSubclassOf(RectorInterface::class)) {
             return null;
         }
 

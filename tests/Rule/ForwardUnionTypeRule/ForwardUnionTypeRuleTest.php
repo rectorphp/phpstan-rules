@@ -7,12 +7,11 @@ namespace Rector\PHPStanRules\Tests\Rule\ForwardUnionTypeRule;
 use Iterator;
 use PHPStan\Rules\Rule;
 use Rector\PHPStanRules\Rule\ForwardUnionTypeRule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<ForwardUnionTypeRule>
+ * @extends \PHPStan\Testing\RuleTestCase<ForwardUnionTypeRule>
  */
-final class ForwardUnionTypeRuleTest extends AbstractServiceAwareRuleTestCase
+final class ForwardUnionTypeRuleTest extends \PHPStan\Testing\RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -36,11 +35,13 @@ final class ForwardUnionTypeRuleTest extends AbstractServiceAwareRuleTestCase
         yield [__DIR__ . '/Fixture/SkipNativeReturnType.php', []];
     }
 
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [__DIR__ . '/config/configured_rule.neon'];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            ForwardUnionTypeRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        return self::getContainer()->getByType(ForwardUnionTypeRule::class);
     }
 }

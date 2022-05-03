@@ -7,12 +7,11 @@ namespace Rector\PHPStanRules\Tests\Rule\NoClassReflectionStaticReflectionRule;
 use Iterator;
 use PHPStan\Rules\Rule;
 use Rector\PHPStanRules\Rule\NoClassReflectionStaticReflectionRule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<NoClassReflectionStaticReflectionRule>
+ * @extends \PHPStan\Testing\RuleTestCase<NoClassReflectionStaticReflectionRule>
  */
-final class NoClassReflectionStaticReflectionRuleTest extends AbstractServiceAwareRuleTestCase
+final class NoClassReflectionStaticReflectionRuleTest extends \PHPStan\Testing\RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -32,11 +31,13 @@ final class NoClassReflectionStaticReflectionRuleTest extends AbstractServiceAwa
         yield [__DIR__ . '/Fixture/SkipNonReflectionNew.php', []];
     }
 
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [__DIR__ . '/config/configured_rule.neon'];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            NoClassReflectionStaticReflectionRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        return self::getContainer()->getByType(NoClassReflectionStaticReflectionRule::class);
     }
 }

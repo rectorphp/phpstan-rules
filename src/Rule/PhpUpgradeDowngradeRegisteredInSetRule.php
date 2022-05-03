@@ -9,12 +9,12 @@ use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Node\InClassNode;
 use PHPStan\Reflection\ClassReflection;
+use PHPStan\Rules\Rule;
 use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Contract\Rector\RectorInterface;
 use Rector\PHPStanRules\Exception\ShouldNotHappenException;
 use Rector\Set\ValueObject\DowngradeSetList;
 use Rector\Set\ValueObject\SetList;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Symplify\SmartFileSystem\SmartFileInfo;
@@ -22,8 +22,10 @@ use Symplify\SmartFileSystem\SmartFileSystem;
 
 /**
  * @see \Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule\PhpUpgradeDowngradeRegisteredInSetRuleTest
+ *
+ * @implements Rule<InClassNode>
  */
-final class PhpUpgradeDowngradeRegisteredInSetRule extends AbstractSymplifyRule
+final class PhpUpgradeDowngradeRegisteredInSetRule implements Rule
 {
     /**
      * @var string
@@ -41,19 +43,16 @@ final class PhpUpgradeDowngradeRegisteredInSetRule extends AbstractSymplifyRule
     ) {
     }
 
-    /**
-     * @return array<class-string<Node>>
-     */
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [InClassNode::class];
+        return InClassNode::class;
     }
 
     /**
      * @param InClassNode $node
      * @return string[]
      */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
         $className = $this->matchRectorClassName($scope);
         if ($className === null) {

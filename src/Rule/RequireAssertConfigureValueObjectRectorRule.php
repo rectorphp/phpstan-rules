@@ -12,11 +12,11 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\FunctionVariantWithPhpDocs;
 use PHPStan\Reflection\Php\PhpMethodReflection;
+use PHPStan\Rules\Rule;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\TypeWithClassName;
 use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\Contract\ConfigurableRuleInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
@@ -24,8 +24,10 @@ use Webmozart\Assert\Assert;
 
 /**
  * @see \Rector\PHPStanRules\Tests\Rule\RequireAssertConfigureValueObjectRectorRule\RequireAssertConfigureValueObjectRectorRuleTest
+ *
+ * @implements Rule<ClassMethod>
  */
-final class RequireAssertConfigureValueObjectRectorRule extends AbstractSymplifyRule implements ConfigurableRuleInterface
+final class RequireAssertConfigureValueObjectRectorRule implements Rule, ConfigurableRuleInterface
 {
     /**
      * @var string
@@ -38,16 +40,16 @@ final class RequireAssertConfigureValueObjectRectorRule extends AbstractSymplify
     ) {
     }
 
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [ClassMethod::class];
+        return ClassMethod::class;
     }
 
     /**
      * @param ClassMethod $node
      * @return string[]
      */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
         $classReflection = $scope->getClassReflection();
         if (! $classReflection instanceof ClassReflection) {

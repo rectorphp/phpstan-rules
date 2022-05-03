@@ -1,8 +1,6 @@
 includes:
     - ../../../config/shared_services.neon
 
-services:
-    -
-        class: Rector\PHPStanRules\Rule\PhpUpgradeImplementsMinPhpVersionInterfaceRule
-        tags: [phpstan.rules.rule]
+rules:
+    - Rector\PHPStanRules\Rule\PhpUpgradeImplementsMinPhpVersionInterfaceRule
 

@@ -7,12 +7,11 @@ namespace Rector\PHPStanRules\Tests\Rule\RectorServiceAndValueObjectHaveSameStar
 use Iterator;
 use PHPStan\Rules\Rule;
 use Rector\PHPStanRules\Rule\RectorServiceAndValueObjectHaveSameStartsRule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<RectorServiceAndValueObjectHaveSameStartsRule>
+ * @extends \PHPStan\Testing\RuleTestCase<RectorServiceAndValueObjectHaveSameStartsRule>
  */
-final class RectorServiceAndValueObjectHaveSameStartsRuleTest extends AbstractServiceAwareRuleTestCase
+final class RectorServiceAndValueObjectHaveSameStartsRuleTest extends \PHPStan\Testing\RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -40,11 +39,13 @@ final class RectorServiceAndValueObjectHaveSameStartsRuleTest extends AbstractSe
         yield [__DIR__ . '/Fixture/HaveDifferentStarts.php', [[$errorMessage, 14]]];
     }
 
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [__DIR__ . '/config/configured_rule.neon'];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            RectorServiceAndValueObjectHaveSameStartsRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        return self::getContainer()->getByType(RectorServiceAndValueObjectHaveSameStartsRule::class);
     }
 }

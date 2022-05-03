@@ -1,4 +1,5 @@
 includes:
     - ../../../config/shared_services.neon
-    - ../../../../config/rules.neon
 
+rules:
+    - Rector\PHPStanRules\Rule\NoLeadingBackslashInNameRule

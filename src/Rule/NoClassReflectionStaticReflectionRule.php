@@ -7,17 +7,19 @@ namespace Rector\PHPStanRules\Rule;
 use PhpParser\Node;
 use PhpParser\Node\Expr\New_;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
 use ReflectionClass;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Rector\PHPStanRules\Tests\Rule\NoClassReflectionStaticReflectionRule\NoClassReflectionStaticReflectionRuleTest
+ *
+ * @implements Rule<New_>
  */
-final class NoClassReflectionStaticReflectionRule extends AbstractSymplifyRule
+final class NoClassReflectionStaticReflectionRule implements Rule
 {
     /**
      * @var string
@@ -30,19 +32,16 @@ final class NoClassReflectionStaticReflectionRule extends AbstractSymplifyRule
     ) {
     }
 
-    /**
-     * @return array<class-string<Node>>
-     */
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [New_::class];
+        return New_::class;
     }
 
     /**
      * @param New_ $node
      * @return string[]
      */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
         if (count($node->args) !== 1) {
             return [];

@@ -7,12 +7,11 @@ namespace Rector\PHPStanRules\Tests\Rule\PhpUpgradeImplementsMinPhpVersionInterf
 use Iterator;
 use PHPStan\Rules\Rule;
 use Rector\PHPStanRules\Rule\PhpUpgradeImplementsMinPhpVersionInterfaceRule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<PhpUpgradeImplementsMinPhpVersionInterfaceRule>
+ * @extends \PHPStan\Testing\RuleTestCase<PhpUpgradeImplementsMinPhpVersionInterfaceRule>
  */
-final class PhpUpgradeImplementsMinPhpVersionInterfaceRuleTest extends AbstractServiceAwareRuleTestCase
+final class PhpUpgradeImplementsMinPhpVersionInterfaceRuleTest extends \PHPStan\Testing\RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -41,11 +40,13 @@ final class PhpUpgradeImplementsMinPhpVersionInterfaceRuleTest extends AbstractS
         ]];
     }
 
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [__DIR__ . '/config/configured_rule.neon'];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            PhpUpgradeImplementsMinPhpVersionInterfaceRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        return self::getContainer()->getByType(PhpUpgradeImplementsMinPhpVersionInterfaceRule::class);
     }
 }

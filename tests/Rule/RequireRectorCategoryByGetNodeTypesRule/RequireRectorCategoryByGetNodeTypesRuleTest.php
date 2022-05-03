@@ -8,12 +8,11 @@ use Iterator;
 use PHPStan\Rules\Rule;
 use Rector\PHPStanRules\Rule\RequireRectorCategoryByGetNodeTypesRule;
 use Rector\PHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule\Fixture\ClassMethod\ChangeSomethingRector;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<RequireRectorCategoryByGetNodeTypesRule>
+ * @extends \PHPStan\Testing\RuleTestCase<RequireRectorCategoryByGetNodeTypesRule>
  */
-final class RequireRectorCategoryByGetNodeTypesRuleTest extends AbstractServiceAwareRuleTestCase
+final class RequireRectorCategoryByGetNodeTypesRuleTest extends \PHPStan\Testing\RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -39,11 +38,13 @@ final class RequireRectorCategoryByGetNodeTypesRuleTest extends AbstractServiceA
         yield [__DIR__ . '/Fixture/SkipAbstract.php', []];
     }
 
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [__DIR__ . '/config/configured_rule.neon'];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            RequireRectorCategoryByGetNodeTypesRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        return self::getContainer()->getByType(RequireRectorCategoryByGetNodeTypesRule::class);
     }
 }
