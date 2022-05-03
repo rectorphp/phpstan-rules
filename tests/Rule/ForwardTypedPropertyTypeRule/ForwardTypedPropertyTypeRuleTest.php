@@ -6,13 +6,13 @@ namespace Rector\PHPStanRules\Tests\Rule\ForwardTypedPropertyTypeRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Rector\PHPStanRules\Rule\ForwardTypedPropertyTypeRule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<ForwardTypedPropertyTypeRule>
+ * @extends RuleTestCase<ForwardTypedPropertyTypeRule>
  */
-final class ForwardTypedPropertyTypeRuleTest extends AbstractServiceAwareRuleTestCase
+final class ForwardTypedPropertyTypeRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -34,11 +34,16 @@ final class ForwardTypedPropertyTypeRuleTest extends AbstractServiceAwareRuleTes
         yield [__DIR__ . '/Fixture/SkipClosureAndResource.php', []];
     }
 
+    /**
+     * @return string[]
+     */
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [__DIR__ . '/config/configured_rule.neon'];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            ForwardTypedPropertyTypeRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        return self::getContainer()->getByType(ForwardTypedPropertyTypeRule::class);
     }
 }

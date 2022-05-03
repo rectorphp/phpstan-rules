@@ -6,13 +6,13 @@ namespace Rector\PHPStanRules\Tests\Rule\NoInstanceOfStaticReflectionRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Rector\PHPStanRules\Rule\NoInstanceOfStaticReflectionRule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<NoInstanceOfStaticReflectionRule>
+ * @extends RuleTestCase<NoInstanceOfStaticReflectionRule>
  */
-final class NoInstanceOfStaticReflectionRuleTest extends AbstractServiceAwareRuleTestCase
+final class NoInstanceOfStaticReflectionRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -47,11 +47,13 @@ final class NoInstanceOfStaticReflectionRuleTest extends AbstractServiceAwareRul
         yield [__DIR__ . '/Fixture/SkipSelfType.php', []];
     }
 
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [__DIR__ . '/config/configured_rule.neon'];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            NoInstanceOfStaticReflectionRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        return self::getContainer()->getByType(NoInstanceOfStaticReflectionRule::class);
     }
 }

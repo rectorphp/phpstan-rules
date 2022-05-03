@@ -6,13 +6,13 @@ namespace Rector\PHPStanRules\Tests\Rule\RequireAssertConfigureValueObjectRector
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Rector\PHPStanRules\Rule\RequireAssertConfigureValueObjectRectorRule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<RequireAssertConfigureValueObjectRectorRule>
+ * @extends RuleTestCase<RequireAssertConfigureValueObjectRectorRule>
  */
-final class RequireAssertConfigureValueObjectRectorRuleTest extends AbstractServiceAwareRuleTestCase
+final class RequireAssertConfigureValueObjectRectorRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -32,11 +32,13 @@ final class RequireAssertConfigureValueObjectRectorRuleTest extends AbstractServ
         yield [__DIR__ . '/Fixture/SkipNoArray.php', []];
     }
 
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [__DIR__ . '/config/configured_rule.neon'];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            RequireAssertConfigureValueObjectRectorRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        return self::getContainer()->getByType(RequireAssertConfigureValueObjectRectorRule::class);
     }
 }

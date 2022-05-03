@@ -8,16 +8,18 @@ use PhpParser\Node;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use Rector\Core\Util\StringUtils;
 use Rector\VersionBonding\Contract\MinPhpVersionInterface;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Rector\PHPStanRules\Tests\Rule\PhpUpgradeImplementsMinPhpVersionInterfaceRule\PhpUpgradeImplementsMinPhpVersionInterfaceRuleTest
+ *
+ * @implements Rule<Class_>
  */
-final class PhpUpgradeImplementsMinPhpVersionInterfaceRule extends AbstractSymplifyRule
+final class PhpUpgradeImplementsMinPhpVersionInterfaceRule implements Rule
 {
     /**
      * @var string
@@ -30,19 +32,16 @@ final class PhpUpgradeImplementsMinPhpVersionInterfaceRule extends AbstractSympl
      */
     private const PREFIX_REGEX = '#\\\\Php\d+\\\\#';
 
-    /**
-     * @return array<class-string<Node>>
-     */
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [Class_::class];
+        return Class_::class;
     }
 
     /**
      * @param Class_ $node
      * @return string[]
      */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
         /** @var string $className */
         $className = (string) $node->namespacedName;

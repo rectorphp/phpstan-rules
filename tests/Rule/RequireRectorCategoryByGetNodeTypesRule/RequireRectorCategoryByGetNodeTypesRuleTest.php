@@ -6,14 +6,14 @@ namespace Rector\PHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Rector\PHPStanRules\Rule\RequireRectorCategoryByGetNodeTypesRule;
 use Rector\PHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule\Fixture\ClassMethod\ChangeSomethingRector;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<RequireRectorCategoryByGetNodeTypesRule>
+ * @extends RuleTestCase<RequireRectorCategoryByGetNodeTypesRule>
  */
-final class RequireRectorCategoryByGetNodeTypesRuleTest extends AbstractServiceAwareRuleTestCase
+final class RequireRectorCategoryByGetNodeTypesRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -39,11 +39,13 @@ final class RequireRectorCategoryByGetNodeTypesRuleTest extends AbstractServiceA
         yield [__DIR__ . '/Fixture/SkipAbstract.php', []];
     }
 
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [__DIR__ . '/config/configured_rule.neon'];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            RequireRectorCategoryByGetNodeTypesRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        return self::getContainer()->getByType(RequireRectorCategoryByGetNodeTypesRule::class);
     }
 }

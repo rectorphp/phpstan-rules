@@ -6,13 +6,13 @@ namespace Rector\PHPStanRules\Tests\Rule\NoLeadingBackslashInNameRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Rector\PHPStanRules\Rule\NoLeadingBackslashInNameRule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<NoLeadingBackslashInNameRule>
+ * @extends RuleTestCase<NoLeadingBackslashInNameRule>
  */
-final class NoLeadingBackslashInNameRuleTest extends AbstractServiceAwareRuleTestCase
+final class NoLeadingBackslashInNameRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -32,11 +32,13 @@ final class NoLeadingBackslashInNameRuleTest extends AbstractServiceAwareRuleTes
         yield [__DIR__ . '/Fixture/SkipUseFullyQualified.php', []];
     }
 
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [__DIR__ . '/config/configured_rule.neon'];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            NoLeadingBackslashInNameRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        return self::getContainer()->getByType(NoLeadingBackslashInNameRule::class);
     }
 }

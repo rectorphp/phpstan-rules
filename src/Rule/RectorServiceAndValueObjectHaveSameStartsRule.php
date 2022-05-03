@@ -11,18 +11,20 @@ use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ReflectionProvider;
+use PHPStan\Rules\Rule;
 use PHPStan\Type\ObjectType;
 use Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigMethodCallAnalyzer;
 use Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigRectorValueObjectResolver;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Rector\PHPStanRules\Tests\Rule\RectorServiceAndValueObjectHaveSameStartsRule\RectorServiceAndValueObjectHaveSameStartsRuleTest
+ *
+ * @implements Rule<MethodCall>
  */
-final class RectorServiceAndValueObjectHaveSameStartsRule extends AbstractSymplifyRule
+final class RectorServiceAndValueObjectHaveSameStartsRule implements Rule
 {
     /**
      * @var string
@@ -37,19 +39,16 @@ final class RectorServiceAndValueObjectHaveSameStartsRule extends AbstractSympli
     ) {
     }
 
-    /**
-     * @return array<class-string<Node>>
-     */
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [MethodCall::class];
+        return MethodCall::class;
     }
 
     /**
      * @param MethodCall $node
      * @return string[]
      */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
         if (! $this->symfonyConfigMethodCallAnalyzer->isServicesSet($node, $scope)) {
             return [];

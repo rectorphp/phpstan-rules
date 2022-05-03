@@ -3,4 +3,12 @@ includes:
     - ../../vendor/symplify/phpstan-rules/packages/symfony/config/services.neon
     - ../../vendor/symplify/phpstan-rules/packages/cognitive-complexity/config/cognitive-complexity-services.neon
     - ../../vendor/symplify/phpstan-rules/config/services/services.neon
+    - ../../config/services.neon
 
+parameters:
+    # to autoload Rector classes that are part of test fixtures
+    bootstrapFiles:
+        - ../../vendor/rector/rector/bootstrap.php
+        - ../../vendor/rector/rector/src/Contract/Rector/ConfigurableRectorInterface.php
+        - ../../vendor/rector/rector/src/Contract/Rector/RectorInterface.php
+        - ../../vendor/rector/rector/packages/Set/ValueObject/SetList.php
