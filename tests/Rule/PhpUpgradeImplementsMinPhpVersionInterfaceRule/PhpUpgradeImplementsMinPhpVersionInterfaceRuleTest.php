@@ -6,12 +6,13 @@ namespace Rector\PHPStanRules\Tests\Rule\PhpUpgradeImplementsMinPhpVersionInterf
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Rector\PHPStanRules\Rule\PhpUpgradeImplementsMinPhpVersionInterfaceRule;
 
 /**
- * @extends \PHPStan\Testing\RuleTestCase<PhpUpgradeImplementsMinPhpVersionInterfaceRule>
+ * @extends RuleTestCase<PhpUpgradeImplementsMinPhpVersionInterfaceRule>
  */
-final class PhpUpgradeImplementsMinPhpVersionInterfaceRuleTest extends \PHPStan\Testing\RuleTestCase
+final class PhpUpgradeImplementsMinPhpVersionInterfaceRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()

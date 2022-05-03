@@ -6,13 +6,14 @@ namespace Rector\PHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Rector\PHPStanRules\Rule\RequireRectorCategoryByGetNodeTypesRule;
 use Rector\PHPStanRules\Tests\Rule\RequireRectorCategoryByGetNodeTypesRule\Fixture\ClassMethod\ChangeSomethingRector;
 
 /**
- * @extends \PHPStan\Testing\RuleTestCase<RequireRectorCategoryByGetNodeTypesRule>
+ * @extends RuleTestCase<RequireRectorCategoryByGetNodeTypesRule>
  */
-final class RequireRectorCategoryByGetNodeTypesRuleTest extends \PHPStan\Testing\RuleTestCase
+final class RequireRectorCategoryByGetNodeTypesRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()

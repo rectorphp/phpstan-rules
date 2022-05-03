@@ -2,20 +2,18 @@
 
 declare(strict_types=1);
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symplify\EasyCodingStandard\ValueObject\Option;
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PATHS, [
+return static function (ECSConfig $ecsConfig): void {
+    $ecsConfig->paths([
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ]);
 
-    $parameters->set(Option::PARALLEL, true);
-
-    $containerConfigurator->import(SetList::COMMON);
-    $containerConfigurator->import(SetList::CLEAN_CODE);
-    $containerConfigurator->import(SetList::PSR_12);
+    $ecsConfig->sets([
+        SetList::COMMON,
+        SetList::CLEAN_CODE,
+        SetList::PSR_12,
+    ]);
 };

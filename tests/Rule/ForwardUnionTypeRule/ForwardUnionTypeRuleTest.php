@@ -6,12 +6,13 @@ namespace Rector\PHPStanRules\Tests\Rule\ForwardUnionTypeRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Rector\PHPStanRules\Rule\ForwardUnionTypeRule;
 
 /**
- * @extends \PHPStan\Testing\RuleTestCase<ForwardUnionTypeRule>
+ * @extends RuleTestCase<ForwardUnionTypeRule>
  */
-final class ForwardUnionTypeRuleTest extends \PHPStan\Testing\RuleTestCase
+final class ForwardUnionTypeRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()

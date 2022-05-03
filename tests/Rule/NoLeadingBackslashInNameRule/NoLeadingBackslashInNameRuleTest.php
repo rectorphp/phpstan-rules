@@ -6,12 +6,13 @@ namespace Rector\PHPStanRules\Tests\Rule\NoLeadingBackslashInNameRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Rector\PHPStanRules\Rule\NoLeadingBackslashInNameRule;
 
 /**
- * @extends \PHPStan\Testing\RuleTestCase<NoLeadingBackslashInNameRule>
+ * @extends RuleTestCase<NoLeadingBackslashInNameRule>
  */
-final class NoLeadingBackslashInNameRuleTest extends \PHPStan\Testing\RuleTestCase
+final class NoLeadingBackslashInNameRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()

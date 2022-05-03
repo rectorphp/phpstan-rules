@@ -6,12 +6,13 @@ namespace Rector\PHPStanRules\Tests\Rule\RectorServiceAndValueObjectHaveSameStar
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Rector\PHPStanRules\Rule\RectorServiceAndValueObjectHaveSameStartsRule;
 
 /**
- * @extends \PHPStan\Testing\RuleTestCase<RectorServiceAndValueObjectHaveSameStartsRule>
+ * @extends RuleTestCase<RectorServiceAndValueObjectHaveSameStartsRule>
  */
-final class RectorServiceAndValueObjectHaveSameStartsRuleTest extends \PHPStan\Testing\RuleTestCase
+final class RectorServiceAndValueObjectHaveSameStartsRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()

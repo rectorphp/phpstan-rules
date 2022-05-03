@@ -6,12 +6,13 @@ namespace Rector\PHPStanRules\Tests\Rule\NoInstanceOfStaticReflectionRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Rector\PHPStanRules\Rule\NoInstanceOfStaticReflectionRule;
 
 /**
- * @extends \PHPStan\Testing\RuleTestCase<NoInstanceOfStaticReflectionRule>
+ * @extends RuleTestCase<NoInstanceOfStaticReflectionRule>
  */
-final class NoInstanceOfStaticReflectionRuleTest extends \PHPStan\Testing\RuleTestCase
+final class NoInstanceOfStaticReflectionRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()

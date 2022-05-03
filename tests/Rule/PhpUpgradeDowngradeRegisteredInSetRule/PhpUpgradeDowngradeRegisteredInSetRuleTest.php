@@ -6,14 +6,15 @@ namespace Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Rector\PHPStanRules\Rule\PhpUpgradeDowngradeRegisteredInSetRule;
 use Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule\Fixture\DowngradePhp80\SomePhpFeature2Rector;
 use Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule\Fixture\Php80\SomePhpFeatureRector;
 
 /**
- * @extends \PHPStan\Testing\RuleTestCase<PhpUpgradeDowngradeRegisteredInSetRule>
+ * @extends RuleTestCase<PhpUpgradeDowngradeRegisteredInSetRule>
  */
-final class PhpUpgradeDowngradeRegisteredInSetRuleTest extends \PHPStan\Testing\RuleTestCase
+final class PhpUpgradeDowngradeRegisteredInSetRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()

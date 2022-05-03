@@ -6,12 +6,13 @@ namespace Rector\PHPStanRules\Tests\Rule\ForwardTypedPropertyTypeRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Rector\PHPStanRules\Rule\ForwardTypedPropertyTypeRule;
 
 /**
- * @extends \PHPStan\Testing\RuleTestCase<ForwardTypedPropertyTypeRule>
+ * @extends RuleTestCase<ForwardTypedPropertyTypeRule>
  */
-final class ForwardTypedPropertyTypeRuleTest extends \PHPStan\Testing\RuleTestCase
+final class ForwardTypedPropertyTypeRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()

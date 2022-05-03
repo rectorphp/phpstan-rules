@@ -6,12 +6,13 @@ namespace Rector\PHPStanRules\Tests\Rule\RequireAssertConfigureValueObjectRector
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Rector\PHPStanRules\Rule\RequireAssertConfigureValueObjectRectorRule;
 
 /**
- * @extends \PHPStan\Testing\RuleTestCase<RequireAssertConfigureValueObjectRectorRule>
+ * @extends RuleTestCase<RequireAssertConfigureValueObjectRectorRule>
  */
-final class RequireAssertConfigureValueObjectRectorRuleTest extends \PHPStan\Testing\RuleTestCase
+final class RequireAssertConfigureValueObjectRectorRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()
