@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Rector\PHPStanRules\Tests\Rule\RectorServiceAndValueObjectHaveSameStartsRule\Fixture;
 
+use Rector\Config\RectorConfig;
 use Rector\Transform\Rector\StaticCall\StaticCallToFuncCallRector;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $services = $containerConfigurator->services();
-
-    $services->set(StaticCallToFuncCallRector::class)
-        ->call('configure', [[
-            StaticCallToFuncCallRector::STATIC_CALLS_TO_FUNCTIONS => true,
-        ]]);
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->ruleWithConfiguration(StaticCallToFuncCallRector::class, [
+        StaticCallToFuncCallRector::STATIC_CALLS_TO_FUNCTIONS => true,
+    ]);
 };

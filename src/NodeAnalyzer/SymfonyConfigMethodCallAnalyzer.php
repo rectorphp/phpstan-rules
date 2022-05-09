@@ -8,7 +8,7 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\TypeWithClassName;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator;
+use Rector\Config\RectorConfig;
 use Symplify\Astral\Naming\SimpleNameResolver;
 
 final class SymfonyConfigMethodCallAnalyzer
@@ -18,7 +18,7 @@ final class SymfonyConfigMethodCallAnalyzer
     ) {
     }
 
-    public function isServicesSet(MethodCall $methodCall, Scope $scope): bool
+    public function isRuleWithConfiguration(MethodCall $methodCall, Scope $scope): bool
     {
         $callerType = $scope->getType($methodCall->var);
         if (! $callerType instanceof TypeWithClassName) {
@@ -26,12 +26,12 @@ final class SymfonyConfigMethodCallAnalyzer
         }
 
         $callerTypeObjectType = new ObjectType($callerType->getClassName());
-        $serviceConfiguratorObjectType = new ObjectType(ServicesConfigurator::class);
+        $serviceConfiguratorObjectType = new ObjectType(RectorConfig::class);
 
         if (! $serviceConfiguratorObjectType->isSuperTypeOf($callerTypeObjectType)->yes()) {
             return false;
         }
 
-        return $this->simpleNameResolver->isName($methodCall->name, 'set');
+        return $this->simpleNameResolver->isName($methodCall->name, 'ruleWithConfiguration');
     }
 }

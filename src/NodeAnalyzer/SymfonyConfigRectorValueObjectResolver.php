@@ -9,7 +9,6 @@ use PhpParser\Node\Expr\New_;
 use PhpParser\NodeFinder;
 use PHPStan\Type\ObjectType;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\Astral\ValueObject\AttributeKey;
 
 final class SymfonyConfigRectorValueObjectResolver
 {
@@ -19,22 +18,9 @@ final class SymfonyConfigRectorValueObjectResolver
     ) {
     }
 
-    public function resolveFromSetMethodCall(MethodCall $methodCall): ObjectType|null
+    public function resolveFromRuleWithConfigurationMethodCall(MethodCall $methodCall): ObjectType|null
     {
-        $parent = $methodCall->getAttribute(AttributeKey::PARENT);
-        while ($parent instanceof MethodCall) {
-            if ($this->simpleNameResolver->isName($parent->name, 'configure')) {
-                break;
-            }
-
-            $parent = $parent->getAttribute(AttributeKey::PARENT);
-        }
-
-        if (! $parent instanceof MethodCall) {
-            return null;
-        }
-
-        $new = $this->nodeFinder->findFirstInstanceOf($parent->args, New_::class);
+        $new = $this->nodeFinder->findFirstInstanceOf($methodCall->args, New_::class);
         if (! $new instanceof New_) {
             return null;
         }
