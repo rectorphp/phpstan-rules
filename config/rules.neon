@@ -51,7 +51,7 @@ services:
             maxClassCognitiveComplexity: 50
             limitsByTypes:
                 PHPStan\Rules\Rule: 20
-                Rector\Core\Rector\AbstractRector: 30
+                Rector\Core\Rector\AbstractRector: 35
                 Symfony\Component\Console\Command\Command: 30
 
     # require constant in argument position
