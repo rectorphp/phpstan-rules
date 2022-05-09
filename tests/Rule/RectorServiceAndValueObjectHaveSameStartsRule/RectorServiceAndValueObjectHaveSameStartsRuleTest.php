@@ -37,7 +37,7 @@ final class RectorServiceAndValueObjectHaveSameStartsRuleTest extends RuleTestCa
             'ConfigureValueObject',
             'ChangeMethodVisibility'
         );
-        yield [__DIR__ . '/Fixture/HaveDifferentStarts.php', [[$errorMessage, 14]]];
+        yield [__DIR__ . '/Fixture/HaveDifferentStarts.php', [[$errorMessage, 12]]];
     }
 
     public static function getAdditionalConfigFiles(): array

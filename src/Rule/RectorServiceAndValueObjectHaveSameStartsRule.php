@@ -50,7 +50,7 @@ final class RectorServiceAndValueObjectHaveSameStartsRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
-        if (! $this->symfonyConfigMethodCallAnalyzer->isServicesSet($node, $scope)) {
+        if (! $this->symfonyConfigMethodCallAnalyzer->isRuleWithConfiguration($node, $scope)) {
             return [];
         }
 
@@ -84,28 +84,22 @@ final class RectorServiceAndValueObjectHaveSameStartsRule implements Rule
             [
                 new CodeSample(
                     <<<'CODE_SAMPLE'
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Rector\Config\RectorConfig;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $services = $containerConfigurator->services();
-
-    $services->set(SomeRector::class)
-        -configure([
-            new Another()
-        ]);
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->ruleWithConfiguration(SomeRector::class, [
+        new Another()
+    ]);
 };
 CODE_SAMPLE
                     ,
                     <<<'CODE_SAMPLE'
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Rector\Config\RectorConfig;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $services = $containerConfigurator->services();
-
-    $services->set(SomeRector::class)
-        ->configure([
-            new Some()
-        ]);
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->ruleWithConfiguration(SomeRector::class, [
+        new Some()
+    ]);
 };
 CODE_SAMPLE
                 ),
@@ -135,7 +129,7 @@ CODE_SAMPLE
 
     private function resolveValueObjectShortClass(MethodCall $methodCall): ?string
     {
-        $valueObjectType = $this->symfonyConfigRectorValueObjectResolver->resolveFromSetMethodCall($methodCall);
+        $valueObjectType = $this->symfonyConfigRectorValueObjectResolver->resolveFromRuleWithConfigurationMethodCall($methodCall);
         if (! $valueObjectType instanceof ObjectType) {
             return null;
         }
