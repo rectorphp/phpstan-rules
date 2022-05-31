@@ -54,23 +54,6 @@ services:
                 Rector\Core\Rector\AbstractRector: 35
                 Symfony\Component\Console\Command\Command: 30
 
-    # require constant in argument position
-    -
-        class: Symplify\PHPStanRules\Rules\Enum\RequireConstantInMethodCallPositionRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            requiredConstantInMethodCall:
-                Symfony\Component\Console\Command\Command:
-                    addArgument: [0]
-                    addOption: [0]
-                Symfony\Component\Console\Input\InputInterface:
-                    getOption: [0]
-                    getArgument: [0]
-                PhpParser\Node:
-                    getAttribute: [0]
-                    hasAttribute: [0]
-                    setAttribute: [0]
-
     -
         class: Symplify\PHPStanRules\Rules\SeeAnnotationToTestRule
         tags: [phpstan.rules.rule]
