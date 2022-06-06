@@ -21,7 +21,6 @@
         "symplify/monorepo-builder": "^10.2.3",
         "phpstan/phpstan-webmozart-assert": "^1.0",
         "phpstan/phpstan-strict-rules": "^1.1",
-        "helmich/typo3-typoscript-parser": "^2.4.1",
         "tracy/tracy": "^2.9"
     },
     "autoload": {
