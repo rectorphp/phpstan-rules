@@ -5,24 +5,23 @@
     "description": "PHPStan rules for Rector projects - with focus on static reflection, constant re-use and Rector design patterns",
     "require": {
         "php": ">=8.0",
-        "symplify/astral": "dev-main",
-        "symplify/phpstan-rules": "dev-main",
-        "phpstan/phpstan": "^1.6.4",
+        "symplify/astral": "^10.3",
+        "symplify/phpstan-rules": "^10.3",
+        "phpstan/phpstan": "^1.7.12",
         "nette/utils": "^3.2"
     },
     "require-dev": {
-        "symplify/easy-coding-standard": "dev-main",
-        "symplify/phpstan-extensions": "dev-main",
+        "symplify/easy-coding-standard": "^10.3",
+        "symplify/phpstan-extensions": "^10.3",
         "phpstan/extension-installer": "^1.1",
         "phpunit/phpunit": "^9.5",
-        "rector/rector": "dev-main",
+        "rector/rector": "^0.13.5",
         "symfony/console": "^6.0",
         "symfony/dependency-injection": "^6.0",
-        "symplify/monorepo-builder": "dev-main",
-        "symplify/composer-json-manipulator": "dev-main",
-        "symplify/package-builder": "dev-main",
+        "symplify/monorepo-builder": "^10.3",
+        "symplify/package-builder": "^10.3",
         "phpstan/phpstan-webmozart-assert": "^1.0",
-        "phpstan/phpstan-strict-rules": "^1.1",
+        "phpstan/phpstan-strict-rules": "^1.2",
         "tracy/tracy": "^2.9"
     },
     "autoload": {
