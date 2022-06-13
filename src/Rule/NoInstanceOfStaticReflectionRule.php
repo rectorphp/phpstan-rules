@@ -114,12 +114,12 @@ CODE_SAMPLE
 
     private function hasParentFuncCallNamed(Node $node, string $functionName): bool
     {
-        $parent = $node->getAttribute(AttributeKey::PARENT);
+        $parent = $node->getAttribute('parent');
         if (! $parent instanceof Arg) {
             return false;
         }
 
-        $parentParent = $parent->getAttribute(AttributeKey::PARENT);
+        $parentParent = $parent->getAttribute('parent');
         if (! $parentParent instanceof FuncCall) {
             return false;
         }
