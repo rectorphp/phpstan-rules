@@ -46,7 +46,9 @@ final class GetNameMethodCallTypeResolver
     ): Type {
         $returnType = ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
 
-        $argumentValueType = $scope->getType($methodCall->args[0]->value);
+        $args = $methodCall->getArgs();
+
+        $argumentValueType = $scope->getType($args[0]->value);
         if (! $argumentValueType instanceof ObjectType) {
             return $returnType;
         }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Rector\PHPStanRules\Rule;
 
 use PhpParser\Node;
-use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\Instanceof_;
 use PhpParser\Node\Name;
@@ -16,7 +15,6 @@ use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\Astral\ValueObject\AttributeKey;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
@@ -62,10 +60,6 @@ final class NoInstanceOfStaticReflectionRule extends AbstractSymplifyRule
             return [];
         }
 
-        if ($this->hasParentFuncCallNamed($node, 'assert')) {
-            return [];
-        }
-
         return [self::ERROR_MESSAGE];
     }
 
@@ -90,40 +84,31 @@ CODE_SAMPLE
     private function resolveExprStaticType(FuncCall|Instanceof_ $node, Scope $scope): ?Type
     {
         if ($node instanceof Instanceof_) {
-            if ($node->class instanceof Name) {
-                $className = $node->class->toString();
-                if ($className === 'self') {
-                    $classReflection = $scope->getClassReflection();
-                    if ($classReflection instanceof ClassReflection) {
-                        return new ObjectType($classReflection->getName(), null, $classReflection);
-                    }
-                }
-                return new ConstantStringType($node->class->toString());
-            }
-
-            return $scope->getType($node->class);
+            return $this->resolveInstanceOfType($node, $scope);
         }
 
         if (! $this->simpleNameResolver->isName($node, 'is_a')) {
             return null;
         }
 
-        $typeArgValue = $node->args[1]->value;
+        $typeArgValue = $node->getArgs()[1]->value;
         return $scope->getType($typeArgValue);
     }
 
-    private function hasParentFuncCallNamed(Node $node, string $functionName): bool
+    private function resolveInstanceOfType(Instanceof_ $instanceof, Scope $scope): Type
     {
-        $parent = $node->getAttribute(AttributeKey::PARENT);
-        if (! $parent instanceof Arg) {
-            return false;
+        if ($instanceof->class instanceof Name) {
+            $className = $instanceof->class->toString();
+            if ($className === 'self') {
+                $classReflection = $scope->getClassReflection();
+                if ($classReflection instanceof ClassReflection) {
+                    return new ObjectType($classReflection->getName(), null, $classReflection);
+                }
+            }
+
+            return new ConstantStringType($instanceof->class->toString());
         }
 
-        $parentParent = $parent->getAttribute(AttributeKey::PARENT);
-        if (! $parentParent instanceof FuncCall) {
-            return false;
-        }
-
-        return $this->simpleNameResolver->isName($parentParent->name, $functionName);
+        return $scope->getType($instanceof->class);
     }
 }

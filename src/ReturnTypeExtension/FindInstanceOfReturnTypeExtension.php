@@ -43,7 +43,7 @@ final class FindInstanceOfReturnTypeExtension implements DynamicMethodReturnType
     ): Type {
         $returnType = ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
 
-        $secondArgumentNode = $methodCall->args[1]->value;
+        $secondArgumentNode = $methodCall->getArgs()[1]->value;
         if (! $secondArgumentNode instanceof ClassConstFetch) {
             return $returnType;
         }

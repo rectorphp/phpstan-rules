@@ -44,7 +44,7 @@ final class NoLeadingBackslashInNameRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
-        if ($node->args === []) {
+        if ($node->getArgs() === []) {
             return [];
         }
 
@@ -53,7 +53,7 @@ final class NoLeadingBackslashInNameRule implements Rule
             return [];
         }
 
-        $argValue = $node->args[0]->value;
+        $argValue = $node->getArgs()[0]->value;
         $argType = $scope->getType($argValue);
 
         if (! $argType instanceof ConstantStringType) {

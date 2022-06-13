@@ -4,11 +4,7 @@ services:
     - Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigRectorValueObjectResolver
     - Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigMethodCallAnalyzer
 
-# to allow parent nodes connections
 parameters:
     featureToggles:
-        nodeConnectingVisitorCompatibility: true
-
-conditionalTags:
-    PhpParser\NodeVisitor\NodeConnectingVisitor:
-        phpstan.parser.richParserNodeVisitor: true
+        # disable node connecting visitor, see https://github.com/phpstan/phpstan-src/pull/1175
+        nodeConnectingVisitorCompatibility: false

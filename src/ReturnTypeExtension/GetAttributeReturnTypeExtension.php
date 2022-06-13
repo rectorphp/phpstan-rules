@@ -56,7 +56,7 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
     ): Type {
         $returnType = ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
 
-        $argumentValue = $this->resolveArgumentValue($methodCall->args[0]->value, $scope);
+        $argumentValue = $this->resolveArgumentValue($methodCall->getArgs()[0]->value, $scope);
         if ($argumentValue === null) {
             return $returnType;
         }

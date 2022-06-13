@@ -35,7 +35,8 @@ final class ComponentModelDynamicReturnTypeExtension implements DynamicMethodRet
     ): Type {
         $calledOnType = $scope->getType($methodCall->var);
         $mixedType = new MixedType();
-        $args = $methodCall->args;
+
+        $args = $methodCall->getArgs();
         if (count($args) !== 1) {
             return $mixedType;
         }

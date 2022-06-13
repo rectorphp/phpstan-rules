@@ -43,7 +43,7 @@ final class NoClassReflectionStaticReflectionRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
-        if (count($node->args) !== 1) {
+        if (count($node->getArgs()) !== 1) {
             return [];
         }
 
@@ -52,7 +52,7 @@ final class NoClassReflectionStaticReflectionRule implements Rule
             return [];
         }
 
-        $argValue = $node->args[0]->value;
+        $argValue = $node->getArgs()[0]->value;
         $exprStaticType = $scope->getType($argValue);
 
         if ($this->allowedAutoloadedTypeAnalyzer->isAllowedType($exprStaticType)) {
