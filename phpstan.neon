@@ -16,9 +16,6 @@ parameters:
             message: '#Parameter \#1 \$argument of class ReflectionClass constructor expects class\-string<SomeType\>\|SomeType, string given#'
             path: tests/Rule/NoClassReflectionStaticReflectionRule/Fixture/NewOnExternal.php
 
-        # php-parser 4.13
-        - '#Access to an undefined property PhpParser\\Node\\Arg\|PhpParser\\Node\\VariadicPlaceholder\:\:\$value#'
-
         # class-string false positive
         - '#Method Rector\\PHPStanRules\\Rule\\PhpUpgradeDowngradeRegisteredInSetRule\:\:matchRectorClassName\(\) should return class\-string<Rector\\Core\\Contract\\Rector\\RectorInterface\>\|null but returns class\-string#'
 

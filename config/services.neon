@@ -3,3 +3,8 @@ services:
     - Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer
     - Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigRectorValueObjectResolver
     - Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigMethodCallAnalyzer
+
+parameters:
+    featureToggles:
+        # disable node connecting visitor, see https://github.com/phpstan/phpstan-src/pull/1175
+        nodeConnectingVisitorCompatibility: false
