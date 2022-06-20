@@ -87,6 +87,7 @@ services:
         arguments:
             oldToPreferredClasses:
                 # prevent PHPStorm autocomplete mess
+                'PHPStan\Node\ClassMethod': 'PhpParser\Node\Stmt\ClassMethod'
                 'Symfony\Component\DependencyInjection\Variable': 'PhpParser\Node\Expr\Variable'
                 'phpDocumentor\Reflection\Types\Expression': 'PhpParser\Node\Stmt\Expression'
                 'phpDocumentor\Reflection\DocBlock\Tags\Param': 'PhpParser\Node\Param'
