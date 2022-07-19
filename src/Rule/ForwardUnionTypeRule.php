@@ -52,12 +52,12 @@ final class ForwardUnionTypeRule extends AbstractSymplifyRule
             return [];
         }
 
-        $classMethodReflection = $scope->getFunction();
-        if (! $classMethodReflection instanceof MethodReflection && ! $classMethodReflection instanceof FunctionReflection) {
+        $function = $scope->getFunction();
+        if (! $function instanceof MethodReflection && ! $function instanceof FunctionReflection) {
             return [];
         }
 
-        $firstVariant = $classMethodReflection->getVariants()[0];
+        $firstVariant = $function->getVariants()[0];
         if ($firstVariant instanceof FunctionVariantWithPhpDocs) {
             if ($this->hasUnionableParamType($firstVariant)) {
                 return [self::ERROR_MESSAGE];
@@ -95,14 +95,14 @@ CODE_SAMPLE
 
     private function hasUnionableParamType(FunctionVariantWithPhpDocs $functionVariantWithPhpDocs): bool
     {
-        foreach ($functionVariantWithPhpDocs->getParameters() as $parameterReflection) {
-            $paramPhpDocType = $parameterReflection->getPhpDocType();
+        foreach ($functionVariantWithPhpDocs->getParameters() as $parameterReflectionWithPhpDoc) {
+            $paramPhpDocType = $parameterReflectionWithPhpDoc->getPhpDocType();
             if (! $paramPhpDocType instanceof UnionType) {
                 continue;
             }
 
             // already in native
-            if ($parameterReflection->getNativeType() instanceof UnionType) {
+            if ($parameterReflectionWithPhpDoc->getNativeType() instanceof UnionType) {
                 continue;
             }
 

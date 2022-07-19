@@ -19,7 +19,7 @@ use Rector\PHPStanRules\TypeResolver\GetNameMethodCallTypeResolver;
 final class NameResolverReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
     public function __construct(
-        private GetNameMethodCallTypeResolver $methodCallTypeResolver
+        private GetNameMethodCallTypeResolver $getNameMethodCallTypeResolver
     ) {
     }
 
@@ -38,6 +38,6 @@ final class NameResolverReturnTypeExtension implements DynamicMethodReturnTypeEx
         MethodCall $methodCall,
         Scope $scope
     ): Type {
-        return $this->methodCallTypeResolver->resolveFromMethodCall($methodReflection, $methodCall, $scope);
+        return $this->getNameMethodCallTypeResolver->resolveFromMethodCall($methodReflection, $methodCall, $scope);
     }
 }
