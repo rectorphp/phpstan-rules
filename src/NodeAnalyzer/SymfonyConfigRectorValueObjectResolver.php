@@ -20,12 +20,12 @@ final class SymfonyConfigRectorValueObjectResolver
 
     public function resolveFromRuleWithConfigurationMethodCall(MethodCall $methodCall): ObjectType|null
     {
-        $new = $this->nodeFinder->findFirstInstanceOf($methodCall->getArgs(), New_::class);
-        if (! $new instanceof New_) {
+        $node = $this->nodeFinder->findFirstInstanceOf($methodCall->getArgs(), New_::class);
+        if (! $node instanceof New_) {
             return null;
         }
 
-        $className = $this->simpleNameResolver->getName($new->class);
+        $className = $this->simpleNameResolver->getName($node->class);
         if ($className === null) {
             return null;
         }

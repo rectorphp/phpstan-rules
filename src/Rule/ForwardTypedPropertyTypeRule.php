@@ -66,18 +66,18 @@ final class ForwardTypedPropertyTypeRule implements Rule
             return [];
         }
 
-        $propertyReflection = $classReflection->getNativeProperty($propertyName);
+        $phpPropertyReflection = $classReflection->getNativeProperty($propertyName);
 
         // skip if not the same class
-        if ($propertyReflection->getDeclaringClass() !== $classReflection) {
+        if ($phpPropertyReflection->getDeclaringClass() !== $classReflection) {
             return [];
         }
 
-        if (! $propertyReflection->getNativeType() instanceof MixedType) {
+        if (! $phpPropertyReflection->getNativeType() instanceof MixedType) {
             return [];
         }
 
-        if (! $this->isLegalPropertyType($propertyReflection->getPhpDocType())) {
+        if (! $this->isLegalPropertyType($phpPropertyReflection->getPhpDocType())) {
             return [];
         }
 

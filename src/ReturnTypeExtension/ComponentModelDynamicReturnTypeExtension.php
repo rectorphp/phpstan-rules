@@ -52,8 +52,8 @@ final class ComponentModelDynamicReturnTypeExtension implements DynamicMethodRet
             return $mixedType;
         }
 
-        $method = $calledOnType->getMethod($methodName, $scope);
+        $methodReflection = $calledOnType->getMethod($methodName, $scope);
 
-        return ParametersAcceptorSelector::selectSingle($method->getVariants())->getReturnType();
+        return ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
     }
 }

@@ -136,21 +136,21 @@ CODE_SAMPLE
             return false;
         }
 
-        $classMethodReflection = $classReflection->getNativeMethod($methodName);
-        if (! $classMethodReflection instanceof PhpMethodReflection) {
+        $extendedMethodReflection = $classReflection->getNativeMethod($methodName);
+        if (! $extendedMethodReflection instanceof PhpMethodReflection) {
             return false;
         }
 
-        foreach ($classMethodReflection->getVariants() as $parametersAcceptorWithPhpDocs) {
-            if (! $parametersAcceptorWithPhpDocs instanceof FunctionVariantWithPhpDocs) {
+        foreach ($extendedMethodReflection->getVariants() as $parametersAcceptorWithPhpDoc) {
+            if (! $parametersAcceptorWithPhpDoc instanceof FunctionVariantWithPhpDocs) {
                 continue;
             }
 
-            if ($parametersAcceptorWithPhpDocs->getParameters() === []) {
+            if ($parametersAcceptorWithPhpDoc->getParameters() === []) {
                 continue;
             }
 
-            $configurationParameterReflection = $parametersAcceptorWithPhpDocs->getParameters()[0];
+            $configurationParameterReflection = $parametersAcceptorWithPhpDoc->getParameters()[0];
             $phpDocType = $configurationParameterReflection->getPhpDocType();
             if (! $phpDocType instanceof ArrayType) {
                 continue;
