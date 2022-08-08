@@ -83,7 +83,7 @@ function some($value)
 {
 }
 CODE_SAMPLE
-            ,
+                ,
                 <<<'CODE_SAMPLE'
 function some(int|string $value)
 {

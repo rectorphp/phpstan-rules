@@ -6,6 +6,7 @@ namespace Rector\PHPStanRules\Rule;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\PropertyFetch;
+use PhpParser\Node\Identifier;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Rules\Rule;
@@ -14,7 +15,6 @@ use PHPStan\Type\ClosureType;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ResourceType;
 use PHPStan\Type\Type;
-use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\EasyTesting\PHPUnit\StaticPHPUnitEnvironment;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
@@ -30,11 +30,6 @@ final class ForwardTypedPropertyTypeRule implements Rule
      * @var string
      */
     public const ERROR_MESSAGE = 'This property type might be inlined to PHP. Do you have confidence it is correct? Put it here';
-
-    public function __construct(
-        private SimpleNameResolver $simpleNameResolver
-    ) {
-    }
 
     public function getNodeType(): string
     {
@@ -52,8 +47,7 @@ final class ForwardTypedPropertyTypeRule implements Rule
             return [];
         }
 
-        $propertyName = $this->simpleNameResolver->getName($node->name);
-        if ($propertyName === null) {
+        if (! $node->name instanceof Identifier) {
             return [];
         }
 
@@ -62,6 +56,7 @@ final class ForwardTypedPropertyTypeRule implements Rule
             return [];
         }
 
+        $propertyName = $node->name->toString();
         if (! $classReflection->hasNativeProperty($propertyName)) {
             return [];
         }
@@ -94,7 +89,7 @@ final class ForwardTypedPropertyTypeRule implements Rule
  */
 public $name;
 CODE_SAMPLE
-            ,
+                ,
                 <<<'CODE_SAMPLE'
 public string $name;
 CODE_SAMPLE

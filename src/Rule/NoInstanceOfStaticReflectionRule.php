@@ -14,7 +14,6 @@ use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
-use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
@@ -32,7 +31,6 @@ final class NoInstanceOfStaticReflectionRule extends AbstractSymplifyRule
     public const ERROR_MESSAGE = 'Instead of "instanceof/is_a()" use ReflectionProvider service or "(new ObjectType(<desired_type>))->isSuperTypeOf(<element_type>)" for static reflection to work';
 
     public function __construct(
-        private SimpleNameResolver $simpleNameResolver,
         private AllowedAutoloadedTypeAnalyzer $allowedAutoloadedTypeAnalyzer
     ) {
     }
@@ -70,7 +68,7 @@ final class NoInstanceOfStaticReflectionRule extends AbstractSymplifyRule
                 <<<'CODE_SAMPLE'
 return is_a($node, 'Command', true);
 CODE_SAMPLE
-            ,
+                ,
                 <<<'CODE_SAMPLE'
 $nodeType = $scope->getType($node);
 $commandObjectType = new ObjectType('Command');
@@ -87,7 +85,11 @@ CODE_SAMPLE
             return $this->resolveInstanceOfType($node, $scope);
         }
 
-        if (! $this->simpleNameResolver->isName($node, 'is_a')) {
+        if (! $node->name instanceof Name) {
+            return null;
+        }
+
+        if ($node->name->toString() !== 'is_a') {
             return null;
         }
 

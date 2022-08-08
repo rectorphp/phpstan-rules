@@ -6,15 +6,14 @@ namespace Rector\PHPStanRules\NodeAnalyzer;
 
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\New_;
+use PhpParser\Node\Name;
 use PhpParser\NodeFinder;
 use PHPStan\Type\ObjectType;
-use Symplify\Astral\Naming\SimpleNameResolver;
 
 final class SymfonyConfigRectorValueObjectResolver
 {
     public function __construct(
-        private NodeFinder $nodeFinder,
-        private SimpleNameResolver $simpleNameResolver
+        private NodeFinder $nodeFinder
     ) {
     }
 
@@ -25,11 +24,11 @@ final class SymfonyConfigRectorValueObjectResolver
             return null;
         }
 
-        $className = $this->simpleNameResolver->getName($node->class);
-        if ($className === null) {
+        if (! $node->class instanceof Name) {
             return null;
         }
 
+        $className = $node->class->toString();
         return new ObjectType($className);
     }
 }

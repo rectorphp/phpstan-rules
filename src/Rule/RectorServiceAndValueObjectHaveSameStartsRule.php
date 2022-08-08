@@ -8,13 +8,13 @@ use Nette\Utils\Strings;
 use PhpParser\Node;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\MethodCall;
+use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\ObjectType;
 use Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigMethodCallAnalyzer;
 use Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigRectorValueObjectResolver;
-use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -31,7 +31,6 @@ final class RectorServiceAndValueObjectHaveSameStartsRule implements Rule
     public const ERROR_MESSAGE = 'Value object "%s" should be named "%s" instead to respect used service';
 
     public function __construct(
-        private SimpleNameResolver $simpleNameResolver,
         private SymfonyConfigRectorValueObjectResolver $symfonyConfigRectorValueObjectResolver,
         private SymfonyConfigMethodCallAnalyzer $symfonyConfigMethodCallAnalyzer,
         private ReflectionProvider $reflectionProvider,
@@ -115,12 +114,12 @@ CODE_SAMPLE
             return null;
         }
 
-        $rectorClass = $this->simpleNameResolver->getName($setFirstArgValue->class);
-        if ($rectorClass === null) {
+        if (! $setFirstArgValue->class instanceof Name) {
             return null;
         }
 
-        return $this->simpleNameResolver->resolveShortName($rectorClass);
+        $rectorClass = $setFirstArgValue->class->toString();
+        return Strings::after($rectorClass, '\\', -1);
     }
 
     private function resolveValueObjectShortClass(MethodCall $methodCall): ?string
@@ -140,6 +139,6 @@ CODE_SAMPLE
             return null;
         }
 
-        return $this->simpleNameResolver->resolveShortName($valueObjectType->getClassName());
+        return Strings::after($valueObjectType->getClassName(), '\\', -1);
     }
 }

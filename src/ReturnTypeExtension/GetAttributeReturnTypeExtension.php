@@ -8,6 +8,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\MethodCall;
+use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
@@ -17,7 +18,6 @@ use PHPStan\Type\NullType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use PHPStan\Type\UnionType;
-use Symplify\Astral\NodeValue\NodeValueResolver;
 
 final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
@@ -33,11 +33,6 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
         'Rector\NodeTypeResolver\Node\AttributeKey::NEXT_NODE' => Node::class,
         'Rector\NodeTypeResolver\Node\AttributeKey::PREVIOUS_NODE' => Node::class,
     ];
-
-    public function __construct(
-        private NodeValueResolver $nodeValueResolver
-    ) {
-    }
 
     public function getClass(): string
     {
@@ -72,12 +67,19 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
     private function resolveArgumentValue(Expr $expr, Scope $scope): ?string
     {
         if ($expr instanceof ClassConstFetch) {
-            $resolvedValue = $this->nodeValueResolver->resolve($expr, $scope->getFile());
-            if (! is_string($resolvedValue)) {
+            if (! $expr->class instanceof Name) {
                 return null;
             }
 
-            return $resolvedValue;
+            $className = $expr->class->toString();
+
+            if (! $expr->name instanceof Identifier) {
+                return null;
+            }
+
+            $constName = $expr->name->toString();
+
+            return $className . '::' . $constName;
         }
 
         return null;
