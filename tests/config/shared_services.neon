@@ -1,5 +1,4 @@
 includes:
-    - ../../vendor/symplify/astral/config/services.neon
     - ../../vendor/symplify/phpstan-rules/config/packages/symfony/services.neon
     - ../../vendor/symplify/phpstan-rules/config/packages/cognitive-complexity/cognitive-complexity-services.neon
     - ../../vendor/symplify/phpstan-rules/config/services/services.neon
