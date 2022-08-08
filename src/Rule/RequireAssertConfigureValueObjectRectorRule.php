@@ -6,6 +6,7 @@ namespace Rector\PHPStanRules\Rule;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\StaticCall;
+use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\NodeFinder;
 use PHPStan\Analyser\Scope;
@@ -16,7 +17,6 @@ use PHPStan\Rules\Rule;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\TypeWithClassName;
 use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
-use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\RuleDocGenerator\Contract\ConfigurableRuleInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
@@ -35,7 +35,6 @@ final class RequireAssertConfigureValueObjectRectorRule implements Rule, Configu
     public const ERROR_MESSAGE = 'Method configure() with passed value object must contain assert to verify passed type';
 
     public function __construct(
-        private SimpleNameResolver $simpleNameResolver,
         private NodeFinder $nodeFinder
     ) {
     }
@@ -89,7 +88,7 @@ final class SomeRector implements ConfigurableRectorInterface
     }
 }
 CODE_SAMPLE
-            ,
+                ,
                 <<<'CODE_SAMPLE'
 use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 
@@ -116,12 +115,15 @@ CODE_SAMPLE
         $staticCalls = $this->nodeFinder->findInstanceOf($classMethod, StaticCall::class);
 
         foreach ($staticCalls as $staticCall) {
-            if (! $this->simpleNameResolver->isName($staticCall->class, Assert::class)) {
+            if ($staticCall->class instanceof Name && $staticCall->class->toString() !== Assert::class) {
                 continue;
             }
 
-            if ($this->simpleNameResolver->isNames($staticCall->name, ['allIsAOf', 'allIsInstanceOf'])) {
-                return true;
+            if ($staticCall->name instanceof Node\Identifier) {
+                $methodName = $staticCall->name->toString();
+                if (in_array($methodName, ['allIsAOf', 'allIsInstanceOf'], true)) {
+                    return true;
+                }
             }
         }
 
@@ -130,8 +132,7 @@ CODE_SAMPLE
 
     private function hasArrayObjectTypeParam(ClassMethod $classMethod, ClassReflection $classReflection): bool
     {
-        /** @var string $methodName */
-        $methodName = $this->simpleNameResolver->getName($classMethod);
+        $methodName = $classMethod->name->toString();
         if (! $classReflection->hasMethod($methodName)) {
             return false;
         }

@@ -12,7 +12,6 @@ use PhpParser\Node\Name\Relative;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\Constant\ConstantStringType;
-use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -27,11 +26,6 @@ final class NoLeadingBackslashInNameRule implements Rule
      * @var string
      */
     public const ERROR_MESSAGE = 'Instead of "new Name(\'\\\\Foo\')" use "new FullyQualified(\'Foo\')"';
-
-    public function __construct(
-        private SimpleNameResolver $simpleNameResolver
-    ) {
-    }
 
     public function getNodeType(): string
     {
@@ -48,7 +42,11 @@ final class NoLeadingBackslashInNameRule implements Rule
             return [];
         }
 
-        $className = $this->simpleNameResolver->getName($node->class);
+        if (! $node->class instanceof Name) {
+            return [];
+        }
+
+        $className = $node->class->toString();
         if (! in_array($className, [Name::class, FullyQualified::class, Relative::class], true)) {
             return [];
         }
@@ -74,7 +72,7 @@ final class NoLeadingBackslashInNameRule implements Rule
                 <<<'CODE_SAMPLE'
 new Name('\\Closure');
 CODE_SAMPLE
-            ,
+                ,
                 <<<'CODE_SAMPLE'
 new FullyQualified('Closure');
 CODE_SAMPLE

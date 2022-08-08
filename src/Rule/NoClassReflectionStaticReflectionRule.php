@@ -6,11 +6,11 @@ namespace Rector\PHPStanRules\Rule;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\New_;
+use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
 use ReflectionClass;
-use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -27,7 +27,6 @@ final class NoClassReflectionStaticReflectionRule implements Rule
     public const ERROR_MESSAGE = 'Instead of "new ClassReflection()" use ReflectionProvider service or "(new PHPStan\Reflection\ClassReflection(<desired_type>))" for static reflection to work';
 
     public function __construct(
-        private SimpleNameResolver $simpleNameResolver,
         private AllowedAutoloadedTypeAnalyzer $allowedAutoloadedTypeAnalyzer
     ) {
     }
@@ -47,8 +46,11 @@ final class NoClassReflectionStaticReflectionRule implements Rule
             return [];
         }
 
-        $className = $this->simpleNameResolver->getName($node->class);
-        if ($className !== ReflectionClass::class) {
+        if (! $node->class instanceof Name) {
+            return [];
+        }
+
+        if ($node->class->toString() !== ReflectionClass::class) {
             return [];
         }
 
@@ -69,7 +71,7 @@ final class NoClassReflectionStaticReflectionRule implements Rule
                 <<<'CODE_SAMPLE'
 $classReflection = new ClassReflection($someType);
 CODE_SAMPLE
-            ,
+                ,
                 <<<'CODE_SAMPLE'
 if ($this->reflectionProvider->hasClass($someType)) {
     $classReflection = $this->reflectionProvider->getClass($someType);
