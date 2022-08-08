@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\PHPStanRules\Rule;
 
+use Nette\Utils\FileSystem;
 use Nette\Utils\Strings;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
@@ -17,8 +18,6 @@ use Rector\Set\ValueObject\DowngradeSetList;
 use Rector\Set\ValueObject\SetList;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
-use Symplify\SmartFileSystem\SmartFileInfo;
-use Symplify\SmartFileSystem\SmartFileSystem;
 
 /**
  * @see \Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule\PhpUpgradeDowngradeRegisteredInSetRuleTest
@@ -37,11 +36,6 @@ final class PhpUpgradeDowngradeRegisteredInSetRule implements Rule
      * @see https://regex101.com/r/VGmFKR/1
      */
     private const DOWNGRADE_PREFIX_REGEX = '#(?<is_downgrade>Downgrade)?Php(?<version>\d+)#';
-
-    public function __construct(
-        private SmartFileSystem $smartFileSystem,
-    ) {
-    }
 
     public function getNodeType(): string
     {
@@ -64,7 +58,7 @@ final class PhpUpgradeDowngradeRegisteredInSetRule implements Rule
             return [];
         }
 
-        $configContent = $this->smartFileSystem->readFile($configFilePath);
+        $configContent = FileSystem::read($configFilePath);
 
         // is rule registered?
         if (str_contains($configContent, $className)) {
@@ -124,7 +118,7 @@ CODE_SAMPLE
      */
     private function createErrorMessage(string $configFilePath, string $rectorClass): string
     {
-        $configFileInfo = new SmartFileInfo($configFilePath);
+        $configFileInfo = new \SplFileInfo($configFilePath);
         $configFilename = $configFileInfo->getFilename();
 
         return sprintf(self::ERROR_MESSAGE, $rectorClass, $configFilename);
