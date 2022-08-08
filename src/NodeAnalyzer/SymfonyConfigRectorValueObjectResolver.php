@@ -24,16 +24,11 @@ final class SymfonyConfigRectorValueObjectResolver
             return null;
         }
 
-<<<<<<< HEAD
-        $className = $this->simpleNameResolver->getName($node->class);
-        if ($className === null) {
-=======
-        if (! $new->class instanceof Name) {
->>>>>>> Remove dependency on simple name resolver, use nodes directly with known context
+        if (! $node->class instanceof Name) {
             return null;
         }
 
-        $className = $new->class->toString();
+        $className = $node->class->toString();
         return new ObjectType($className);
     }
 }
