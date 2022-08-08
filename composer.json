@@ -4,7 +4,7 @@
     "type": "phpstan-extension",
     "description": "PHPStan rules for Rector projects - with focus on static reflection, constant re-use and Rector design patterns",
     "require": {
-        "php": "^8.1",
+        "php": "^8.0",
         "symplify/phpstan-rules": "dev-main",
         "phpstan/phpstan": "^1.8.2",
         "nette/utils": "^3.2"
@@ -14,7 +14,7 @@
         "symplify/phpstan-extensions": "dev-main",
         "phpstan/extension-installer": "^1.1",
         "phpunit/phpunit": "^9.5",
-        "symfony/dependency-injection": "^6.1",
+        "symfony/dependency-injection": "^6.0",
         "rector/rector": "dev-main",
         "symplify/monorepo-builder": "^11.0.9",
         "phpstan/phpstan-webmozart-assert": "^1.2",
