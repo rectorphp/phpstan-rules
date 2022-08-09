@@ -23,6 +23,8 @@ use PHPStan\Type\UnionType;
  * Covers:
  * - NodeFinder::findInstanceOf()
  * - NodeFinder::findFirstInstanceOf()
+ *
+ * Waits on https://github.com/nikic/PHP-Parser/pull/869 to be released
  */
 final class FindInstanceOfReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
