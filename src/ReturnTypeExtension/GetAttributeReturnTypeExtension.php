@@ -61,6 +61,12 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
         }
 
         $knownReturnType = self::ARGUMENT_KEY_TO_RETURN_TYPE[$argumentValue];
+
+        // scope must be always set
+        if ($argumentValue === 'Rector\NodeTypeResolver\Node\AttributeKey::SCOPE') {
+            return new ObjectType($knownReturnType);
+        }
+
         return new UnionType([new ObjectType($knownReturnType), new NullType()]);
     }
 
