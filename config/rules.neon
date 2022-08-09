@@ -62,15 +62,6 @@ services:
                 - PHPStan\Rules\Rule
                 - Rector\Core\Rector\AbstractRector
 
-    # this rule prevents bug in phar like these: https://github.com/rectorphp/rector/issues/5596
-    -
-        class: Symplify\PHPStanRules\Rules\RequireStringArgumentInConstructorRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            stringArgPositionsByType:
-                PhpParser\Node\Name\FullyQualified: [0]
-                PHPStan\Type\ObjectType: [0]
-
     -
         class: Symplify\PHPStanRules\Rules\ClassNameRespectsParentSuffixRule
         tags: [phpstan.rules.rule]
