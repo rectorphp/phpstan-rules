@@ -6,6 +6,9 @@ namespace Rector\PHPStanRules\Tests\ReturnTypeExtension\GetAttributeReturnTypeEx
 
 use PHPStan\Testing\TypeInferenceTestCase;
 
+/**
+ * @see \Rector\PHPStanRules\ReturnTypeExtension\GetAttributeReturnTypeExtension
+ */
 final class GetAttributeReturnTypeExtensionTest extends TypeInferenceTestCase
 {
     /**
