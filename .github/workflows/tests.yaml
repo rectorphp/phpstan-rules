@@ -12,9 +12,13 @@ jobs:
             fail-fast: false
             matrix:
                 actions:
+                    # for some reason they have to be run separately, otherwise autoload messes up
                     -
-                        name: 'Tests'
-                        run: vendor/bin/phpunit
+                        name: 'Tests Rules'
+                        run: vendor/bin/phpunit --testsuite rules
+                    -
+                        name: 'Tests Extensions'
+                        run: vendor/bin/phpunit --testsuite extensions
 
         name: ${{ matrix.actions.name }}
         runs-on: ubuntu-latest

@@ -4,7 +4,15 @@
     colors="true"
     verbose="true"
 >
-    <testsuite name="all">
-        <directory>tests</directory>
-    </testsuite>
+    <testsuites>
+        <testsuite name="all">
+            <directory>tests</directory>
+        </testsuite>
+        <testsuite name="rules">
+            <directory>tests/Rule</directory>
+        </testsuite>
+        <testsuite name="extensions">
+            <directory>tests/ReturnTypeExtension</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>
