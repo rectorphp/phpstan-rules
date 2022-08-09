@@ -6,12 +6,11 @@ namespace Rector\PHPStanRules\Rule;
 
 use Nette\Utils\Strings;
 use PhpParser\Node;
-use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\MethodCall;
-use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
+use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\ObjectType;
 use Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigMethodCallAnalyzer;
 use Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigRectorValueObjectResolver;
@@ -52,7 +51,7 @@ final class RectorServiceAndValueObjectHaveSameStartsRule implements Rule
             return [];
         }
 
-        $shortClass = $this->resolveSetMethodCallShortClass($node);
+        $shortClass = $this->resolveSetMethodCallShortClass($node, $scope);
         if ($shortClass === null) {
             return [];
         }
@@ -105,21 +104,17 @@ CODE_SAMPLE
         );
     }
 
-    private function resolveSetMethodCallShortClass(MethodCall $methodCall): ?string
+    private function resolveSetMethodCallShortClass(MethodCall $methodCall, Scope $scope): ?string
     {
         $firstArg = $methodCall->getArgs()[0];
+        $firstArgValueType = $scope->getType($firstArg->value);
 
-        $setFirstArgValue = $firstArg->value;
-        if (! $setFirstArgValue instanceof ClassConstFetch) {
+        if (! $firstArgValueType instanceof ConstantStringType) {
             return null;
         }
 
-        if (! $setFirstArgValue->class instanceof Name) {
-            return null;
-        }
-
-        $rectorClass = $setFirstArgValue->class->toString();
-        return Strings::after($rectorClass, '\\', -1);
+        $stringValue = $firstArgValueType->getValue();
+        return Strings::after($stringValue, '\\', -1);
     }
 
     private function resolveValueObjectShortClass(MethodCall $methodCall): ?string
