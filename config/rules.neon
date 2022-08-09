@@ -19,7 +19,7 @@ services:
         tags: [phpstan.rules.rule]
         arguments:
             allowedChainTypes:
-                - Stringy\Stringy
+                - 'Stringy\Stringy'
 
     -
         class: Symplify\PHPStanRules\Rules\ExclusiveNamespaceRule
@@ -88,14 +88,6 @@ services:
                 'SebastianBergmann\Type\MixedType': 'PHPStan\Type\MixedType'
                 'Hoa\Protocol\Node\Node': 'PhpParser\Node'
                 'Symfony\Component\Filesystem\Filesystem': 'Symplify\SmartFileSystem\SmartFileSystem'
-                # builder typo nodes
-                PhpParser\Builder\Use_: Rector\Core\PhpParser\Builder\UseBuilder
-                PhpParser\Builder\Class_: Rector\Core\PhpParser\Builder\ClassBuilder
-                PhpParser\Builder\Method: Rector\Core\PhpParser\Builder\MethodBuilder
-                PhpParser\Builder\Namespace_: Rector\Core\PhpParser\Builder\NamespaceBuilder
-                PhpParser\Builder\Param: Rector\Core\PhpParser\Builder\ParamBuilder
-                PhpParser\Builder\Property: Rector\Core\PhpParser\Builder\PropertyBuilder
-                PhpParser\Builder\TraitUse: Rector\Core\PhpParser\Builder\TraitUseBuilder
 
     -
         class: Symplify\PHPStanRules\Rules\ForbiddenFuncCallRule

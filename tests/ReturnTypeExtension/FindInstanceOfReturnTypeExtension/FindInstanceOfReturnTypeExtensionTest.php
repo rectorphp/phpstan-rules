@@ -13,8 +13,8 @@ final class FindInstanceOfReturnTypeExtensionTest extends TypeInferenceTestCase
      */
     public function dataAsserts(): iterable
     {
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/find_instanceof.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/find_single_instanceof.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/find_instanceof.php.inc');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/find_single_instanceof.php.inc');
     }
 
     /**
