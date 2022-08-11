@@ -51,7 +51,7 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
     ): Type {
         $returnType = ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
 
-        $argumentValue = $this->resolveArgumentValue($methodCall->getArgs()[0]->value, $scope);
+        $argumentValue = $this->resolveArgumentValue($methodCall->getArgs()[0]->value);
         if ($argumentValue === null) {
             return $returnType;
         }
@@ -64,7 +64,7 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
         return new UnionType([new ObjectType($knownReturnType), new NullType()]);
     }
 
-    private function resolveArgumentValue(Expr $expr, Scope $scope): ?string
+    private function resolveArgumentValue(Expr $expr): ?string
     {
         if ($expr instanceof ClassConstFetch) {
             if (! $expr->class instanceof Name) {
@@ -81,7 +81,6 @@ final class GetAttributeReturnTypeExtension implements DynamicMethodReturnTypeEx
 
             return $className . '::' . $constName;
         }
-
         return null;
     }
 }

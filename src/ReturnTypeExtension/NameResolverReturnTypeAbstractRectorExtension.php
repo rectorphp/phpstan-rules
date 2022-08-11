@@ -21,9 +21,11 @@ use Rector\PHPStanRules\TypeResolver\GetNameMethodCallTypeResolver;
  */
 final class NameResolverReturnTypeAbstractRectorExtension implements DynamicMethodReturnTypeExtension
 {
-    public function __construct(
-        private GetNameMethodCallTypeResolver $getNameMethodCallTypeResolver
-    ) {
+    private GetNameMethodCallTypeResolver $getNameMethodCallTypeResolver;
+
+    public function __construct(GetNameMethodCallTypeResolver $getNameMethodCallTypeResolver)
+    {
+        $this->getNameMethodCallTypeResolver = $getNameMethodCallTypeResolver;
     }
 
     public function getClass(): string

@@ -29,11 +29,17 @@ final class RectorServiceAndValueObjectHaveSameStartsRule implements Rule
      */
     public const ERROR_MESSAGE = 'Value object "%s" should be named "%s" instead to respect used service';
 
-    public function __construct(
-        private SymfonyConfigRectorValueObjectResolver $symfonyConfigRectorValueObjectResolver,
-        private SymfonyConfigMethodCallAnalyzer $symfonyConfigMethodCallAnalyzer,
-        private ReflectionProvider $reflectionProvider,
-    ) {
+    private SymfonyConfigRectorValueObjectResolver $symfonyConfigRectorValueObjectResolver;
+
+    private SymfonyConfigMethodCallAnalyzer $symfonyConfigMethodCallAnalyzer;
+
+    private ReflectionProvider $reflectionProvider;
+
+    public function __construct(SymfonyConfigRectorValueObjectResolver $symfonyConfigRectorValueObjectResolver, SymfonyConfigMethodCallAnalyzer $symfonyConfigMethodCallAnalyzer, ReflectionProvider $reflectionProvider)
+    {
+        $this->symfonyConfigRectorValueObjectResolver = $symfonyConfigRectorValueObjectResolver;
+        $this->symfonyConfigMethodCallAnalyzer = $symfonyConfigMethodCallAnalyzer;
+        $this->reflectionProvider = $reflectionProvider;
     }
 
     public function getNodeType(): string
@@ -61,7 +67,7 @@ final class RectorServiceAndValueObjectHaveSameStartsRule implements Rule
             return [];
         }
 
-        if (! \str_ends_with($shortClass, 'Rector')) {
+        if (substr_compare($shortClass, 'Rector', -strlen('Rector')) !== 0) {
             return [];
         }
 

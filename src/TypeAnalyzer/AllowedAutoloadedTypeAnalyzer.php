@@ -23,7 +23,7 @@ final class AllowedAutoloadedTypeAnalyzer
     private const AUTOLOADED_CLASS_PREFIX_REGEX = '#^(PhpParser|PHPStan|Rector|Reflection|Symfony\\\\Component\\\\Console)#';
 
     /**
-     * @var array<class-string>
+     * @var array<string>
      */
     private const ALLOWED_CLASSES = [
         DateTimeInterface::class,
@@ -67,6 +67,10 @@ final class AllowedAutoloadedTypeAnalyzer
         }
 
         foreach (self::ALLOWED_CLASSES as $allowedClass) {
+            if ($value === $allowedClass) {
+                return true;
+            }
+
             if (is_a($value, $allowedClass, true)) {
                 return true;
             }
