@@ -16,11 +16,21 @@ jobs:
                     -
                         name: 'Tests Rules'
                         run: vendor/bin/phpunit --testsuite rules
+                        php_version: 7.4
+                    -
+                        name: 'Tests Rules'
+                        run: vendor/bin/phpunit --testsuite rules
+                        php_version: 8.1
                     -
                         name: 'Tests Extensions'
                         run: vendor/bin/phpunit --testsuite extensions
+                        php_version: 7.4
+                    -
+                        name: 'Tests Extensions'
+                        run: vendor/bin/phpunit --testsuite extensions
+                        php_version: 8.1
 
-        name: ${{ matrix.actions.name }}
+        name: ${{ matrix.actions.name }} on ${{ matrix.actions.php_version }}
         runs-on: ubuntu-latest
 
         steps:
@@ -30,7 +40,7 @@ jobs:
             -
                 uses: shivammathur/setup-php@v2
                 with:
-                    php-version: 7.4
+                    php-version: ${{ matrix.actions.php_version }}
                     coverage: none
 
             -   uses: "ramsey/composer-install@v1"
