@@ -15,9 +15,6 @@ use PHPStan\Type\ClosureType;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ResourceType;
 use PHPStan\Type\Type;
-use Symplify\EasyTesting\PHPUnit\StaticPHPUnitEnvironment;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Rector\PHPStanRules\Tests\Rule\ForwardTypedPropertyTypeRule\ForwardTypedPropertyTypeRuleTest
@@ -43,7 +40,7 @@ final class ForwardTypedPropertyTypeRule implements Rule
     public function processNode(Node $node, Scope $scope): array
     {
         // union types are supported since PHP 8+ only
-        if (PHP_VERSION < 74000 && ! StaticPHPUnitEnvironment::isPHPUnitRun()) {
+        if (PHP_VERSION < 74000 && ! defined('PHPUNIT_COMPOSER_INSTALL')) {
             return [];
         }
 
@@ -77,24 +74,6 @@ final class ForwardTypedPropertyTypeRule implements Rule
         }
 
         return [self::ERROR_MESSAGE];
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-/**
- * @var string
- */
-public $name;
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-public string $name;
-CODE_SAMPLE
-            ),
-        ]);
     }
 
     private function isLegalPropertyType(Type $type): bool

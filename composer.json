@@ -11,10 +11,8 @@
     },
     "require-dev": {
         "symplify/easy-coding-standard": "^11.1.1",
-        "symplify/phpstan-extensions": "^11.1.2",
         "phpstan/extension-installer": "^1.1",
         "phpunit/phpunit": "^9.5",
-        "symfony/dependency-injection": "^6.0",
         "rector/rector": "dev-main",
         "symplify/monorepo-builder": "^11.1.2",
         "phpstan/phpstan-webmozart-assert": "^1.2",
@@ -41,7 +39,7 @@
     "scripts": {
         "check-cs": "vendor/bin/ecs check --ansi",
         "fix-cs": "vendor/bin/ecs check --fix --ansi",
-        "phpstan": "vendor/bin/phpstan analyse --ansi --error-format symplify",
+        "phpstan": "vendor/bin/phpstan analyse --ansi",
         "release": "vendor/bin/monorepo-builder release patch --ansi"
     },
     "config": {

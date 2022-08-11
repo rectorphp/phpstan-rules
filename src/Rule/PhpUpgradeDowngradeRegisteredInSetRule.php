@@ -16,6 +16,7 @@ use Rector\Core\Contract\Rector\RectorInterface;
 use Rector\PHPStanRules\Exception\ShouldNotHappenException;
 use Rector\Set\ValueObject\DowngradeSetList;
 use Rector\Set\ValueObject\SetList;
+use SplFileInfo;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -61,7 +62,7 @@ final class PhpUpgradeDowngradeRegisteredInSetRule implements Rule
         $configContent = FileSystem::read($configFilePath);
 
         // is rule registered?
-        if (str_contains($configContent, $className)) {
+        if (strpos($configContent, $className) !== false) {
             return [];
         }
 
@@ -88,7 +89,7 @@ CODE_SAMPLE
     /**
      * @param class-string<RectorInterface> $className
      */
-    private function resolveRelatedConfigFilePath(string $className): string|null
+    private function resolveRelatedConfigFilePath(string $className): ?string
     {
         $match = Strings::match($className, self::DOWNGRADE_PREFIX_REGEX);
         if ($match === null) {
@@ -118,7 +119,7 @@ CODE_SAMPLE
      */
     private function createErrorMessage(string $configFilePath, string $rectorClass): string
     {
-        $configFileInfo = new \SplFileInfo($configFilePath);
+        $configFileInfo = new SplFileInfo($configFilePath);
         $configFilename = $configFileInfo->getFilename();
 
         return sprintf(self::ERROR_MESSAGE, $rectorClass, $configFilename);
@@ -127,7 +128,7 @@ CODE_SAMPLE
     /**
      * @return class-string<RectorInterface>|null
      */
-    private function matchRectorClassName(Scope $scope): string|null
+    private function matchRectorClassName(Scope $scope): ?string
     {
         $classReflection = $scope->getClassReflection();
         if (! $classReflection instanceof ClassReflection) {

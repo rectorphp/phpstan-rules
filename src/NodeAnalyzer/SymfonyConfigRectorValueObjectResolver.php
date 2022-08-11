@@ -12,12 +12,14 @@ use PHPStan\Type\ObjectType;
 
 final class SymfonyConfigRectorValueObjectResolver
 {
-    public function __construct(
-        private NodeFinder $nodeFinder
-    ) {
+    private NodeFinder $nodeFinder;
+
+    public function __construct(NodeFinder $nodeFinder)
+    {
+        $this->nodeFinder = $nodeFinder;
     }
 
-    public function resolveFromRuleWithConfigurationMethodCall(MethodCall $methodCall): ObjectType|null
+    public function resolveFromRuleWithConfigurationMethodCall(MethodCall $methodCall): ?ObjectType
     {
         $node = $this->nodeFinder->findFirstInstanceOf($methodCall->getArgs(), New_::class);
         if (! $node instanceof New_) {

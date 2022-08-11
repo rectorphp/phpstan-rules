@@ -13,7 +13,6 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->rule(ClassPropertyAssignToConstructorPromotionRector::class);
 
     $rectorConfig->sets([
-        //LevelSetList::UP_TO_PHP_80,
         DowngradeLevelSetList::DOWN_TO_PHP_74,
         SetList::CODE_QUALITY,
         SetList::DEAD_CODE,

@@ -13,7 +13,6 @@ use PHPStan\Reflection\FunctionVariantWithPhpDocs;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\UnionType;
 use Rector\PHPStanRules\TypeAnalyzer\InlineableTypeAnalyzer;
-use Symplify\EasyTesting\PHPUnit\StaticPHPUnitEnvironment;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
@@ -28,9 +27,11 @@ final class ForwardUnionTypeRule extends AbstractSymplifyRule
      */
     public const ERROR_MESSAGE = 'This union type might be inlined to PHP. Do you have confidence it is correct? Put it here';
 
-    public function __construct(
-        private InlineableTypeAnalyzer $inlineableTypeAnalyzer
-    ) {
+    private InlineableTypeAnalyzer $inlineableTypeAnalyzer;
+
+    public function __construct(InlineableTypeAnalyzer $inlineableTypeAnalyzer)
+    {
+        $this->inlineableTypeAnalyzer = $inlineableTypeAnalyzer;
     }
 
     /**
@@ -48,7 +49,7 @@ final class ForwardUnionTypeRule extends AbstractSymplifyRule
     public function process(Node $node, Scope $scope): array
     {
         // union types are supported since PHP 8+ only
-        if (PHP_VERSION < 80000 && ! StaticPHPUnitEnvironment::isPHPUnitRun()) {
+        if (PHP_VERSION < 80000 && ! defined('PHPUNIT_COMPOSER_INSTALL')) {
             return [];
         }
 

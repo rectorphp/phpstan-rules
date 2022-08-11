@@ -21,8 +21,9 @@ final class GetAttributeReturnTypeExtensionTest extends TypeInferenceTestCase
 
     /**
      * @dataProvider dataAsserts()
+     * @param mixed ...$args
      */
-    public function testAsserts(string $assertType, string $file, mixed ...$args): void
+    public function testAsserts(string $assertType, string $file, ...$args): void
     {
         $this->assertFileAsserts($assertType, $file, ...$args);
     }

@@ -6,6 +6,7 @@ namespace Rector\PHPStanRules\Rule;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\StaticCall;
+use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\NodeFinder;
@@ -17,9 +18,6 @@ use PHPStan\Rules\Rule;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\TypeWithClassName;
 use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
-use Symplify\RuleDocGenerator\Contract\ConfigurableRuleInterface;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
 
 /**
@@ -27,16 +25,18 @@ use Webmozart\Assert\Assert;
  *
  * @implements Rule<ClassMethod>
  */
-final class RequireAssertConfigureValueObjectRectorRule implements Rule, ConfigurableRuleInterface
+final class RequireAssertConfigureValueObjectRectorRule implements Rule
 {
     /**
      * @var string
      */
     public const ERROR_MESSAGE = 'Method configure() with passed value object must contain assert to verify passed type';
 
-    public function __construct(
-        private NodeFinder $nodeFinder
-    ) {
+    private NodeFinder $nodeFinder;
+
+    public function __construct(NodeFinder $nodeFinder)
+    {
+        $this->nodeFinder = $nodeFinder;
     }
 
     public function getNodeType(): string
@@ -70,44 +70,6 @@ final class RequireAssertConfigureValueObjectRectorRule implements Rule, Configu
         return [self::ERROR_MESSAGE];
     }
 
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
-
-final class SomeRector implements ConfigurableRectorInterface
-{
-    /**
-     * @param array<string, SomeValueObject[]> $configuration
-     */
-    public function configure(array $configuration): void
-    {
-        $valueObjects = $configuration[self::SOME_KEY] ?? [];
-    }
-}
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
-
-final class SomeRector implements ConfigurableRectorInterface
-{
-    /**
-     * @param array<string, SomeValueObject[]> $configuration
-     */
-    public function configure(array $configuration): void
-    {
-        $valueObjects = $configuration[self::SOME_KEY] ?? [];
-        Assert::allIsAOf($valueObjects, SomeValueObject::class);
-    }
-}
-CODE_SAMPLE
-            ),
-        ]);
-    }
-
     private function hasAssertAllIsAOfStaticCall(ClassMethod $classMethod): bool
     {
 
@@ -119,7 +81,7 @@ CODE_SAMPLE
                 continue;
             }
 
-            if ($staticCall->name instanceof Node\Identifier) {
+            if ($staticCall->name instanceof Identifier) {
                 $methodName = $staticCall->name->toString();
                 if (in_array($methodName, ['allIsAOf', 'allIsInstanceOf'], true)) {
                     return true;

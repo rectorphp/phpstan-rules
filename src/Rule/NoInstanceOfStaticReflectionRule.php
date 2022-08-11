@@ -30,9 +30,11 @@ final class NoInstanceOfStaticReflectionRule extends AbstractSymplifyRule
      */
     public const ERROR_MESSAGE = 'Instead of "instanceof/is_a()" use ReflectionProvider service or "(new ObjectType(<desired_type>))->isSuperTypeOf(<element_type>)" for static reflection to work';
 
-    public function __construct(
-        private AllowedAutoloadedTypeAnalyzer $allowedAutoloadedTypeAnalyzer
-    ) {
+    private AllowedAutoloadedTypeAnalyzer $allowedAutoloadedTypeAnalyzer;
+
+    public function __construct(AllowedAutoloadedTypeAnalyzer $allowedAutoloadedTypeAnalyzer)
+    {
+        $this->allowedAutoloadedTypeAnalyzer = $allowedAutoloadedTypeAnalyzer;
     }
 
     /**
@@ -79,7 +81,10 @@ CODE_SAMPLE
         ]);
     }
 
-    private function resolveExprStaticType(FuncCall|Instanceof_ $node, Scope $scope): ?Type
+    /**
+     * @param FuncCall|Instanceof_ $node
+     */
+    private function resolveExprStaticType($node, Scope $scope): ?Type
     {
         if ($node instanceof Instanceof_) {
             return $this->resolveInstanceOfType($node, $scope);
