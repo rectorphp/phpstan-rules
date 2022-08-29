@@ -87,7 +87,6 @@ services:
                 'PHPUnit\TextUI\Configuration\Variable': 'PhpParser\Node\Expr\Variable'
                 'SebastianBergmann\Type\MixedType': 'PHPStan\Type\MixedType'
                 'Hoa\Protocol\Node\Node': 'PhpParser\Node'
-                'Symfony\Component\Filesystem\Filesystem': 'Symplify\SmartFileSystem\SmartFileSystem'
 
     -
         class: Symplify\PHPStanRules\Rules\ForbiddenFuncCallRule
