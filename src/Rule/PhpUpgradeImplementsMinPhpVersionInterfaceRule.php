@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Rector\PHPStanRules\Rule;
 
+use Nette\Utils\Strings;
 use PhpParser\Node;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
-use Rector\Core\Util\StringUtils;
 use Rector\VersionBonding\Contract\MinPhpVersionInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
@@ -49,7 +49,7 @@ final class PhpUpgradeImplementsMinPhpVersionInterfaceRule implements Rule
             return [];
         }
 
-        if (! StringUtils::isMatch($className, self::PREFIX_REGEX)) {
+        if (Strings::match($className, self::PREFIX_REGEX) === null) {
             return [];
         }
 

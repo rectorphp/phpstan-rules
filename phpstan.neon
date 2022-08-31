@@ -8,7 +8,7 @@ parameters:
     reportUnmatchedIgnoredErrors: false
 
     excludePaths:
-        - '*tests/*/Fixture/*'
+        - '*/Fixture/*'
         - tests/Rule/ForwardTypedPropertyTypeRule/Source/ParentWithProperty.php
 
     ignoreErrors:
