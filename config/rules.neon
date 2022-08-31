@@ -49,10 +49,6 @@ services:
         tags: [phpstan.rules.rule]
         arguments:
             maxClassCognitiveComplexity: 50
-            limitsByTypes:
-                PHPStan\Rules\Rule: 20
-                Rector\Core\Rector\AbstractRector: 35
-                Symfony\Component\Console\Command\Command: 30
 
     -
         class: Symplify\PHPStanRules\Rules\SeeAnnotationToTestRule
