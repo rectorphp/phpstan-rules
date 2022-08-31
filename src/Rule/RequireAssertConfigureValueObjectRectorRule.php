@@ -72,7 +72,6 @@ final class RequireAssertConfigureValueObjectRectorRule implements Rule
 
     private function hasAssertAllIsAOfStaticCall(ClassMethod $classMethod): bool
     {
-
         /** @var StaticCall[] $staticCalls */
         $staticCalls = $this->nodeFinder->findInstanceOf($classMethod, StaticCall::class);
 

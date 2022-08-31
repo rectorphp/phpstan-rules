@@ -5,12 +5,12 @@
     "description": "PHPStan rules for Rector projects - with focus on static reflection, constant re-use and Rector design patterns",
     "require": {
         "php": "^7.4|^8.0",
-        "symplify/phpstan-rules": "dev-main",
+        "symplify/phpstan-rules": "^11.1.6",
         "phpstan/phpstan": "^1.8.2",
         "nette/utils": "^3.2"
     },
     "require-dev": {
-        "symplify/easy-coding-standard": "^11.1.1",
+        "symplify/easy-coding-standard": "^11.1.6",
         "phpstan/extension-installer": "^1.1",
         "phpunit/phpunit": "^9.5",
         "rector/rector": "dev-main",
