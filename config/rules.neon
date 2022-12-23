@@ -6,7 +6,6 @@ rules:
     - Rector\PHPStanRules\Rule\PhpUpgradeDowngradeRegisteredInSetRule
     - Rector\PHPStanRules\Rule\PhpUpgradeImplementsMinPhpVersionInterfaceRule
     - Rector\PHPStanRules\Rule\RequireAssertConfigureValueObjectRectorRule
-    - Rector\PHPStanRules\Rule\ForwardTypedPropertyTypeRule
     - Rector\PHPStanRules\Rule\ForwardUnionTypeRule
     - Rector\PHPStanRules\Rule\NoInstanceOfStaticReflectionRule
     - Rector\PHPStanRules\Rule\NoLeadingBackslashInNameRule

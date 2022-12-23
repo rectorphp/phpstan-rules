@@ -9,7 +9,6 @@ parameters:
 
     excludePaths:
         - '*/Fixture/*'
-        - tests/Rule/ForwardTypedPropertyTypeRule/Source/ParentWithProperty.php
 
     ignoreErrors:
         -
