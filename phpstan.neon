@@ -20,7 +20,5 @@ parameters:
 
         - '#Calling PHPStan\\Reflection\\ParameterReflectionWithPhpDocs\:\:(getNativeType|getPhpDocType)\(\) is not covered by backward compatibility promise\. The method might change in a minor PHPStan version#'
 
-        - '#Parameter \#1 \$node \((.*?)\) of method Rector\\PHPStanRules\\Rule\\(.*?)\:\:process\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method Symplify\\PHPStanRules\\Contract\\ManyNodeRuleInterface\:\:process\(\)#'
-
         # not relevant
         - '#Parameter \#2 \$expectedErrors of method PHPStan\\Testing\\RuleTestCase<Rector\\PHPStanRules\\Rule\\(.*?), array given#'

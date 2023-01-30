@@ -10,13 +10,14 @@
         "nette/utils": "^3.2"
     },
     "require-dev": {
-        "symplify/easy-coding-standard": "^11.1.6",
+        "symplify/easy-coding-standard": "^11.2",
         "phpstan/extension-installer": "^1.1",
         "phpunit/phpunit": "^9.5",
         "rector/rector": "dev-main",
         "phpstan/phpstan-webmozart-assert": "^1.2",
         "phpstan/phpstan-strict-rules": "^1.4",
-        "tracy/tracy": "^2.9"
+        "tracy/tracy": "^2.9",
+        "symplify/easy-ci": "*"
     },
     "autoload": {
         "psr-4": {
