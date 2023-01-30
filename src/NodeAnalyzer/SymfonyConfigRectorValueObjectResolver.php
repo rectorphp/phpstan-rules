@@ -12,11 +12,9 @@ use PHPStan\Type\ObjectType;
 
 final class SymfonyConfigRectorValueObjectResolver
 {
-    private NodeFinder $nodeFinder;
-
-    public function __construct(NodeFinder $nodeFinder)
-    {
-        $this->nodeFinder = $nodeFinder;
+    public function __construct(
+        private readonly NodeFinder $nodeFinder
+    ) {
     }
 
     public function resolveFromRuleWithConfigurationMethodCall(MethodCall $methodCall): ?ObjectType

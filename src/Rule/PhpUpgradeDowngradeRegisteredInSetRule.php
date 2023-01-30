@@ -62,7 +62,7 @@ final class PhpUpgradeDowngradeRegisteredInSetRule implements Rule
         $configContent = FileSystem::read($configFilePath);
 
         // is rule registered?
-        if (strpos($configContent, $className) !== false) {
+        if (str_contains($configContent, $className)) {
             return [];
         }
 

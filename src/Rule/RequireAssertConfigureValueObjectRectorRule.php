@@ -32,11 +32,9 @@ final class RequireAssertConfigureValueObjectRectorRule implements Rule
      */
     public const ERROR_MESSAGE = 'Method configure() with passed value object must contain assert to verify passed type';
 
-    private NodeFinder $nodeFinder;
-
-    public function __construct(NodeFinder $nodeFinder)
-    {
-        $this->nodeFinder = $nodeFinder;
+    public function __construct(
+        private readonly NodeFinder $nodeFinder
+    ) {
     }
 
     public function getNodeType(): string

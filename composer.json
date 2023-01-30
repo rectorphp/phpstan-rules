@@ -17,7 +17,7 @@
         "phpstan/phpstan-webmozart-assert": "^1.2",
         "phpstan/phpstan-strict-rules": "^1.4",
         "tracy/tracy": "^2.9",
-        "symplify/easy-ci": "11.2.0.72"
+        "symplify/easy-ci": "^11.2"
     },
     "autoload": {
         "psr-4": {

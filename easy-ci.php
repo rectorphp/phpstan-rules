@@ -2,9 +2,15 @@
 
 declare(strict_types=1);
 
-return static function (EasyCI $easyCI): void {
-    $easyCI->paths([
+use PHPStan\Type\DynamicMethodReturnTypeExtension;
+use Symplify\EasyCI\Config\EasyCIConfig;
+
+return static function (EasyCIConfig $easyCIConfig): void {
+    $easyCIConfig->paths([
         __DIR__ . '/src',
-        __DIR__ . '/tests',
+    ]);
+
+    $easyCIConfig->typesToSkip([
+        DynamicMethodReturnTypeExtension::class,
     ]);
 };

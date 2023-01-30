@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\PHPStanRules\Tests\ReturnTypeExtension\GetAttributeReturnTypeExtension;
 
+use Iterator;
 use PHPStan\Testing\TypeInferenceTestCase;
 
 /**
@@ -11,19 +12,15 @@ use PHPStan\Testing\TypeInferenceTestCase;
  */
 final class GetAttributeReturnTypeExtensionTest extends TypeInferenceTestCase
 {
-    /**
-     * @return iterable<string, mixed[]>
-     */
-    public function dataAsserts(): iterable
+    public function dataAsserts(): Iterator
     {
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_parent_node.php.inc');
     }
 
     /**
      * @dataProvider dataAsserts()
-     * @param mixed ...$args
      */
-    public function testAsserts(string $assertType, string $file, ...$args): void
+    public function testAsserts(string $assertType, string $file, mixed ...$args): void
     {
         $this->assertFileAsserts($assertType, $file, ...$args);
     }
