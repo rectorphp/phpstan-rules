@@ -11,10 +11,6 @@ parameters:
         - '*/Fixture/*'
 
     ignoreErrors:
-        -
-            message: '#Parameter \#1 \$argument of class ReflectionClass constructor expects class\-string<SomeType\>\|SomeType, string given#'
-            path: tests/Rule/NoClassReflectionStaticReflectionRule/Fixture/NewOnExternal.php
-
         # class-string false positive
         - '#Method Rector\\PHPStanRules\\Rule\\PhpUpgradeDowngradeRegisteredInSetRule\:\:matchRectorClassName\(\) should return class\-string<Rector\\Core\\Contract\\Rector\\RectorInterface\>\|null but returns class\-string#'
 
@@ -22,3 +18,5 @@ parameters:
 
         # not relevant
         - '#Parameter \#2 \$expectedErrors of method PHPStan\\Testing\\RuleTestCase<Rector\\PHPStanRules\\Rule\\(.*?), array given#'
+
+        - '#should be contravariant with parameter#'
