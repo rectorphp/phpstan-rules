@@ -26,11 +26,9 @@ final class NoClassReflectionStaticReflectionRule implements Rule
      */
     public const ERROR_MESSAGE = 'Instead of "new ClassReflection()" use ReflectionProvider service or "(new PHPStan\Reflection\ClassReflection(<desired_type>))" for static reflection to work';
 
-    private AllowedAutoloadedTypeAnalyzer $allowedAutoloadedTypeAnalyzer;
-
-    public function __construct(AllowedAutoloadedTypeAnalyzer $allowedAutoloadedTypeAnalyzer)
-    {
-        $this->allowedAutoloadedTypeAnalyzer = $allowedAutoloadedTypeAnalyzer;
+    public function __construct(
+        private readonly AllowedAutoloadedTypeAnalyzer $allowedAutoloadedTypeAnalyzer
+    ) {
     }
 
     public function getNodeType(): string

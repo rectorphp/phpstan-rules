@@ -11,16 +11,12 @@ parameters:
         - '*/Fixture/*'
 
     ignoreErrors:
-        -
-            message: '#Parameter \#1 \$argument of class ReflectionClass constructor expects class\-string<SomeType\>\|SomeType, string given#'
-            path: tests/Rule/NoClassReflectionStaticReflectionRule/Fixture/NewOnExternal.php
-
         # class-string false positive
         - '#Method Rector\\PHPStanRules\\Rule\\PhpUpgradeDowngradeRegisteredInSetRule\:\:matchRectorClassName\(\) should return class\-string<Rector\\Core\\Contract\\Rector\\RectorInterface\>\|null but returns class\-string#'
 
         - '#Calling PHPStan\\Reflection\\ParameterReflectionWithPhpDocs\:\:(getNativeType|getPhpDocType)\(\) is not covered by backward compatibility promise\. The method might change in a minor PHPStan version#'
 
-        - '#Parameter \#1 \$node \((.*?)\) of method Rector\\PHPStanRules\\Rule\\(.*?)\:\:process\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method Symplify\\PHPStanRules\\Contract\\ManyNodeRuleInterface\:\:process\(\)#'
-
         # not relevant
         - '#Parameter \#2 \$expectedErrors of method PHPStan\\Testing\\RuleTestCase<Rector\\PHPStanRules\\Rule\\(.*?), array given#'
+
+        - '#should be contravariant with parameter#'

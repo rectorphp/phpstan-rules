@@ -10,13 +10,12 @@ use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 
 return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->rule(ClassPropertyAssignToConstructorPromotionRector::class);
-
     $rectorConfig->sets([
-        DowngradeLevelSetList::DOWN_TO_PHP_74,
+        LevelSetList::UP_TO_PHP_81,
         SetList::CODE_QUALITY,
         SetList::DEAD_CODE,
-        SetList::NAMING
+        SetList::NAMING,
+        SetList::TYPE_DECLARATION,
     ]);
 
     $rectorConfig->paths([
@@ -28,12 +27,7 @@ return static function (RectorConfig $rectorConfig): void {
         // testdummy files
         '*/Fixture/*',
         '*/Source/*',
-
-        StringClassNameToClassConstantRector::class => [
-            __DIR__ . '/src/Rule/RequireRectorCategoryByGetNodeTypesRule.php',
-        ]
     ]);
 
     $rectorConfig->importNames();
-    $rectorConfig->parallel();
 };

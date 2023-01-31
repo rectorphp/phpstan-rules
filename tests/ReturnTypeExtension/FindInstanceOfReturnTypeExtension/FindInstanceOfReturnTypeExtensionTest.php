@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Rector\PHPStanRules\Tests\ReturnTypeExtension\FindInstanceOfReturnTypeExtension;
 
+use Iterator;
 use PHPStan\Testing\TypeInferenceTestCase;
 
 final class FindInstanceOfReturnTypeExtensionTest extends TypeInferenceTestCase
 {
-    /**
-     * @return iterable<string, mixed[]>
-     */
-    public function dataAsserts(): iterable
+    public function dataAsserts(): Iterator
     {
         yield from $this->gatherAssertTypes(__DIR__ . '/data/find_instanceof.php.inc');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/find_single_instanceof.php.inc');
@@ -19,9 +17,8 @@ final class FindInstanceOfReturnTypeExtensionTest extends TypeInferenceTestCase
 
     /**
      * @dataProvider dataAsserts()
-     * @param mixed ...$args
      */
-    public function testAsserts(string $assertType, string $file, ...$args): void
+    public function testAsserts(string $assertType, string $file, mixed ...$args): void
     {
         $this->assertFileAsserts($assertType, $file, ...$args);
     }

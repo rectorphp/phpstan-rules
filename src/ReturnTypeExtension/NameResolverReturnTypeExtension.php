@@ -18,11 +18,9 @@ use Rector\PHPStanRules\TypeResolver\GetNameMethodCallTypeResolver;
  */
 final class NameResolverReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
-    private GetNameMethodCallTypeResolver $getNameMethodCallTypeResolver;
-
-    public function __construct(GetNameMethodCallTypeResolver $getNameMethodCallTypeResolver)
-    {
-        $this->getNameMethodCallTypeResolver = $getNameMethodCallTypeResolver;
+    public function __construct(
+        private readonly GetNameMethodCallTypeResolver $getNameMethodCallTypeResolver
+    ) {
     }
 
     public function getClass(): string
