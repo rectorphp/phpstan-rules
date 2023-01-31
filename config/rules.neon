@@ -2,7 +2,6 @@ includes:
     - services.neon
 
 rules:
-    - Rector\PHPStanRules\Rule\RequireRectorCategoryByGetNodeTypesRule
     - Rector\PHPStanRules\Rule\PhpUpgradeDowngradeRegisteredInSetRule
     - Rector\PHPStanRules\Rule\PhpUpgradeImplementsMinPhpVersionInterfaceRule
     - Rector\PHPStanRules\Rule\RequireAssertConfigureValueObjectRectorRule
