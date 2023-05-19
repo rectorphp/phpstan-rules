@@ -12,13 +12,6 @@ rules:
 
 services:
     -
-        class: Symplify\PHPStanRules\ObjectCalisthenics\Rules\NoChainMethodCallRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            allowedChainTypes:
-                - 'Stringy\Stringy'
-
-    -
         class: Symplify\PHPStanRules\Rules\ExclusiveNamespaceRule
         tags: [phpstan.rules.rule]
         arguments:
