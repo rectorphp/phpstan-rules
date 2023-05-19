@@ -11,6 +11,7 @@ use Rector\Set\ValueObject\SetList;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->sets([
+        \Rector\PHPUnit\Set\PHPUnitLevelSetList::UP_TO_PHPUNIT_100,
         LevelSetList::UP_TO_PHP_81,
         SetList::CODE_QUALITY,
         SetList::DEAD_CODE,

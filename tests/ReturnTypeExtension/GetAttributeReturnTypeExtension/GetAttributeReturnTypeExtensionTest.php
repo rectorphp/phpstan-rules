@@ -6,6 +6,7 @@ namespace Rector\PHPStanRules\Tests\ReturnTypeExtension\GetAttributeReturnTypeEx
 
 use Iterator;
 use PHPStan\Testing\TypeInferenceTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * @see \Rector\PHPStanRules\ReturnTypeExtension\GetAttributeReturnTypeExtension
@@ -17,9 +18,7 @@ final class GetAttributeReturnTypeExtensionTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_parent_node.php.inc');
     }
 
-    /**
-     * @dataProvider dataAsserts()
-     */
+    #[DataProvider('dataAsserts')]
     public function testAsserts(string $assertType, string $file, mixed ...$args): void
     {
         $this->assertFileAsserts($assertType, $file, ...$args);

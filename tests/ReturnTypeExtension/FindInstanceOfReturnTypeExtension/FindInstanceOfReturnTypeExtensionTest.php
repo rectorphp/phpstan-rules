@@ -6,6 +6,7 @@ namespace Rector\PHPStanRules\Tests\ReturnTypeExtension\FindInstanceOfReturnType
 
 use Iterator;
 use PHPStan\Testing\TypeInferenceTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class FindInstanceOfReturnTypeExtensionTest extends TypeInferenceTestCase
 {
@@ -15,9 +16,7 @@ final class FindInstanceOfReturnTypeExtensionTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/find_single_instanceof.php.inc');
     }
 
-    /**
-     * @dataProvider dataAsserts()
-     */
+    #[DataProvider('dataAsserts')]
     public function testAsserts(string $assertType, string $file, mixed ...$args): void
     {
         $this->assertFileAsserts($assertType, $file, ...$args);

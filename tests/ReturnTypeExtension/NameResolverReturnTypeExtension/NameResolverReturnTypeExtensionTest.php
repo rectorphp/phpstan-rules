@@ -6,6 +6,7 @@ namespace Rector\PHPStanRules\Tests\ReturnTypeExtension\NameResolverReturnTypeEx
 
 use Iterator;
 use PHPStan\Testing\TypeInferenceTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class NameResolverReturnTypeExtensionTest extends TypeInferenceTestCase
 {
@@ -14,9 +15,7 @@ final class NameResolverReturnTypeExtensionTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_name_class_method.php.inc');
     }
 
-    /**
-     * @dataProvider dataAsserts()
-     */
+    #[DataProvider('dataAsserts')]
     public function testAsserts(string $assertType, string $file, mixed ...$args): void
     {
         $this->assertFileAsserts($assertType, $file, ...$args);
