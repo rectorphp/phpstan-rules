@@ -11,8 +11,6 @@ use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use Rector\VersionBonding\Contract\MinPhpVersionInterface;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Rector\PHPStanRules\Tests\Rule\PhpUpgradeImplementsMinPhpVersionInterfaceRule\PhpUpgradeImplementsMinPhpVersionInterfaceRuleTest
@@ -67,30 +65,5 @@ final class PhpUpgradeImplementsMinPhpVersionInterfaceRule implements Rule
         }
 
         return [sprintf(self::ERROR_MESSAGE, $className)];
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-namespace Rector\Php80\Rector\Switch_;
-
-final class ChangeSwitchToMatchRector extends AbstractRector
-{
-}
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-namespace Rector\Php80\Rector\Switch_;
-
-use Rector\VersionBonding\Contract\MinPhpVersionInterface;
-
-final class ChangeSwitchToMatchRector extends AbstractRector implements MinPhpVersionInterface
-{
-}
-CODE_SAMPLE
-            ),
-        ]);
     }
 }

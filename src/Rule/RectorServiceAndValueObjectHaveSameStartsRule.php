@@ -14,8 +14,6 @@ use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\ObjectType;
 use Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigMethodCallAnalyzer;
 use Rector\PHPStanRules\NodeAnalyzer\SymfonyConfigRectorValueObjectResolver;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Rector\PHPStanRules\Tests\Rule\RectorServiceAndValueObjectHaveSameStartsRule\RectorServiceAndValueObjectHaveSameStartsRuleTest
@@ -72,36 +70,6 @@ final class RectorServiceAndValueObjectHaveSameStartsRule implements Rule
 
         $errorMessage = sprintf(self::ERROR_MESSAGE, $valueObjectShortClass, $expectedValueObjectShortClass);
         return [$errorMessage];
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(
-            'Make specific service suffix to use similar value object names for configuring in Symfony configs',
-            [
-                new CodeSample(
-                    <<<'CODE_SAMPLE'
-use Rector\Config\RectorConfig;
-
-return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->ruleWithConfiguration(SomeRector::class, [
-        new Another()
-    ]);
-};
-CODE_SAMPLE
-                    ,
-                    <<<'CODE_SAMPLE'
-use Rector\Config\RectorConfig;
-
-return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->ruleWithConfiguration(SomeRector::class, [
-        new Some()
-    ]);
-};
-CODE_SAMPLE
-                ),
-            ]
-        );
     }
 
     private function resolveSetMethodCallShortClass(MethodCall $methodCall, Scope $scope): ?string

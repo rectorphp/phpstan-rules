@@ -17,8 +17,6 @@ use Rector\PHPStanRules\Exception\ShouldNotHappenException;
 use Rector\Set\ValueObject\DowngradeSetList;
 use Rector\Set\ValueObject\SetList;
 use SplFileInfo;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule\PhpUpgradeDowngradeRegisteredInSetRuleTest
@@ -68,22 +66,6 @@ final class PhpUpgradeDowngradeRegisteredInSetRule implements Rule
 
         $errorMessage = $this->createErrorMessage($configFilePath, $className);
         return [$errorMessage];
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-// config/set/php74.php
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-// config/set/php74.php
-$services->set(RealToFloatTypeCastRector::class);
-CODE_SAMPLE
-            ),
-        ]);
     }
 
     /**

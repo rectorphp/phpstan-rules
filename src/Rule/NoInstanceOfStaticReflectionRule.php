@@ -15,8 +15,6 @@ use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see https://github.com/rectorphp/rector/issues/5906
@@ -59,24 +57,6 @@ final class NoInstanceOfStaticReflectionRule extends AbstractSymplifyRule
         }
 
         return [self::ERROR_MESSAGE];
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-return is_a($node, 'Command', true);
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-$nodeType = $scope->getType($node);
-$commandObjectType = new ObjectType('Command');
-
-return $commandObjectType->isSuperTypeOf($nodeType)->yes();
-CODE_SAMPLE
-            ),
-        ]);
     }
 
     private function resolveExprStaticType(FuncCall|Instanceof_ $node, Scope $scope): ?Type

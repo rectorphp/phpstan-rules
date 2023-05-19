@@ -12,8 +12,6 @@ use PhpParser\Node\Name\Relative;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\Constant\ConstantStringType;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Rector\PHPStanRules\Tests\Rule\NoLeadingBackslashInNameRule\NoLeadingBackslashInNameRuleTest
@@ -63,20 +61,5 @@ final class NoLeadingBackslashInNameRule implements Rule
         }
 
         return [self::ERROR_MESSAGE];
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-new Name('\\Closure');
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-new FullyQualified('Closure');
-CODE_SAMPLE
-            ),
-        ]);
     }
 }

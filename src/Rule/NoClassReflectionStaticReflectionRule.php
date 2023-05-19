@@ -11,8 +11,6 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
 use ReflectionClass;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Rector\PHPStanRules\Tests\Rule\NoClassReflectionStaticReflectionRule\NoClassReflectionStaticReflectionRuleTest
@@ -62,22 +60,5 @@ final class NoClassReflectionStaticReflectionRule implements Rule
         }
 
         return [self::ERROR_MESSAGE];
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-$classReflection = new ClassReflection($someType);
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-if ($this->reflectionProvider->hasClass($someType)) {
-    $classReflection = $this->reflectionProvider->getClass($someType);
-}
-CODE_SAMPLE
-            ),
-        ]);
     }
 }
