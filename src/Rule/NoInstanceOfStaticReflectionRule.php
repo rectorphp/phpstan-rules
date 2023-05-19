@@ -5,23 +5,26 @@ declare(strict_types=1);
 namespace Rector\PHPStanRules\Rule;
 
 use PhpParser\Node;
+use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\Instanceof_;
 use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
+use PHPStan\Rules\Rule;
 use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use Rector\PHPStanRules\TypeAnalyzer\AllowedAutoloadedTypeAnalyzer;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 
 /**
  * @see https://github.com/rectorphp/rector/issues/5906
  *
  * @see \Rector\PHPStanRules\Tests\Rule\NoInstanceOfStaticReflectionRule\NoInstanceOfStaticReflectionRuleTest
+ *
+ * @implements Rule<Expr>
  */
-final class NoInstanceOfStaticReflectionRule extends AbstractSymplifyRule
+final class NoInstanceOfStaticReflectionRule implements Rule
 {
     /**
      * @var string
@@ -34,19 +37,23 @@ final class NoInstanceOfStaticReflectionRule extends AbstractSymplifyRule
     }
 
     /**
-     * @return array<class-string<Node>>
+     * @return class-string<Node>
      */
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [Instanceof_::class, FuncCall::class];
+        return Expr::class;
     }
 
     /**
-     * @param Instanceof_|FuncCall $node
+     * @param Node\Expr $node
      * @return string[]
      */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
+        if (! $node instanceof FuncCall && ! $node instanceof Instanceof_) {
+            return [];
+        }
+
         $exprStaticType = $this->resolveExprStaticType($node, $scope);
         if (! $exprStaticType instanceof Type) {
             return [];
