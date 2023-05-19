@@ -7,6 +7,7 @@ namespace Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule;
 use Iterator;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Rector\PHPStanRules\Rule\PhpUpgradeDowngradeRegisteredInSetRule;
 use Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule\Fixture\DowngradePhp80\SomePhpFeature2Rector;
 use Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule\Fixture\Php80\SomePhpFeatureRector;
@@ -17,9 +18,9 @@ use Rector\PHPStanRules\Tests\Rule\PhpUpgradeDowngradeRegisteredInSetRule\Fixtur
 final class PhpUpgradeDowngradeRegisteredInSetRuleTest extends RuleTestCase
 {
     /**
-     * @dataProvider provideData()
      * @param mixed[] $expectedErrorsWithLines
      */
+    #[DataProvider('provideData')]
     public function testRule(string $filePath, array $expectedErrorsWithLines): void
     {
         $this->analyse([$filePath], $expectedErrorsWithLines);
@@ -28,7 +29,7 @@ final class PhpUpgradeDowngradeRegisteredInSetRuleTest extends RuleTestCase
     /**
      * @return Iterator<string[]|array<int, mixed[]>>
      */
-    public function provideData(): Iterator
+    public static function provideData(): Iterator
     {
         yield [__DIR__ . '/Fixture/SkipSomePhpFeatureRector.php', []];
         yield [__DIR__ . '/Fixture/Php80/SkipConfigurableRector.php', []];

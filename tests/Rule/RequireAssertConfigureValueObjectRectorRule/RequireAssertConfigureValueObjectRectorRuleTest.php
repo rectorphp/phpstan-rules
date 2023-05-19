@@ -7,6 +7,7 @@ namespace Rector\PHPStanRules\Tests\Rule\RequireAssertConfigureValueObjectRector
 use Iterator;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Rector\PHPStanRules\Rule\RequireAssertConfigureValueObjectRectorRule;
 
 /**
@@ -15,15 +16,15 @@ use Rector\PHPStanRules\Rule\RequireAssertConfigureValueObjectRectorRule;
 final class RequireAssertConfigureValueObjectRectorRuleTest extends RuleTestCase
 {
     /**
-     * @dataProvider provideData()
      * @param mixed[] $expectedErrorsWithLines
      */
+    #[DataProvider('provideData')]
     public function testRule(string $filePath, array $expectedErrorsWithLines): void
     {
         $this->analyse([$filePath], $expectedErrorsWithLines);
     }
 
-    public function provideData(): Iterator
+    public static function provideData(): Iterator
     {
         yield [__DIR__ . '/Fixture/MissingConfigureWithAssert.php', [[RequireAssertConfigureValueObjectRectorRule::ERROR_MESSAGE, 20]]];
 

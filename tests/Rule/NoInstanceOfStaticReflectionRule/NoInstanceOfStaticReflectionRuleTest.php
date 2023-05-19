@@ -7,6 +7,7 @@ namespace Rector\PHPStanRules\Tests\Rule\NoInstanceOfStaticReflectionRule;
 use Iterator;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Rector\PHPStanRules\Rule\NoInstanceOfStaticReflectionRule;
 
 /**
@@ -15,15 +16,15 @@ use Rector\PHPStanRules\Rule\NoInstanceOfStaticReflectionRule;
 final class NoInstanceOfStaticReflectionRuleTest extends RuleTestCase
 {
     /**
-     * @dataProvider provideData()
      * @param mixed[] $expectedErrorsWithLines
      */
+    #[DataProvider('provideData')]
     public function testRule(string $filePath, array $expectedErrorsWithLines): void
     {
         $this->analyse([$filePath], $expectedErrorsWithLines);
     }
 
-    public function provideData(): Iterator
+    public static function provideData(): Iterator
     {
         $errorMessage = NoInstanceOfStaticReflectionRule::ERROR_MESSAGE;
         yield [__DIR__ . '/Fixture/InstanceofWithType.php', [[$errorMessage, 13]]];
