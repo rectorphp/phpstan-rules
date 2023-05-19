@@ -17,7 +17,8 @@
         "rector/rector": "dev-main",
         "phpstan/phpstan-webmozart-assert": "^1.2",
         "tracy/tracy": "^2.9",
-        "symplify/easy-ci": "^11.2"
+        "symplify/easy-ci": "^11.2",
+        "symplify/phpstan-extensions": "^11.2"
     },
     "autoload": {
         "psr-4": {
@@ -39,7 +40,7 @@
     "scripts": {
         "check-cs": "vendor/bin/ecs check --ansi",
         "fix-cs": "vendor/bin/ecs check --fix --ansi",
-        "phpstan": "vendor/bin/phpstan analyse --ansi"
+        "phpstan": "vendor/bin/phpstan analyse --ansi --error-format symplify"
     },
     "config": {
         "allow-plugins": {

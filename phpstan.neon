@@ -14,9 +14,14 @@ parameters:
         # class-string false positive
         - '#Method Rector\\PHPStanRules\\Rule\\PhpUpgradeDowngradeRegisteredInSetRule\:\:matchRectorClassName\(\) should return class\-string<Rector\\Core\\Contract\\Rector\\RectorInterface\>\|null but returns class\-string#'
 
-        - '#Calling PHPStan\\Reflection\\ParameterReflectionWithPhpDocs\:\:(getNativeType|getPhpDocType)\(\) is not covered by backward compatibility promise\. The method might change in a minor PHPStan version#'
+        - '#Method Rector\\PHPStanRules\\(.*?)getRule\(\) return type with generic interface PHPStan\\Rules\\Rule does not specify its types#'
+        - '#extends generic class PHPStan\\Testing\\RuleTestCase#'
 
         # not relevant
         - '#Parameter \#2 \$expectedErrors of method PHPStan\\Testing\\RuleTestCase<Rector\\PHPStanRules\\Rule\\(.*?), array given#'
+
+        - '#Calling PHPStan\\Reflection\\ParameterReflectionWithPhpDocs\:\:(getNativeType|getPhpDocType)\(\) is not covered by backward compatibility promise\. The method might change in a minor PHPStan version#'
+
+        - '#Parameter \#2 \$expectedErrors of method PHPStan\\Testing\\RuleTestCase<PHPStan\\Rules\\Rule>\:\:analyse\(\) expects array<int, array\{0\: string, 1\: int, 2\?\: string\}>, array given#'
 
         - '#should be contravariant with parameter#'
