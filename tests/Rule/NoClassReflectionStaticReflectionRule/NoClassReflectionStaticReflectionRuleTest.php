@@ -10,9 +10,6 @@ use PHPStan\Testing\RuleTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Rector\PHPStanRules\Rule\NoClassReflectionStaticReflectionRule;
 
-/**
- * @extends RuleTestCase<NoClassReflectionStaticReflectionRule>
- */
 final class NoClassReflectionStaticReflectionRuleTest extends RuleTestCase
 {
     /**

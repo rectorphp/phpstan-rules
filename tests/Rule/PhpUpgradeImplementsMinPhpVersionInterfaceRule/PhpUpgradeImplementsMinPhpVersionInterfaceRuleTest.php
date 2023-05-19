@@ -10,9 +10,6 @@ use PHPStan\Testing\RuleTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Rector\PHPStanRules\Rule\PhpUpgradeImplementsMinPhpVersionInterfaceRule;
 
-/**
- * @extends RuleTestCase<PhpUpgradeImplementsMinPhpVersionInterfaceRule>
- */
 final class PhpUpgradeImplementsMinPhpVersionInterfaceRuleTest extends RuleTestCase
 {
     /**

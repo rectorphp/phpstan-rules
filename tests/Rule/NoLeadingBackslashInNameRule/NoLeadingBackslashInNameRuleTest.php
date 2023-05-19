@@ -10,9 +10,6 @@ use PHPStan\Testing\RuleTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Rector\PHPStanRules\Rule\NoLeadingBackslashInNameRule;
 
-/**
- * @extends RuleTestCase<NoLeadingBackslashInNameRule>
- */
 final class NoLeadingBackslashInNameRuleTest extends RuleTestCase
 {
     /**

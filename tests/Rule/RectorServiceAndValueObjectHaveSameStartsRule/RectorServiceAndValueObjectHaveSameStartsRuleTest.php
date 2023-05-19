@@ -10,9 +10,6 @@ use PHPStan\Testing\RuleTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Rector\PHPStanRules\Rule\RectorServiceAndValueObjectHaveSameStartsRule;
 
-/**
- * @extends RuleTestCase<RectorServiceAndValueObjectHaveSameStartsRule>
- */
 final class RectorServiceAndValueObjectHaveSameStartsRuleTest extends RuleTestCase
 {
     /**

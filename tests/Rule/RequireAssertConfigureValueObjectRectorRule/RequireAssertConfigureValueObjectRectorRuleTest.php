@@ -10,9 +10,6 @@ use PHPStan\Testing\RuleTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Rector\PHPStanRules\Rule\RequireAssertConfigureValueObjectRectorRule;
 
-/**
- * @extends RuleTestCase<RequireAssertConfigureValueObjectRectorRule>
- */
 final class RequireAssertConfigureValueObjectRectorRuleTest extends RuleTestCase
 {
     /**
