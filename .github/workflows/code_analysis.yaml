@@ -12,4 +12,26 @@ env:
 
 jobs:
     code_analysis:
-        uses: rectorphp/reusable-workflows/.github/workflows/code_analysis.yaml@main
+        strategy:
+            fail-fast: false
+            matrix:
+                actions:
+                    -
+                        name: 'Active Classes'
+                        run: vendor/bin/class-leak check src --ansi --skip-type="PHPStan\Type\DynamicMethodReturnTypeExtension"
+
+        name: ${{ matrix.actions.name }}
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        steps:
+            -   uses: actions/checkout@v3
+
+            -
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: 8.1
+                    coverage: none
+
+            -   uses: "ramsey/composer-install@v2"
+            -   run: ${{ matrix.actions.run }}
