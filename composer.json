@@ -17,10 +17,11 @@
         "rector/rector": "dev-main",
         "phpstan/phpstan-webmozart-assert": "^1.2",
         "tracy/tracy": "^2.9",
-        "symplify/easy-ci": "^11.2",
+        "symplify/easy-ci": "^11.3",
         "symplify/phpstan-extensions": "^11.2",
-        "tomasvotruba/unused-public": "^0.1",
-        "tomasvotruba/type-coverage": "^0.2"
+        "tomasvotruba/unused-public": "^0.2",
+        "tomasvotruba/type-coverage": "^0.2",
+        "tomasvotruba/class-leak": "^0.1"
     },
     "autoload": {
         "psr-4": {
