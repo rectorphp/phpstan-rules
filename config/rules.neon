@@ -8,7 +8,6 @@ rules:
     - Rector\PHPStanRules\Rule\NoInstanceOfStaticReflectionRule
     - Rector\PHPStanRules\Rule\NoLeadingBackslashInNameRule
     - Rector\PHPStanRules\Rule\NoClassReflectionStaticReflectionRule
-    - Rector\PHPStanRules\Rule\RectorServiceAndValueObjectHaveSameStartsRule
 
 services:
     -
