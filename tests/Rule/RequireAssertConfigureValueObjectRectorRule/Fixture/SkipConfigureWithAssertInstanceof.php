@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\PHPStanRules\Tests\Rule\RequireAssertConfigureValueObjectRectorRule\Fixture;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
+use Rector\Contract\Rector\ConfigurableRectorInterface;
 use Rector\PHPStanRules\Tests\Rule\RequireAssertConfigureValueObjectRectorRule\Source\SomeValueObject;
 use Webmozart\Assert\Assert;
 

@@ -21,9 +21,6 @@ final class PhpUpgradeImplementsMinPhpVersionInterfaceRuleTest extends RuleTestC
         $this->analyse([$filePath], $expectedErrorsWithLines);
     }
 
-    /**
-     * @return Iterator<string[]|array<int, mixed[]>>
-     */
     public static function provideData(): Iterator
     {
         yield [__DIR__ . '/Fixture/SkipDowngradeRector.php', []];

@@ -10,15 +10,15 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 final class NameResolverReturnTypeExtensionTest extends TypeInferenceTestCase
 {
-    public function dataAsserts(): Iterator
-    {
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_name_class_method.php.inc');
-    }
-
     #[DataProvider('dataAsserts')]
     public function testAsserts(string $assertType, string $file, mixed ...$args): void
     {
         $this->assertFileAsserts($assertType, $file, ...$args);
+    }
+
+    public static function dataAsserts(): Iterator
+    {
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_name_class_method.php.inc');
     }
 
     /**

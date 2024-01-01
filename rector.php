@@ -28,6 +28,9 @@ return static function (RectorConfig $rectorConfig): void {
         // testdummy files
         '*/Fixture/*',
         '*/Source/*',
+
+        // keep original string references to avoid renames
+        StringClassNameToClassConstantRector::class
     ]);
 
     $rectorConfig->importNames();

@@ -10,9 +10,9 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\Type;
-use Rector\Core\Rector\AbstractRector;
-use Rector\Core\Rector\AbstractTemporaryRector;
 use Rector\PHPStanRules\TypeResolver\GetNameMethodCallTypeResolver;
+use Rector\Rector\AbstractRector;
+use Rector\Rector\AbstractTemporaryRector;
 
 /**
  * @see AbstractTemporaryRector::getName()

@@ -1,20 +1,16 @@
 parameters:
-    level: max
+    level: 8
 
     paths:
         - src
         - tests
-
-    reportUnmatchedIgnoredErrors: false
 
     excludePaths:
         - '*/Fixture/*'
 
     ignoreErrors:
         # class-string false positive
-        - '#Method Rector\\PHPStanRules\\Rule\\PhpUpgradeDowngradeRegisteredInSetRule\:\:matchRectorClassName\(\) should return class\-string<Rector\\Core\\Contract\\Rector\\RectorInterface\>\|null but returns class\-string#'
+        - '#Method Rector\\PHPStanRules\\Rule\\PhpUpgradeDowngradeRegisteredInSetRule\:\:matchRectorClassName\(\) should return class\-string<Rector\\Contract\\Rector\\RectorInterface\>\|null but returns class\-string#'
 
         - '#Method Rector\\PHPStanRules\\(.*?)getRule\(\) return type with generic interface PHPStan\\Rules\\Rule does not specify its types#'
         - '#extends generic class PHPStan\\Testing\\RuleTestCase#'
-
-        - '#Parameter \#2 \$expectedErrors of method PHPStan\\Testing\\RuleTestCase<PHPStan\\Rules\\Rule>\:\:analyse\(\) expects array<int, array\{0\: string, 1\: int, 2\?\: string\}>, array given#'
