@@ -1,6 +1,4 @@
 services:
-    - Rector\PHPStanRules\TypeResolver\GetNameMethodCallTypeResolver
-
     # $nodeFinder->findInstanceOf()
     # $nodeFinder->findFirstInstanceOf()
     -
