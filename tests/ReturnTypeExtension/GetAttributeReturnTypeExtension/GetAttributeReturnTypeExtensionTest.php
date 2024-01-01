@@ -13,15 +13,15 @@ use PHPUnit\Framework\Attributes\DataProvider;
  */
 final class GetAttributeReturnTypeExtensionTest extends TypeInferenceTestCase
 {
-    public function dataAsserts(): Iterator
-    {
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_parent_node.php.inc');
-    }
-
     #[DataProvider('dataAsserts')]
     public function testAsserts(string $assertType, string $file, mixed ...$args): void
     {
         $this->assertFileAsserts($assertType, $file, ...$args);
+    }
+
+    public static function dataAsserts(): Iterator
+    {
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_parent_node.php.inc');
     }
 
     /**
