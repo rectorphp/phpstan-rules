@@ -17,7 +17,6 @@ use PHPStan\Reflection\Php\PhpMethodReflection;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\TypeWithClassName;
-use Rector\Contract\Rector\ConfigurableRectorInterface;
 use Webmozart\Assert\Assert;
 
 /**
@@ -53,7 +52,7 @@ final class RequireAssertConfigureValueObjectRectorRule implements Rule
             return [];
         }
 
-        if (! $classReflection->isSubclassOf(ConfigurableRectorInterface::class)) {
+        if (! $classReflection->isSubclassOf('Rector\Contract\Rector\ConfigurableRectorInterface')) {
             return [];
         }
 
