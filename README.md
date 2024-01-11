@@ -10,7 +10,7 @@ Flip packages:
 
 ```hash
 composer remove rector/phpstan-rules
-composer require phpstan/phpstan-rules --dev
+composer require symplify/phpstan-rules --dev
 ```
 
 Update your `phpstan.neon`:
@@ -18,7 +18,7 @@ Update your `phpstan.neon`:
 ```diff
 # phpstan.neon
 -    - vendor/rector/phpstan-rules/config/rector-rules.neon
-+    - vendor/phpstan/phpstan-rules/config/rector-rules.neon
++    - vendor/symplify/phpstan-rules/config/rector-rules.neon
 ```
 
 PHPStan rules for Rector and projects that maintain Rector rulesets.
